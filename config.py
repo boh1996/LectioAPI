@@ -1,0 +1,1 @@
+lectio_base_url = "https://www.lectio.dk/lectio/"

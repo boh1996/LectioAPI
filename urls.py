@@ -1,0 +1,1 @@
+schools_list = "https://www.lectio.dk/lectio/login_list.aspx?showall=1"
