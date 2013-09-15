@@ -22,11 +22,17 @@ class School(Base):
 
 class User(Base):
     __tablename__ = "users"
-    id = Column(Integer(11), primary=True)
+    id = Column(Integer(11), primary_key=True)
     name = Column(String(255))
     lectio_id = Column(String(255))
     username = Column(String(255))
     password = Column(String(255))
+
+    def __init__(self, name, lectio_id, username, password):
+        self.name = name
+        self.lectio_id = lectio_id
+        self.username = username
+        self.password = password
 
 class Student(Base):
     __tablename__ = "students"
