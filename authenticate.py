@@ -1,43 +1,27 @@
 import config
-import cookielib, urllib2, urllib
+import urllib
+import requests
 from bs4 import BeautifulSoup as Soup
 import urls
-from cookielib import Cookie
 
 def authenticate ():
-    cj = cookielib.CookieJar()
-    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
-
     url = urls.login_url.replace("{{SCHOOL_ID}}", config.school_id).replace("{{BRANCH_ID}}", config.branch_id)
 
-    base = opener.open(url)
-    soup = Soup(base, "lxml")
+    base = requests.get(url)
+    soup = Soup(base.text)
 
-    '''CookieContainer = Cookie()
-    CookieContainer["isloggedin3"] = "N"
-
-    for cookie in cj:
-        if cookie.name == "NET_SessionId":
-            CookieContainer["ASP.NET_SessionId"] = cookie.value
-        elif cookie.name == "lectiogsc":
-            CookieContainer["lectiogsc"] = cookie.value
-
-    for cookie in CookieContainer:
-        cj.set_cookie(cookie)'''
-
-    settings = {
-        "m$Content$username2" : config.username,
-        "m$Content$password2": config.password,
-        "time" : 0,
-        "__EVENTARGUMENT:" : "",
-        "__VIEWSTATE" : "",
-        "__EVENTVALIDATION" : soup.find(id="__EVENTVALIDATION")["value"],
-        "__EVENTTARGET" : "m$Content$submitbtn2",
-        "__VIEWSTATEX" : "8QAAAGlpZQstMTUxMzYxNjIxMWlsBGsAZwFrAWcBbAJoaWRsAmcCaWwCawJlA29mZmwCZwNpZGwCZwFpZGwCZwVpZGwCZwVpZGwEaGlkbAJnA2lkbAZnAWlsAmsDZTVIVFggU3Vra2VydG9wcGVuIC0gSyYjMjQ4O2Jlbmhhdm5zIFRla25pc2tlIEd5bW5hc2l1bWRnBWlkbAJnAWlkbAJoaWwCawRlAjUwZGcHaWRsAmcBaWRsAmhpamlsAmsFcGRkZGRnAWlkbAJnA2lpbAJrBmcyZGRyAWURbSRDb250ZW50JExvZ2luTVZpaWRoZAcAAAAJTG9naW5WaWV3E1ZhbGlkYXRlUmVxdWVzdE1vZGUMYXV0b2NvbXBsZXRlCWlubmVyaHRtbAltYXhsZW5ndGgHQ2hlY2tlZAlNYXhMZW5ndGgAdKSEw0sxHwMhiTNR9mghwx8Ymk8",
+    headers = {
+        "User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1665.2 Safari/537.36",
+        "Content-Type" : "application/x-www-form-urlencoded",
+        "Referer" : url,
+        "Host" : "www.lectio.dk",
+        "Origin" : "https://www.lectio.dk",
     }
 
-    f = opener.open(url, urllib.urlencode(settings))
-    print f.geturl()
+    eventValidation = urllib.urlencode({"__EVENTVALIDATION" : "7BY2j4lely4ahWOpscccBOPS5wvMRZRL6o+oRDvtegQobPOXPgvj7pLXiMQPBGIxGdLpySs/0XQnfeBMI/kbyno5uBSlX7txoVGBhKfjqpgdjHmSez24vsY8shOlAhPhpXSwekUDJ0Boc8kRnZcht0xZBrfbSHiV1j4Yv/I9V1wUzNUX7YvWU3FNbXzoI2p+VupeTLPhwbvMpK0guGI46I8sHREt8zBW6ktlFvAk+Dm2RIq61f7FmWIDvo3DEjqTgIKktXU07gC0fgQribl0rI02Q9WoaCKGNljL0BY/9jdlX5BwWMIN+K4cSDkfrrs1q004M6AqNHL1Wd/O9wB/ow=="})
+    response = requests.post(url, data="m%24Content%24username2="+config.username+"&m%24Content%24password2="+config.password+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventValidation+"&__EVENTTARGET=m%24Content%24submitbtn2&__VIEWSTATEX="+soup.find(id="__VIEWSTATEX")["value"], headers=headers, allow_redirects=False)
 
-
-authenticate()
+    if "LastLoginUserName" in response.cookies:
+        return response.cookies
+    else:
+        return False
