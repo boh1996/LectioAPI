@@ -4,13 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/authenticate.py" line="14" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asignments.py" afterPath="$PROJECT_DIR$/asignments.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/authenticate.py" afterPath="$PROJECT_DIR$/authenticate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.py" afterPath="$PROJECT_DIR$/functions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="" />
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381664949890" ignored="false" />
@@ -55,7 +49,7 @@
       <file leaf-file-name="asignments.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asignments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="42" selection-start="4215" selection-end="4215" vertical-scroll-proportion="2.777933">
+            <state line="117" column="42" selection-start="4215" selection-end="4215" vertical-scroll-proportion="1.8072625">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -506,7 +500,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/asignments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="42" selection-start="4215" selection-end="4215" vertical-scroll-proportion="2.777933">
+        <state line="117" column="42" selection-start="4215" selection-end="4215" vertical-scroll-proportion="1.8072625">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
