@@ -5,8 +5,8 @@ def implode (list, pattern, delemiter):
 
     return string.rstrip(delemiter)
 
-def zeroPadding(str):
-    integer = int(str)
+def zeroPadding(string):
+    integer = int(string)
     if integer < 10:
         return "0" + str(integer)
     else:

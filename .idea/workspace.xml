@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/authenticate.py" line="14" mnemonic="2" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/authenticate.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/asignments.py" afterPath="$PROJECT_DIR$/asignments.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/urls.py" afterPath="$PROJECT_DIR$/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/authenticate.py" afterPath="$PROJECT_DIR$/authenticate.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functions.py" afterPath="$PROJECT_DIR$/functions.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379248517125" ignored="false" />
-    <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379254717244" ignored="false" />
+    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381664949890" ignored="false" />
+    <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381614993472" ignored="false" />
     <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1378932861183" ignored="false" />
     <file path="/schools.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379250737240" ignored="false" />
-    <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379255744305" ignored="false" />
+    <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381615040283" ignored="false" />
     <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379257919733" ignored="false" />
-    <file path="/database.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379181626451" ignored="false" />
+    <file path="/database.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381614576546" ignored="false" />
     <file path="/requirements.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379253857538" ignored="false" />
-    <file path="/asignments.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379258061048" ignored="false" />
-    <file path="/authenticate.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379260895856" ignored="false" />
+    <file path="/asignments.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677383643" ignored="false" />
+    <file path="/authenticate.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677324844" ignored="false" />
+    <file path="/functions.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381675185097" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,19 +52,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="asignments.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="asignments.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/asignments.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="14" selection-end="51" vertical-scroll-proportion="0.0">
+            <state line="117" column="42" selection-start="4215" selection-end="4215" vertical-scroll-proportion="2.777933">
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="27" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authenticate.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="authenticate.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/authenticate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="16" selection-start="807" selection-end="807" vertical-scroll-proportion="0.675">
+            <state line="5" column="24" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -73,12 +87,7 @@
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="27" column="34" selection-start="937" selection-end="937" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-                <marker date="1379257919512" expanded="true" signature="294:741" placeholder="..." />
-                <marker date="1379257919512" expanded="true" signature="639:741" placeholder="..." />
-                <marker date="1379257919512" expanded="true" signature="760:1160" placeholder="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,7 +95,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="9" selection-start="173" selection-end="182" vertical-scroll-proportion="0.0">
+            <state line="4" column="74" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -95,7 +104,7 @@
       <file leaf-file-name="config.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="9" selection-start="239" selection-end="248" vertical-scroll-proportion="0.0">
+            <state line="4" column="21" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -120,14 +129,15 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/students.py" />
-        <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/schools.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/models.py" />
+        <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/urls.py" />
-        <option value="$PROJECT_DIR$/models.py" />
-        <option value="$PROJECT_DIR$/asignments.py" />
+        <option value="$PROJECT_DIR$/functions.py" />
         <option value="$PROJECT_DIR$/authenticate.py" />
+        <option value="$PROJECT_DIR$/asignments.py" />
       </list>
     </option>
   </component>
@@ -163,7 +173,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -184,6 +193,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -317,13 +327,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25933075" sideWeight="0.67176634" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.261875" sideWeight="0.67176634" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -401,13 +411,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="4" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schools.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="30" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
@@ -424,77 +427,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/students.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="4" column="0" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="4" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1" column="4" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/students.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="4" column="0" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="10" selection-start="30" selection-end="30" vertical-scroll-proportion="0.04906205">
-          <folding />
-        </state>
+        <state line="2" column="10" selection-start="30" selection-end="30" vertical-scroll-proportion="0.04906205" />
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/urllib2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="4" selection-start="4130" selection-end="4130" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="121" column="4" selection-start="4130" selection-end="4130" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/urllib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="3" selection-start="961" selection-end="961" vertical-scroll-proportion="0.0981241">
-          <folding />
-        </state>
+        <state line="22" column="3" selection-start="961" selection-end="961" vertical-scroll-proportion="0.0981241" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#17#0" expanded="false" />
-          </folding>
+        <state line="10" column="19" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="21" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="74" selection-start="439" selection-end="439" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="34" selection-start="937" selection-end="937" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <marker date="1379257919512" expanded="true" signature="294:741" placeholder="..." />
-            <marker date="1379257919512" expanded="true" signature="639:741" placeholder="..." />
-            <marker date="1379257919512" expanded="true" signature="760:1160" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="9" selection-start="173" selection-end="182" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="9" selection-start="239" selection-end="248" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -506,16 +488,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/asignments.py">
+    <entry file="file://$PROJECT_DIR$/authenticate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="14" selection-end="51" vertical-scroll-proportion="0.0">
+        <state line="5" column="24" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="27" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/authenticate.py">
+    <entry file="file://$PROJECT_DIR$/asignments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="16" selection-start="807" selection-end="807" vertical-scroll-proportion="0.675">
+        <state line="117" column="42" selection-start="4215" selection-end="4215" vertical-scroll-proportion="2.777933">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

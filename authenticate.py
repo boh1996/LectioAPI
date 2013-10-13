@@ -1,10 +1,9 @@
-import config
 import urllib
 import requests
 from bs4 import BeautifulSoup as Soup
 import urls
 
-def authenticate ():
+def authenticate (config):
     url = urls.login_url.replace("{{SCHOOL_ID}}", config.school_id).replace("{{BRANCH_ID}}", config.branch_id)
 
     # Retrieve the base information, to retrieve ViewState
