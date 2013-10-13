@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LectioAPI.iws" />
@@ -21,6 +20,8 @@
     <file path="/asignments.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677383643" ignored="false" />
     <file path="/authenticate.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677324844" ignored="false" />
     <file path="/functions.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381675185097" ignored="false" />
+    <file path="R:/lectio-assignments-google-calendar/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381679288817" ignored="false" />
+    <file path="/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381679286341" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

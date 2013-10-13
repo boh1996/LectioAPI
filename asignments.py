@@ -1,4 +1,3 @@
-import config
 from bs4 import BeautifulSoup as Soup
 import cookielib, urllib2, urllib
 import urls
@@ -12,7 +11,7 @@ import requests
 from sqlalchemy.exc import IntegrityError
 import authenticate
 
-def assignments():
+def assignments(config):
     session = authenticate.authenticate(config)
 
     if session == False:
