@@ -15,7 +15,7 @@ def assignments(config):
     session = authenticate.authenticate(config)
 
     if session == False:
-        print "Error"
+        return {"status" : "error", "type" : "authenticate"}
     else:
         url = urls.assigment_list.replace("{{SCHOOL_ID}}", config.school_id).replace("{{STUDENT_ID}}", config.lectio_id)
 
@@ -116,4 +116,4 @@ def assignments(config):
 
             assignmentsList.append(object)
 
-        return assignmentsList
+        return {"list" : assignmentsList, "status" : "ok"}
