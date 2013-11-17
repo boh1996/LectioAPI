@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/books.py" line="93" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/students.py" line="14" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/books.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documents.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/teams.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/userinfo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schools.py" afterPath="$PROJECT_DIR$/schools.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/students.py" afterPath="$PROJECT_DIR$/students.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/urls.py" afterPath="$PROJECT_DIR$/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384692602517" ignored="false" />
+    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701086748" ignored="false" />
     <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384615517353" ignored="false" />
-    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384614901980" ignored="false" />
+    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384700683889" ignored="false" />
     <file path="/schools.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384022019732" ignored="false" />
     <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384693231339" ignored="false" />
-    <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379257919733" ignored="false" />
+    <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701213257" ignored="false" />
     <file path="/database.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381614576546" ignored="false" />
     <file path="/requirements.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379253857538" ignored="false" />
     <file path="/asignments.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677383643" ignored="false" />
@@ -31,7 +25,7 @@
     <file path="R:/lectio-assignments-google-calendar/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381679288817" ignored="false" />
     <file path="/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381679286341" ignored="false" />
     <file path="/userinfo.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384614691299" ignored="false" />
-    <file path="/test.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384615444235" ignored="false" />
+    <file path="/test.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384697715269" ignored="false" />
     <file path="/documents.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384613476877" ignored="false" />
     <file path="/books.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384696466545" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,64 +47,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="userinfo.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/userinfo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="37" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="students.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/students.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <marker date="1384614912767" expanded="true" signature="59:90" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="asignments.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/asignments.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="20" selection-start="1879" selection-end="1960" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authenticate.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/authenticate.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="24" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="books.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/books.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="63" selection-start="6700" selection-end="6700" vertical-scroll-proportion="0.17780939">
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="25" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0">
+            <state line="3" column="23" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -121,28 +61,28 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="96" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.0">
+            <state line="14" column="8" selection-start="1408" selection-end="1416" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.py">
+      <file leaf-file-name="books.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/books.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="9" selection-start="241" selection-end="250" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teams.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/teams.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="72" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
+            <state line="34" column="46" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1384615079779" expanded="true" signature="0:241" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="34" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.50139666">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,7 +106,6 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/functions.py" />
         <option value="$PROJECT_DIR$/asignments.py" />
@@ -174,13 +113,14 @@
         <option value="$PROJECT_DIR$/schools.py" />
         <option value="$PROJECT_DIR$/documents.py" />
         <option value="$PROJECT_DIR$/userinfo.py" />
-        <option value="$PROJECT_DIR$/students.py" />
         <option value="$PROJECT_DIR$/teams.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py" />
         <option value="$PROJECT_DIR$/books.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/students.py" />
+        <option value="$PROJECT_DIR$/models.py" />
       </list>
     </option>
   </component>
@@ -471,13 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="34" selection-start="937" selection-end="937" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/documents.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="17" selection-start="5144" selection-end="5144" vertical-scroll-proportion="0.8947368">
@@ -492,73 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teams.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="72" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1384615079779" expanded="true" signature="0:241" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="9" selection-start="241" selection-end="250" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/authenticate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="24" selection-start="572" selection-end="572" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userinfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="37" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="25" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/asignments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="20" selection-start="1879" selection-end="1960" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/students.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="91" selection-end="91" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1384614912767" expanded="true" signature="59:90" placeholder="&quot;&quot;&quot;...&quot;&quot;&quot;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="96" selection-start="2302" selection-end="2302" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2101" column="8" selection-start="70536" selection-end="70536" vertical-scroll-proportion="0.33240223">
@@ -566,12 +432,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books.py">
+    <entry file="file://$PROJECT_DIR$/authenticate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="63" selection-start="6700" selection-end="6700" vertical-scroll-proportion="0.17780939">
+        <state line="15" column="24" selection-start="572" selection-end="572" vertical-scroll-proportion="0.29018492">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/asignments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="20" selection-start="1879" selection-end="1960" vertical-scroll-proportion="0.33519554">
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="9" selection-start="241" selection-end="250" vertical-scroll-proportion="0.2611732">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userinfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="37" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.61731845">
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="72" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="46" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="8" selection-start="1408" selection-end="1416" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="23" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/students.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="45" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.7489452">
+          <folding>
+            <element signature="e#42#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="34" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.50139666">
+          <folding />
         </state>
       </provider>
     </entry>

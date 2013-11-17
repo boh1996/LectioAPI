@@ -1,4 +1,4 @@
 import config
-import books
+import students
 
-print books.books(config)
+print students.students(config)

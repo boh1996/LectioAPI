@@ -39,5 +39,21 @@ class Student(Base):
     id = Column(Integer(11), primary_key=True)
     name = Column(String(255))
     student_id = Column(Integer(11), unique=True)
+    context_card_id = Column(String(11))
+    student_class = Column(String(11))
+    class_student_id = Column(Integer(11))
+    class_description = Column(String(255))
+    status = Column(String(200))
+    school_id = Column(Integer(11), ForeignKey("schools.school_id"))
+
+    def __init__(self, name, student_id, context_card_id, student_class, class_student_id, class_description, status, school_id):
+        self.name = name
+        self.context_card_id = context_card_id
+        self.student_id = student_id
+        self.student_class = student_class
+        self.class_student_id = class_student_id
+        self.class_description = class_description
+        self.status = status
+        self.school_id = school_id
 
 Base.metadata.create_all(database.engine)
