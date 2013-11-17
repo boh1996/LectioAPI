@@ -14,11 +14,11 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
 
     # Loop through all the letters
     for letter in letters:
-        url = urls.students.replace("{{SCHOOL_ID}}", config.school_id).replace("{{FIRST_LETTER}}", letter)
+        url = urls.students.replace("{{SCHOOL_ID}}", config["school_id"]).replace("{{FIRST_LETTER}}", letter).replace("{{BRANCH_ID}}", config["branch_id"])
 
         # Sorting settings
         settings = {
-            "m%24ChooseTerm%24term" : str(datetime.strftime(datetime.now(), "%Y"))
+            "m%24ChooseTerm%24term" : str(datetime.strftime(datetime.now(), "%Y")),
         }
 
         # Insert User-agent headers and the cookie information
@@ -43,7 +43,7 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
                 r"(?P<name>.*) \((?P<class>.*) (?P<class_student_id>.*)\)",
                 r"(?P<name>.*) \((?P<class>.*), (?P<year>.*) (?P<class_description>.*), (?P<status>.*)\)",
                 r"(?P<name>.*) \((?P<organization>.*), (?P<class>.*) (?P<status>.*)\)",
-                r"(?P<name>.*) \((?P<class_number>.*) (?P<class>.*) (?P<class_student_id>.*)\)"
+                r"(?P<name>.*) \((?P<class_number>.*) (?P<class>.*) (?P<class_student_id>[0-9]*)\)"
             ]
 
             # Check if the patterns matches
@@ -51,6 +51,9 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
                 prog = re.compile(pattern)
                 if prog.match(student.text):
                     studentInformation = prog.match(student.text)
+
+            # Get the matched regex groups
+            groups = studentInformation.groupdict()
 
             if "class" in groups:
                 if "class_number" in groups:
@@ -60,19 +63,18 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             else:
                 studentClass = ""
 
-            # Get the matched regex groups
-            groups = studentInformation.groupdict()
-
             # Append the student information
             studentList.append({
                 "context_card_id" : student["lectiocontextcard"],
                 "student_id" : student["href"].replace("/lectio/517/SkemaNy.aspx?type=elev&elevid=", ""),
                 "name" : studentInformation.group("name") if "name" in groups else "",
-                "class" : studentClass,
+                "class_name" : studentClass,
                 "class_student_id" : studentInformation.group("class_student_id") if "class_student_id" in groups else "",
                 "class_description" : studentInformation.group("class_description") if "class_description" in groups else "",
                 "status" : studentInformation.group("status") if "status" in groups else "",
-                "school_id" : config.school_id
+                "school_id" : config["school_id"],
+                "branch_id" : config["branch_id"]
+
             })
 
     return {

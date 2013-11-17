@@ -5,17 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/importClasses.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/importStudents.py" />
+      <change type="DELETED" beforePath="R:\LectioAPI\importers\database.py" afterPath="" />
+      <change type="DELETED" beforePath="R:\LectioAPI\importers\students.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/books.py" afterPath="$PROJECT_DIR$/books.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/students.py" afterPath="$PROJECT_DIR$/students.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/urls.py" afterPath="$PROJECT_DIR$/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701086748" ignored="false" />
+    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384718371525" ignored="false" />
     <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384615517353" ignored="false" />
-    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701833393" ignored="false" />
+    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384719913968" ignored="false" />
     <file path="/schools.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384022019732" ignored="false" />
-    <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384693231339" ignored="false" />
-    <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701213257" ignored="false" />
-    <file path="/database.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381614576546" ignored="false" />
+    <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384720028365" ignored="false" />
+    <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384725045315" ignored="false" />
+    <file path="/database.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384721287782" ignored="false" />
     <file path="/requirements.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379253857538" ignored="false" />
     <file path="/asignments.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677383643" ignored="false" />
     <file path="/authenticate.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381677324844" ignored="false" />
@@ -23,9 +33,14 @@
     <file path="R:/lectio-assignments-google-calendar/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381679288817" ignored="false" />
     <file path="/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1381679286341" ignored="false" />
     <file path="/userinfo.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384614691299" ignored="false" />
-    <file path="/test.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384697715269" ignored="false" />
+    <file path="/test.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384720267070" ignored="false" />
     <file path="/documents.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384613476877" ignored="false" />
-    <file path="/books.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384696466545" ignored="false" />
+    <file path="/books.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384719492510" ignored="false" />
+    <file path="/classes.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384722641775" ignored="false" />
+    <file path="/importStudents.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384724920685" ignored="false" />
+    <file path="/importClasses.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384725315822" ignored="false" />
+    <file path="R:/lectio-web-settings/objects.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384725613301" ignored="false" />
+    <file path="/objects.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384725594354" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,10 +60,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="test.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="test.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="23" selection-start="54" selection-end="54" vertical-scroll-proportion="0.07122905">
+            <state line="3" column="29" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -59,7 +74,7 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="8" selection-start="1408" selection-end="1416" vertical-scroll-proportion="0.0">
+            <state line="16" column="15" selection-start="1652" selection-end="1667" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -68,19 +83,30 @@
       <file leaf-file-name="books.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/books.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="46" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0">
+            <state line="0" column="37" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="importClasses.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/importClasses.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="20" selection-start="617" selection-end="617" vertical-scroll-proportion="0.5698324">
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#22#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models.py">
+      <file leaf-file-name="importStudents.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/importStudents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="43" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="15" column="42" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,7 +114,7 @@
       <file leaf-file-name="students.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/students.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="62" selection-start="767" selection-end="767" vertical-scroll-proportion="0.0">
+            <state line="29" column="9" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#42#79#0" expanded="true" />
               </folding>
@@ -96,10 +122,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="students.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/importers/students.py">
+      <file leaf-file-name="classes.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/classes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="13" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
+            <state line="11" column="121" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#42#79#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="9" selection-start="266" selection-end="275" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -123,22 +160,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/database.py" />
-        <option value="$PROJECT_DIR$/functions.py" />
-        <option value="$PROJECT_DIR$/asignments.py" />
-        <option value="$PROJECT_DIR$/authenticate.py" />
-        <option value="$PROJECT_DIR$/schools.py" />
-        <option value="$PROJECT_DIR$/documents.py" />
-        <option value="$PROJECT_DIR$/userinfo.py" />
-        <option value="$PROJECT_DIR$/teams.py" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/urls.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py" />
         <option value="$PROJECT_DIR$/books.py" />
-        <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/importers/students.py" />
+        <option value="$PROJECT_DIR$/urls.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/importers/database.py" />
+        <option value="$PROJECT_DIR$/importers/classes.py" />
+        <option value="$PROJECT_DIR$/importers/importClasses.py" />
+        <option value="$PROJECT_DIR$/importers/importStudents.py" />
+        <option value="$PROJECT_DIR$/classes.py" />
+        <option value="$PROJECT_DIR$/models.py" />
+        <option value="$PROJECT_DIR$/importStudents.py" />
         <option value="$PROJECT_DIR$/students.py" />
+        <option value="$PROJECT_DIR$/database.py" />
+        <option value="$PROJECT_DIR$/importClasses.py" />
       </list>
     </option>
   </component>
@@ -192,20 +229,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LectioAPI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LectioAPI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="importers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -233,6 +256,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="R:\LectioAPI\importers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="R:\LectioAPI" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Python">
@@ -349,16 +375,16 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.218125" sideWeight="0.67176634" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.218125" sideWeight="0.671159" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32823366" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -431,27 +457,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="27" selection-start="381" selection-end="381" vertical-scroll-proportion="0.2849162">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="17" selection-start="5144" selection-end="5144" vertical-scroll-proportion="0.8947368">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/schools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2101" column="8" selection-start="70536" selection-end="70536" vertical-scroll-proportion="0.33240223">
@@ -470,15 +475,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="20" selection-start="1879" selection-end="1960" vertical-scroll-proportion="0.33519554">
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="9" selection-start="241" selection-end="250" vertical-scroll-proportion="0.2611732">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -486,7 +484,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="37" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.61731845">
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -498,58 +496,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/books.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="46" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="8" selection-start="1408" selection-end="1416" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/importers/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/importers/students.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="13" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/students.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="62" selection-start="767" selection-end="767" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#42#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="43" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.0">
+        <state line="16" column="15" selection-start="1652" selection-end="1667" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="23" selection-start="54" selection-end="54" vertical-scroll-proportion="0.07122905">
+        <state line="3" column="29" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/sqlalchemy/schema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="696" column="8" selection-start="27395" selection-end="27436" vertical-scroll-proportion="0.33261803">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="9" selection-start="266" selection-end="275" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/books.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="37" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="121" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#42#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importStudents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="42" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/students.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="9" selection-start="1136" selection-end="1136" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#42#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="298" selection-end="298" vertical-scroll-proportion="0.23743017">
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importClasses.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="20" selection-start="617" selection-end="617" vertical-scroll-proportion="0.5698324">
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="128" selection-end="183" vertical-scroll-proportion="0.055495102">
+          <folding />
         </state>
       </provider>
     </entry>

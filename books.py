@@ -18,7 +18,7 @@ def books(config):
     if session == False:
         return {"status" : "error", "type" : "authenticate"}
     else:
-        url = urls.books_list.replace("{{SCHOOL_ID}}", config.school_id).replace("{{STUDENT_ID}}", config.lectio_id)
+        url = urls.books_list.replace("{{SCHOOL_ID}}", config.school_id).replace("{{STUDENT_ID}}", config.lectio_id).replace("{{BRANCH_ID}}", config.branch_id)
 
         # Insert the session information from the auth function
         cookies = {
