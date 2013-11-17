@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.py" afterPath="$PROJECT_DIR$/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/students.py" afterPath="$PROJECT_DIR$/students.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701086748" ignored="false" />
     <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384615517353" ignored="false" />
-    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384700683889" ignored="false" />
+    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701714086" ignored="false" />
     <file path="/schools.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384022019732" ignored="false" />
     <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384693231339" ignored="false" />
     <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701213257" ignored="false" />
@@ -78,11 +76,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="34" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.50139666">
+            <state line="43" column="34" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="students.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/students.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="32" selection-start="2585" selection-end="2585" vertical-scroll-proportion="0.5251397">
+              <folding>
+                <element signature="e#42#79#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,8 +128,8 @@
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py" />
         <option value="$PROJECT_DIR$/books.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/students.py" />
         <option value="$PROJECT_DIR$/models.py" />
+        <option value="$PROJECT_DIR$/students.py" />
       </list>
     </option>
   </component>
@@ -496,19 +505,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/students.py">
+    <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="45" selection-start="2660" selection-end="2660" vertical-scroll-proportion="0.7489452">
-          <folding>
-            <element signature="e#42#79#0" expanded="true" />
-          </folding>
+        <state line="43" column="34" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
+    <entry file="file://$PROJECT_DIR$/students.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="34" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.50139666">
-          <folding />
+        <state line="69" column="32" selection-start="2585" selection-end="2585" vertical-scroll-proportion="0.5251397">
+          <folding>
+            <element signature="e#42#79#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

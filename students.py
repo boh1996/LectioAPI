@@ -45,7 +45,8 @@ def students(config):
             patterns = [
                 r"(?P<name>.*) \((?P<class>.*) (?P<class_student_id>.*)\)",
                 r"(?P<name>.*) \((?P<class>.*), (?P<year>.*) (?P<class_description>.*), (?P<status>.*)\)",
-                r"(?P<name>.*) \((?P<organization>.*), (?P<class>.*) (?P<status>.*)\)"
+                r"(?P<name>.*) \((?P<organization>.*), (?P<class>.*) (?P<status>.*)\)",
+                r"(?P<name>.*) \((?P<class_number>.*) (?P<class>.*) (?P<class_student_id>.*)\)"
             ]
 
             # Check if the patterns matches
@@ -53,6 +54,14 @@ def students(config):
                 prog = re.compile(pattern)
                 if prog.match(student.text):
                     studentInformation = prog.match(student.text)
+
+            if "class" in groups:
+                if "class_number" in groups:
+                    studentClass = "%s %s" % (studentInformation.group("class_number"), studentInformation.group("class"))
+                else:
+                    studentClass = studentInformation.group("class")
+            else:
+                studentClass = ""
 
             # Get the matched regex groups
             groups = studentInformation.groupdict()
@@ -62,7 +71,7 @@ def students(config):
                 "context_card_id" : student["lectiocontextcard"],
                 "student_id" : student["href"].replace("/lectio/517/SkemaNy.aspx?type=elev&elevid=", ""),
                 "name" : studentInformation.group("name") if "name" in groups else "",
-                "class" : studentInformation.group("class") if "class" in groups else "",
+                "class" : studentClass,
                 "class_student_id" : studentInformation.group("class_student_id") if "class_student_id" in groups else "",
                 "class_description" : studentInformation.group("class_description") if "class_description" in groups else "",
                 "status" : studentInformation.group("status") if "status" in groups else "",
