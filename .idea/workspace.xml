@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/students.py" afterPath="$PROJECT_DIR$/students.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/importers/database.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/importers/students.py" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701086748" ignored="false" />
     <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384615517353" ignored="false" />
-    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701714086" ignored="false" />
+    <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701833393" ignored="false" />
     <file path="/schools.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384022019732" ignored="false" />
     <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384693231339" ignored="false" />
     <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384701213257" ignored="false" />
@@ -85,13 +86,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="students.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="students.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/students.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="32" selection-start="2585" selection-end="2585" vertical-scroll-proportion="0.5251397">
+            <state line="72" column="45" selection-start="2803" selection-end="2803" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#42#79#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="students.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/importers/students.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="13" selection-start="29" selection-end="29" vertical-scroll-proportion="0.023743017">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/functions.py" />
         <option value="$PROJECT_DIR$/asignments.py" />
@@ -130,6 +139,7 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/models.py" />
         <option value="$PROJECT_DIR$/students.py" />
+        <option value="$PROJECT_DIR$/importers/students.py" />
       </list>
     </option>
   </component>
@@ -183,6 +193,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LectioAPI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LectioAPI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="importers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -206,6 +230,11 @@
     <option name="myDjangoConsoleState">
       <PyConsoleSettings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="R:\LectioAPI\importers" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.Python">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -403,16 +432,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="27" selection-start="381" selection-end="381" vertical-scroll-proportion="0.2849162">
@@ -514,10 +533,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/students.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="32" selection-start="2585" selection-end="2585" vertical-scroll-proportion="0.5251397">
+        <state line="72" column="45" selection-start="2803" selection-end="2803" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#42#79#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importers/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importers/students.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="13" selection-start="29" selection-end="29" vertical-scroll-proportion="0.023743017">
+          <folding />
         </state>
       </provider>
     </entry>
