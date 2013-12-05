@@ -36,8 +36,6 @@ def authenticate (config):
     #response = requests.post(url, data="m%24Content%24username2="+config.username.strip()+"&m%24Content%24password2="+config.password.strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventValidation+"&__EVENTTARGET=m%24Content%24submitbtn2&__VIEWSTATEX="+soup.find(id="__VIEWSTATEX")["value"],headers=headers, allow_redirects=True)
     response = requests.post(url, data="m%24Content%24username2="+config.username.strip()+"&m%24Content%24password2="+config.password.strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventV+"&__EVENTTARGET=m%24Content%24submitbtn2&"+viewS,headers=headers, allow_redirects=False)
 
-    print response.url
-
     if "LastLoginUserName" in response.cookies:
         return response.cookies
     else:

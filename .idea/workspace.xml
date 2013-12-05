@@ -6,10 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/activity_info.py" afterPath="$PROJECT_DIR$/activity_info.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/authenticate.py" afterPath="$PROJECT_DIR$/authenticate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/values.py" afterPath="$PROJECT_DIR$/values.py" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -115,7 +112,7 @@
       <file leaf-file-name="authenticate.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/authenticate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="47" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.92745376">
+            <state line="36" column="278" selection-start="2240" selection-end="2240" vertical-scroll-proportion="0.73399717">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -539,7 +536,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/authenticate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="47" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.92745376">
+        <state line="36" column="278" selection-start="2240" selection-end="2240" vertical-scroll-proportion="0.73399717">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
