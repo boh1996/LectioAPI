@@ -70,13 +70,23 @@ def assignments(config):
             except BaseException:
                 object["week"] = ""
             try:
-                object["group"] = cells[1].find("span").text
+                object["group"] = unicode(cells[1].find("span").text)
             except BaseException:
                 object["group"] = ""
             try:
-                object["title"] = cells[2].find("a").text
+                object["title"] = unicode(cells[2].find("a").text)
             except BaseException:
                 object["title"] = ""
+            try:
+                object["context_card_id"] = cells[1].find("span")["lectiocontextcard"]
+            except BaseException:
+                object["context_card_id"] = ""
+            try:
+                prog = re.compile(r"/lectio/(?P<school_id>[0-9*])/ElevAflevering.aspx?elevid=(?P<student_id>[0-9*])&exerciseid=(?P<exercise_id>[0-9*])&prevurl=OpgaverElev.aspx%3felevid%3d(?P<prev_student_id>[0-9*])")
+                urlGroups = prog.match(cells[2].find("a")["href"])
+                object["exercise_id"] = urlGroups.group("exercise_id")
+            except BaseException:
+                object["exercise_id"] = ""
             try:
                 object["link"] = cells[2].find("a")["href"]
             except BaseException:
@@ -90,7 +100,7 @@ def assignments(config):
             except BaseException:
                 object["hours"] = ""
             try:
-                object["status"] = cells[5].find("span").text
+                object["status"] = unicode(cells[5].find("span").text)
             except BaseException:
                 object["status"] = ""
             try:
@@ -98,19 +108,19 @@ def assignments(config):
             except BaseException:
                 object["leave"] = ""
             try:
-                object["waiting_for"] = cells[7].find("span").text
+                object["waiting_for"] = unicode(cells[7].find("span").text)
             except BaseException:
                 object["waiting_for"] = ""
             try:
-                object["note"] = cells[8].text
+                object["note"] = unicode(cells[8].text)
             except BaseException:
                 object["note"] = ""
             try:
-                object["grade"] = cells[9].text
+                object["grade"] = unicode(cells[9].text)
             except BaseException:
                 object["grade"] = ""
             try:
-                object["student_note"] = cells[10].text
+                object["student_note"] = unicode(cells[10].text)
             except BaseException:
                 object["student_note"] = ""
 

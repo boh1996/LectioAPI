@@ -4,7 +4,6 @@
 from bs4 import BeautifulSoup as Soup
 import cookielib, urllib2, urllib
 import urls
-import requests
 import re
 import requests
 from datetime import *
@@ -66,7 +65,7 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             # Append the student information
             studentList.append({
                 "context_card_id" : student["lectiocontextcard"],
-                "student_id" : student["href"].replace("/lectio/517/SkemaNy.aspx?type=elev&elevid=", ""),
+                "student_id" : student["href"].replace("/lectio/%s/SkemaNy.aspx?type=elev&elevid=" % (config["school_id"]), ""),
                 "name" : studentInformation.group("name") if "name" in groups else "",
                 "class_name" : studentClass,
                 "class_student_id" : studentInformation.group("class_student_id") if "class_student_id" in groups else "",

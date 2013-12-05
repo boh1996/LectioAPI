@@ -1,3 +1,5 @@
+from itertools import izip
+
 def implode (list, pattern, delemiter):
     string = ""
     for index, value in list.iteritems():
@@ -11,3 +13,6 @@ def zeroPadding(string):
         return "0" + str(integer)
     else:
         return str(integer)
+
+def grouped(iterable, n):
+    return izip(*[iter(iterable)]*n)

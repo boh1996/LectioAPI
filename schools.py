@@ -3,25 +3,27 @@ from bs4 import BeautifulSoup as Soup
 import urllib
 import urls
 import re
-import models
-import database
-from sqlalchemy.exc import IntegrityError
 
-f = urllib.urlopen(urls.schools_list)
-html = f.read()
+def schools():
+    schoolList = []
 
-soup = Soup(html)
+    f = urllib.urlopen(urls.schools_list)
+    html = f.read()
 
-school_tags = soup.find(id="schoolsdiv").find_all(attrs={"class":"buttonHeader"})
+    soup = Soup(html)
 
-schools = []
+    school_tags = soup.find(id="schoolsdiv").find_all(attrs={"class":"buttonHeader"})
 
-for school in school_tags:
-    name = school.find("a").text.encode('ascii', 'ignore').replace("X - ", "").replace(" - ","").replace("Z - ", "")
-    ids = re.search('/lectio/([0-9]*)/default.aspx\?lecafdeling=([0-9]*)',school.find("a")["href"])
-    SchoolObject = models.School(name,ids.group(1),ids.group(2))
-    schools.append(SchoolObject)
-    database.session.add(SchoolObject)
+    for school in school_tags:
+        name = unicode(school.find("a").text).replace("X - ", "").replace(" - ","").replace("Z - ", "")
+        ids = re.search('/lectio/([0-9]*)/default.aspx\?lecafdeling=([0-9]*)',school.find("a")["href"])
+        schoolList.append({
+            "name" : name,
+            "school_id" : ids.group(1),
+            "branch_id" : ids.group(2)
+        })
 
-database.session.commit();
-
+    return {
+        "status" : "ok",
+        "schools" :schoolList
+    }

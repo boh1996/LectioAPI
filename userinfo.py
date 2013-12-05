@@ -101,8 +101,8 @@ def userinfo(config):
 
         return {
             "status" : "ok",
-            "lectio_user_id" : lectio_user_id.replace("/lectio/517/SkemaNy.aspx?type=elev&elevid=", ""),
-            "lectio_picture_id" : picture_id.replace("/lectio/517/GetImage.aspx?pictureid=", ""),
+            "lectio_user_id" : lectio_user_id.replace("/lectio/%s/SkemaNy.aspx?type=elev&elevid=" % (config["school_id"]), ""),
+            "lectio_picture_id" : picture_id.replace("/lectio/%s/GetImage.aspx?pictureid=" & (config["school_id"]), ""),
             "teams" : teams,
             "buildInGroups" : buildInGroups,
             "ownGroups" : ownGroups,
