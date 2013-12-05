@@ -5,5 +5,8 @@ import authenticate
 
 session = authenticate.authenticate(config)
 
-print activity_info.activity_info(config, session, "7436288143")
+if session == False:
+    print "Auth error:"
+else:
+    print activity_info.activity_info(config, session, "7436288143")
 

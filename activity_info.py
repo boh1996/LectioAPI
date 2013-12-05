@@ -192,7 +192,7 @@ def activity_info(config, session, activity_id):
                 homework.append({
                     "note" : object.group("note"),
                     "class" : object.group("class"),
-                    "authors" : object.group("writers").split(", ")
+                    "authors" : object.group("writers").split(", "),
                     "name" : object.group("name"),
                     "pages" : object.group("pages"),
                     "subject" : object.group("subject")
