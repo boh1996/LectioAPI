@@ -1,0 +1,2361 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"import",
+				"importClasses"
+			],
+			[
+				"find",
+				"find_listeners"
+			],
+			[
+				"se",
+				"send_event"
+			],
+			[
+				"data",
+				"database_name"
+			],
+			[
+				"database_p",
+				"database_password"
+			],
+			[
+				"datab",
+				"database_username"
+			],
+			[
+				"sc",
+				"school_id"
+			],
+			[
+				"clas",
+				"classList"
+			],
+			[
+				"d",
+				"difference"
+			],
+			[
+				"schoo",
+				"school"
+			],
+			[
+				"try",
+				"try	Try/Except"
+			],
+			[
+				"__",
+				"__init__"
+			],
+			[
+				"color",
+				"color"
+			],
+			[
+				"elm",
+				"element_list"
+			],
+			[
+				"co",
+				"colors"
+			],
+			[
+				"N",
+				"name_of_color"
+			],
+			[
+				"name",
+				"name_of_food"
+			],
+			[
+				"do",
+				"dictionary"
+			],
+			[
+				"th",
+				"th	Tag"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"nav",
+				"navbar"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"cor",
+				"crossroads"
+			],
+			[
+				"base",
+				"baseUrl"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"twet",
+				"tweet_id"
+			],
+			[
+				"analyt",
+				"analytics_model"
+			],
+			[
+				"limits",
+				"limits"
+			],
+			[
+				"set",
+				"settings"
+			],
+			[
+				"ana",
+				"analytics_words_view"
+			],
+			[
+				"cret",
+				"created_at"
+			],
+			[
+				"er",
+				"error_type"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"error",
+				"error"
+			],
+			[
+				"base_",
+				"base_url"
+			],
+			[
+				"ite",
+				"item_id"
+			],
+			[
+				"item",
+				"item_type"
+			],
+			[
+				"run",
+				"run_uuid"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"err",
+				"errors"
+			],
+			[
+				"statu",
+				"status_model"
+			],
+			[
+				"acc",
+				"accepted_time"
+			],
+			[
+				"new",
+				"newest_cursor_elements"
+			],
+			[
+				"old",
+				"oldest"
+			],
+			[
+				"late",
+				"latest_cursor"
+			],
+			[
+				"max",
+				"max_timestamp"
+			],
+			[
+				"last",
+				"last_inserted_cursor"
+			],
+			[
+				"lat",
+				"latest_cursor"
+			],
+			[
+				"lats",
+				"last_inserted_cursor"
+			],
+			[
+				"time",
+				"timeline"
+			],
+			[
+				"tw",
+				"tweets"
+			],
+			[
+				"nex",
+				"next_page_cursor"
+			],
+			[
+				"refre",
+				"refresh_cursor"
+			],
+			[
+				"twee",
+				"tweetElements"
+			],
+			[
+				"page_",
+				"next_page_data"
+			],
+			[
+				"ref",
+				"refresh_cursor"
+			],
+			[
+				"mat",
+				"matches"
+			],
+			[
+				"local",
+				"local_tweets"
+			],
+			[
+				"sett",
+				"settings_model"
+			],
+			[
+				"scra",
+				"scraper"
+			],
+			[
+				"bef",
+				"beforeRequestCallback"
+			],
+			[
+				"ob",
+				"object"
+			],
+			[
+				"meta",
+				"meta_keys"
+			],
+			[
+				"obj",
+				"object_key"
+			],
+			[
+				"item_",
+				"item_type"
+			],
+			[
+				"bloc",
+				"blocked_strings"
+			],
+			[
+				"tweet",
+				"tweet_model"
+			],
+			[
+				"alert",
+				"alert_string_id"
+			],
+			[
+				"alert_str",
+				"alert_string_id"
+			],
+			[
+				"twe",
+				"tweet"
+			],
+			[
+				"insert_",
+				"insert_scraper_run"
+			],
+			[
+				"micro",
+				"microtime"
+			],
+			[
+				"twete",
+				"tweets_fetched"
+			],
+			[
+				"remove",
+				"remove_unwanted_strings"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"scrape",
+				"scrape_model"
+			],
+			[
+				"scrap",
+				"scrape_model"
+			],
+			[
+				"stat",
+				"statistics_fetched"
+			],
+			[
+				"create_w",
+				"create_tweet_word"
+			],
+			[
+				"hash",
+				"hash_tag"
+			],
+			[
+				"tweet_d",
+				"tweet_db_id"
+			],
+			[
+				"creat",
+				"created_at"
+			],
+			[
+				"crea",
+				"created_at"
+			],
+			[
+				"men",
+				"mention_screen_name"
+			],
+			[
+				"web",
+				"webpage"
+			],
+			[
+				"_re",
+				"_response_headers"
+			],
+			[
+				"array",
+				"arrayName"
+			],
+			[
+				"va",
+				"values"
+			],
+			[
+				"remve",
+				"removeDuplicate"
+			],
+			[
+				"ele",
+				"element"
+			],
+			[
+				"ex",
+				"exist"
+			],
+			[
+				"un",
+				"unique"
+			],
+			[
+				"el",
+				"element"
+			],
+			[
+				"ret",
+				"returnElement"
+			],
+			[
+				"insert",
+				"insertElement"
+			],
+			[
+				"chec",
+				"check_defaults"
+			],
+			[
+				"out",
+				"output_key"
+			],
+			[
+				"decr",
+				"decrypt_password"
+			],
+			[
+				"ac",
+				"account"
+			],
+			[
+				"acco",
+				"account"
+			],
+			[
+				"save",
+				"save_twitter"
+			],
+			[
+				"sig",
+				"signed"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"save_",
+				"save_pages"
+			],
+			[
+				"access",
+				"access_control"
+			],
+			[
+				"page",
+				"page_requires_login"
+			],
+			[
+				"is_s",
+				"is_signed_in"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"session_de",
+				"session_destroy"
+			],
+			[
+				"mk",
+				"mktime"
+			],
+			[
+				"update",
+				"update_user_by_id"
+			],
+			[
+				"fet",
+				"fetch_user_username"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"TWI",
+				"TWITTER_TIMELINE"
+			],
+			[
+				"TW",
+				"TWITTER_FRONT_PAGE_URL"
+			],
+			[
+				"auth",
+				"authenticity_token"
+			],
+			[
+				"TWIT",
+				"TWITTER_TOKEN_FIELD"
+			],
+			[
+				"_u",
+				"_username"
+			],
+			[
+				"_pos",
+				"_postFields"
+			],
+			[
+				"cook",
+				"cookie_string"
+			],
+			[
+				"incl",
+				"include"
+			],
+			[
+				"get",
+				"getHttpStatus"
+			],
+			[
+				"_U",
+				"_urls"
+			],
+			[
+				"U",
+				"URL"
+			],
+			[
+				"lin",
+				"link	@link"
+			],
+			[
+				"ch",
+				"change"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "importers/importSchools.py",
+			"settings":
+			{
+				"buffer_size": 1518,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sync.py",
+			"settings":
+			{
+				"buffer_size": 1966,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "importers/importClasses.py",
+			"settings":
+			{
+				"buffer_size": 1442,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scrapers/classes.py",
+			"settings":
+			{
+				"buffer_size": 1745,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scrapers/tasks.py",
+			"settings":
+			{
+				"buffer_size": 673,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "scrapers/asignments.py",
+			"settings":
+			{
+				"buffer_size": 5003,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: Re",
+				"Package Control: Remove Package"
+			],
+			[
+				"Inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Git p",
+				"Git: Push"
+			],
+			[
+				"Gk",
+				"Git: Gitk"
+			],
+			[
+				"doc",
+				"DocBlockr: Reparse comment block"
+			],
+			[
+				"git",
+				"Git: Gui"
+			],
+			[
+				"Package",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Packgage",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 132.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/R/LectioAPI/scrapers/documents.py",
+		"/R/LectioAPI/config.py",
+		"/R/LectioAPI/scrapers/proxy.py",
+		"/R/LectioAPI/scrapers/schools.py",
+		"/R/LectioAPI/error.py",
+		"/R/LectioAPI/database.py",
+		"/R/LectioAPI/requirements.txt",
+		"/R/LectioAPI/scrapers/database.py",
+		"/R/LectioAPI/scrapers/importSchools.py",
+		"/R/LectioAPI/scrapers/importStudents.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp40821/home/boh1996/lectio-api/scrapers/config.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp36853/home/boh1996/lan/database.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp37239/home/boh1996/lan/config.py",
+		"/R/LectioAPI/scrapers/config.sample.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp37937/home/boh1996/lectio-api/scrapers/database.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp36251/home/boh1996/lan/__main__.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp33069/home/boh1996/lectio-api/database.py",
+		"/C/Users/Bo/AppData/Local/Temp/scp32542/home/boh1996/lectio-api/config.py",
+		"/R/LectioAPI/run.py",
+		"/R/ComputerInfo/.htaccess",
+		"/R/facebook-message-backup/static/index.html",
+		"/R/facebook-message-backup/static/templates/status.html",
+		"/R/facebook-message-backup/static/js/app/routes.js",
+		"/R/facebook-message-backup/static/js/app/config.js",
+		"/R/facebook-message-backup/static/js/app.js",
+		"/C/Users/Bo/Desktop/test/test.py",
+		"/C/Users/Bo/Desktop/test/test1.py",
+		"/R/facebook-message-backup/static/js/app/functions.js",
+		"/R/facebook-message-backup/static/templates/navbar.html",
+		"/R/facebook-message-backup/statis/js/app/routes.js",
+		"/R/facebook-message-backup/static/js/lib/handlebars.js",
+		"/R/facebook-message-backup/statis/js/app.js",
+		"/C/Users/Bo/AppData/Roaming/Sublime Text 2/Packages/LiveReload/LiveReload.sublime-settings",
+		"/R/facebook-message-backup/statis/css/style.css",
+		"/R/facebook-message-backup/static/templates/livereload.html",
+		"/R/facebook-message-backup/static/css'",
+		"/R/facebook-message-backup/static/templates",
+		"/R/facebook-message-backup/static/js",
+		"/R/facebook-message-backup/css/spinner.css",
+		"/R/TwitterAnalytics/application/language/english/admin_lang.php",
+		"/R/TwitterAnalytics/application/views/admin_settings_view.php",
+		"/R/TwitterAnalytics/application/controllers/user.php",
+		"/R/TwitterAnalytics/application/controllers/login.php",
+		"/R/TwitterAnalytics/assets/js/sign_in.js",
+		"/R/TwitterAnalytics/application/config/routes.php",
+		"/C/Users/Bo/AppData/Local/Temp/4e62feb6-1fba-4123-a5bf-3588411d4e32/var/www/html/twa/.htaccess",
+		"/C/Users/Bo/AppData/Local/Temp/4e62feb6-1fba-4123-a5bf-3588411d4e32/var/www/html/.htaccess",
+		"/R/TwitterAnalytics/application/libraries/user_control.php",
+		"/R/TwitterAnalytics/application/views/user_home_view.php",
+		"/R/TwitterAnalytics/application/libraries/scraper.php",
+		"/R/TwitterAnalytics/application/controllers/admin.php",
+		"/R/TwitterAnalytics/application/controllers/api/api_scraper.php",
+		"/R/TwitterAnalytics/application/controllers/setup.php",
+		"/R/TwitterAnalytics/application/migrations/001_scraper.php",
+		"/R/TwitterAnalytics/application/migrations/001_history.php",
+		"/C/Users/Bo/Desktop/clean.sql",
+		"/R/TwitterAnalytics/application/migrations/001_users.php",
+		"/R/TwitterAnalytics/application/migrations/001_alerts.php",
+		"/R/TwitterAnalytics/application/migrations/001_words.php",
+		"/R/TwitterAnalytics/application/migrations/001_tweet.php",
+		"/C/Users/Bo/AppData/Local/Temp/4e62feb6-1fba-4123-a5bf-3588411d4e32/var/www/html/twa/application/config/config.php",
+		"/C/Users/Bo/AppData/Local/Temp/4e62feb6-1fba-4123-a5bf-3588411d4e32/var/www/html/twa/application/config/database.php",
+		"/R/TwitterAnalytics/application/config/defaults.php",
+		"/R/TwitterAnalytics/application/config/config.php",
+		"/R/TwitterAnalytics/application/models/analytics_model.php",
+		"/R/TwitterAnalytics/application/models/tweet_model.php",
+		"/R/TwitterAnalytics/assets/js/analytics.js",
+		"/R/TwitterAnalytics/application/config/migration.php",
+		"/R/TwitterAnalytics/assets/js/alerts_list.js",
+		"/R/TwitterAnalytics/application/views/templates/analytics_words_view.php",
+		"/R/TwitterAnalytics/application/views/user_alerts_view.php",
+		"/R/TwitterAnalytics/application/views/templates/analytics_alerts_view.php",
+		"/R/TwitterAnalytics/application/views/templates/analytics_alerts_list_view.php",
+		"/R/TwitterAnalytics/application/models/settings_model.php",
+		"/R/TwitterAnalytics/application/views/admin_status_view.php",
+		"/R/TwitterAnalytics/application/models/status_model.php",
+		"/R/TwitterAnalytics/assets/css/style.css",
+		"/R/TwitterAnalytics/application/config/autoload.php",
+		"/R/TwitterAnalytics/application/models/user_model.php",
+		"/C/Users/Bo/AppData/Roaming/Sublime Text 2/Packages/AdvancedNewFile/Default (Windows).sublime-keymap",
+		"/C/Users/Bo/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/R/TwitterAnalytics/application/views/user.php",
+		"/R/TwitterAnalytics/assets/js/status.js",
+		"/R/TwitterAnalytics/application/models/scrape_model.php",
+		"/R/TwitterAnalytics/application/views/templates/status_active_scrapers_view.php",
+		"/R/TwitterAnalytics/application/views/templates/status_errors_view.php",
+		"/R/TwitterAnalytics/application/views/templates/status_history_view.php",
+		"/R/TwitterAnalytics/application/views/templates/status_scrapers_view.php",
+		"/R/TwitterAnalytics/application/libraries/Format.php",
+		"/R/TwitterAnalytics/assets/css/admin.css",
+		"/R/TwitterAnalytics/application/config/profiler.php",
+		"/R/TwitterAnalytics/application/views/admin_access_control.php",
+		"/R/TwitterAnalytics/application/language/english/common_lang.php",
+		"/R/TwitterAnalytics/assets/bootstrap/css/docs.css",
+		"/R/TwitterAnalytics/application/views/admin_alerts.php",
+		"/R/TwitterAnalytics/application/views/admin_twitter.php",
+		"/R/TwitterAnalytics/application/views/settings_view.php",
+		"/R/TwitterAnalytics/application/views/templates/nav_bar_view.php",
+		"/R/TwitterAnalytics/assets/js/setttings.js",
+		"/R/TwitterAnalytics/application/views/admin_settings.php",
+		"/R/TwitterAnalytics/assets/js/alerts.js",
+		"/R/TwitterAnalytics/application/views/admin_strings_to_remove_view.php",
+		"/R/TwitterAnalytics/application/libraries/urls.php",
+		"/R/TwitterAnalytics/application/models/base_model.php",
+		"/R/TwitterAnalytics/application/libraries/curl.php",
+		"/R/TwitterAnalytics/application/libraries/auth/login_security.php",
+		"/R/TwitterAnalytics/application/models/token_model.php",
+		"/R/TwitterAnalytics/application/controllers/api/api_login.php",
+		"/R/TwitterAnalytics/application/views/admin_blocked_strings_view.php",
+		"/R/TwitterAnalytics/application/controllers/api/api_list.php",
+		"/R/TwitterAnalytics/includes/urls.php",
+		"/R/TwitterAnalytics/application/views/admin_urls_view.php",
+		"/R/TwitterAnalytics/application/views/admin_blocked_words_view.php",
+		"/R/TwitterAnalytics/application/views/admin_strings_view.php",
+		"/R/TwitterAnalytics/application/controllers/api/api_topics.php",
+		"/R/TwitterAnalytics/application/views/admin_topics_view.php",
+		"/R/TwitterAnalytics/assets/js/list-input.js",
+		"/R/TwitterAnalytics/application/controllers/api/api_alerts.php",
+		"/R/TwitterAnalytics/application/controllers/index.html",
+		"/R/TwitterAnalytics/application/models/alert_model.php",
+		"/R/TwitterAnalytics/application/config/roles.php",
+		"/R/TwitterAnalytics/application/controllers/api/api_settings.php",
+		"/R/TwitterAnalytics/assets/js/functions.js",
+		"/R/TwitterAnalytics/assets/js/admin_settings.js",
+		"/R/TwitterAnalytics/application/controllers/api/api_access_control.php",
+		"/R/TwitterAnalytics/assets/css/sign_in.css",
+		"/R/TwitterAnalytics/application/views/templates/footer_view.php",
+		"/R/TwitterAnalytics/application/views/admin.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"R:\\TwitterAnalytics\\",
+			"R:\\TwitterAnalytics\\assets",
+			"R:\\translator\\assets",
+			"R:\\ComputerInfo/application/",
+			"R:\\ComputerInfo/application/libraries",
+			"R:\\IllutionBootstrap",
+			"R:\\Font-Awesome-More\\less",
+			"R:\\ComputerInfo\\application",
+			"C:\\Users\\Bo\\Desktop\\Hind\\xpak_hind",
+			"R:\\IllutionBootstrap\\bootstrap\\less",
+			"R:\\IllutionBootstrap\\bootstrap\\less,R:\\ComputerInfo\\application",
+			"R:\\IllutionBootstrap\\bootstrap\\less"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"class_name",
+			"class",
+			"\"",
+			"scraper",
+			"drop_table",
+			";",
+			" \n",
+			"DELETE FROM",
+			"words",
+			"scraper",
+			"word",
+			"cat",
+			"<th><?= $this->lang->line(\"user_count\"); ?></th>",
+			"words",
+			"word",
+			"words",
+			"\"",
+			":focus",
+			"50",
+			"script",
+			"()),\n",
+			"error",
+			"scrapers",
+			"errors",
+			"thead",
+			"error",
+			"errors",
+			"local_tweets_blocked",
+			"tweets_blocked",
+			"thead",
+			"Example",
+			"alerts",
+			"urls",
+			"word_charlist",
+			"oldest",
+			"[\"\"]",
+			"echo",
+			"var_d",
+			"echo",
+			">\";",
+			"tweetElements",
+			"$this->_create_url($type, $data)",
+			"tweetElements",
+			"$",
+			"const ",
+			"keyword",
+			"topic",
+			"mktime()",
+			"getAttr",
+			"topic",
+			"alerts",
+			"self",
+			"(\"\")",
+			"  ",
+			"css",
+			"session",
+			"Programmer",
+			"this.options.checkedClass",
+			"style",
+			"display",
+			"input",
+			"tt-hint",
+			"inline-",
+			"Sukkertoppen",
+			"text",
+			"getPage",
+			"VS",
+			"toolsKey",
+			"$key",
+			"cookie(",
+			"$_COOKIE",
+			" * @access public",
+			"public ",
+			"private",
+			"[type]",
+			"save-translation",
+			"file_location",
+			"this",
+			"row",
+			"lanugage_key_id",
+			"_is_key_valid",
+			"['key']",
+			"[\"key\"]",
+			"[key]",
+			"controller_method",
+			"rest_",
+			"[type]",
+			"computers",
+			"file_name",
+			"crossroads.addRoute",
+			"button",
+			"History",
+			"data",
+			"project_data",
+			"data",
+			"[type]",
+			"translation_id",
+			"[type]",
+			"modes",
+			"project",
+			"window.userData",
+			"this",
+			"[type]",
+			"_approval",
+			"done_count",
+			"delete",
+			"this",
+			"<?= $project[\"id\"]; ?>",
+			"roles",
+			"time()",
+			"put",
+			"PUT",
+			"_options_args",
+			"options",
+			"OPTIONS",
+			"get",
+			"GET",
+			"Project",
+			"i",
+			"token_name",
+			"token",
+			"results",
+			"num",
+			"key",
+			"id",
+			"{{token}}",
+			"{{description}}",
+			"{{token}}"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"time()",
+			"	",
+			"\"init\":",
+			"init\"name\":",
+			"\"name\":",
+			"lalalalala",
+			"\"init\":",
+			"\"name\"",
+			"},",
+			"\" ,name",
+			"\" : \"",
+			"\\n{init: \"",
+			"\",}",
+			",name: \"",
+			"\\n",
+			"\\n\\r",
+			"\\n",
+			"",
+			"{/sup}",
+			"{sub}",
+			"",
+			"\",\\n\"",
+			"\"\\n\"",
+			"$1",
+			"",
+			"\"\"",
+			"",
+			"$this->_CI->config->item",
+			"$_SESSION[$this->config->item(\"user_id_session\")]",
+			"datatables_translations",
+			"\"<?php",
+			"?>\"",
+			"\"<?php",
+			"root + \"translate/datatable\"",
+			"root + \"assets/translations/datatables/\"+application.language+\".txt\"\nroot + \"translate/datatable\"",
+			"ObjectTemplate.modifiedByUser \"dkleader\"",
+			"new Reset_Password_Token",
+			"js/core/",
+			"core/js/",
+			"core/js",
+			"\",",
+			"\"",
+			"\"\\n\"js/",
+			"\"\"js/",
+			"\\n js/",
+			"application.readyCallback",
+			"application.settings",
+			"application",
+			"\"bootstrap/js/bootstrap",
+			"\",\\n\"",
+			"_Exists",
+			"_Convert_Properties_To_Database_Row",
+			"if (property_exists($this,\"_INTERNAL_CURRENT_USER\") && isset($this->_INTERNAL_CURRENT_USER) && !is_null($this->_INTERNAL_CURRENT_USER) && method_exists($Class,\"Set_Current_User\")) {",
+			"if (property_exists($this,\"_INTERNAL_CURRENT_USER\") && isset($this->_INTERNAL_CURRENT_USER) && !is_null($this->_INTERNAL_CURRENT_USER) && method_exists($Object,\"Set_Current_User\")) {",
+			"if (!is_null($this->_INTERNAL_CURRENT_USER) && method_exists($Class,\"Set_Current_User\")) {",
+			"if (!is_null($this->_INTERNAL_CURRENT_USER) && method_exists($Object,\"Set_Current_User\")) {",
+			"this",
+			"../images/",
+			"../images/chosen-sprite.png",
+			"../images/chosen-sprite.png\n\n```	",
+			"\n\n```	",
+			"\n\\n\n```	",
+			"\n\\n    \n```	",
+			"\n   \n```	",
+			"\n\\n    \n```	",
+			"\n\n```	",
+			"\n\n\\n		",
+			"/n	",
+			"\\n	",
+			"",
+			"App_Exists(",
+			"",
+			"_Convert_From_Object(",
+			"_Contains_Object(",
+			"_Secure_Export()",
+			"_Normal_Export(",
+			"_Load_From_Class(",
+			"_Link_Properties()",
+			"_Save_Linked_Properties()",
+			"_Force_Array()",
+			"',1,1)",
+			",1,1)",
+			",",
+			"$Data",
+			"$Class",
+			"_INTERNAL_DATABASE_NAME_CONVERT",
+			"$this->CI->Model_User->",
+			"model(\"Model_User\")",
+			"_CI",
+			"$Class",
+			"_CI",
+			"$_CI",
+			"_SetDataClass",
+			"$Group",
+			"_ClearDatabase",
+			"_SetDataArray",
+			"_RemoveUserData",
+			"_CheckData",
+			"_RemoveDatabaseData",
+			"_SetDataClass",
+			",$this->",
+			"$this->",
+			"$User->",
+			"self::CheckData(&2,&1);",
+			"",
+			");",
+			",",
+			"		self::CheckData(",
+			"\\nself::CheckData(",
+			"\\n		self::CheckData(",
+			"\\nself::CheckData(",
+			"self::CheckData(",
+			"0.69",
+			"provider.addBullets(",
+			"searchProviders",
+			"{size}",
+			"jqt/img/chevron.png",
+			"96"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "importers/importSchools.py",
+					"settings":
+					{
+						"buffer_size": 1518,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1318,
+								1318
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sync.py",
+					"settings":
+					{
+						"buffer_size": 1966,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1747,
+								1769
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 511.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "importers/importClasses.py",
+					"settings":
+					{
+						"buffer_size": 1442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								405,
+								405
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 42.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "scrapers/classes.py",
+					"settings":
+					{
+						"buffer_size": 1745,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								928,
+								928
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "scrapers/tasks.py",
+					"settings":
+					{
+						"buffer_size": 673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								50,
+								50
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "scrapers/asignments.py",
+					"settings":
+					{
+						"buffer_size": 5003,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3327,
+								3331
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 924.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.aaa_package_dev":
+	{
+		"height": 100.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"output.phpdocumentor":
+	{
+		"height": 100.0
+	},
+	"output.sftp":
+	{
+		"height": 106.0
+	},
+	"replace":
+	{
+		"height": 63.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"ro",
+				"static/js/app/routes.js"
+			],
+			[
+				"ana_m",
+				"application/models/analytics_model.php"
+			],
+			[
+				"ad_la",
+				"application/language/english/admin_lang.php"
+			],
+			[
+				"adm_set_v",
+				"application/views/admin_settings_view.php"
+			],
+			[
+				"admin_set",
+				"application/views/admin_settings_view.php"
+			],
+			[
+				"adm_l",
+				"application/language/english/admin_lang.php"
+			],
+			[
+				"user.ph",
+				"application/controllers/user.php"
+			],
+			[
+				"user",
+				"application/libraries/user_control.php"
+			],
+			[
+				"sign.js",
+				"assets/js/sign_in.js"
+			],
+			[
+				"user_c",
+				"application/libraries/user_control.php"
+			],
+			[
+				"api_sc",
+				"application/controllers/api/api_scraper.php"
+			],
+			[
+				"scra",
+				"application/libraries/scraper.php"
+			],
+			[
+				"user_ho",
+				"application/views/user_home_view.php"
+			],
+			[
+				"sig_js",
+				"assets/js/sign_in.js"
+			],
+			[
+				"de",
+				"application/config/defaults.php"
+			],
+			[
+				"co",
+				"application/config/config.php"
+			],
+			[
+				"ana_md",
+				"application/models/analytics_model.php"
+			],
+			[
+				"twet_m",
+				"application/models/tweet_model.php"
+			],
+			[
+				"_li.js",
+				"assets/js/alerts_list.js"
+			],
+			[
+				"_list.",
+				"assets/js/alerts_list.js"
+			],
+			[
+				"temp/ana",
+				"application/views/templates/analytics_words_view.php"
+			],
+			[
+				"ana.",
+				"assets/js/analytics.js"
+			],
+			[
+				"user_v",
+				"application/views/user_alerts_view.php"
+			],
+			[
+				"rote",
+				"application/config/routes.php"
+			],
+			[
+				"tweet_m",
+				"application/models/tweet_model.php"
+			],
+			[
+				"migra",
+				"application/config/migration.php"
+			],
+			[
+				"defa",
+				"application/config/defaults.php"
+			],
+			[
+				"admin.",
+				"application/controllers/admin.php"
+			],
+			[
+				"sett",
+				"application/models/settings_model.php"
+			],
+			[
+				"admi_la",
+				"application/language/english/admin_lang.php"
+			],
+			[
+				"def",
+				"application/config/defaults.php"
+			],
+			[
+				"ad",
+				"application/views/admin_status_view.php"
+			],
+			[
+				"auto",
+				"application/config/autoload.php"
+			],
+			[
+				"adm_st",
+				"application/views/admin_status_view.php"
+			],
+			[
+				"styl",
+				"assets/css/style.css"
+			],
+			[
+				"stat_m",
+				"application/models/status_model.php"
+			],
+			[
+				"ad_m",
+				"application/models/user_model.php"
+			],
+			[
+				"adm.ph",
+				"application/controllers/admin.php"
+			],
+			[
+				"admin_sta",
+				"application/views/admin_status_view.php"
+			],
+			[
+				"ap_l",
+				"application/controllers/api/api_login.php"
+			],
+			[
+				".htm",
+				"application/index.html"
+			],
+			[
+				"view",
+				"application/views/footer_view.php"
+			],
+			[
+				"std_mo",
+				"application/models/std_model.php"
+			],
+			[
+				"std",
+				"application/libraries/std_library.php"
+			],
+			[
+				"rand",
+				"application/helpers/rand_helper.php"
+			],
+			[
+				"db_",
+				"application/libraries/db_session.php"
+			],
+			[
+				"api_c",
+				"application/libraries/api/API_Controller.php"
+			],
+			[
+				"ho",
+				"application/controllers/home.php"
+			],
+			[
+				"db_s",
+				"application/libraries/db_session.php"
+			],
+			[
+				"ses",
+				"application/controllers/session.php"
+			],
+			[
+				"home",
+				"application/controllers/home.php"
+			],
+			[
+				"_view",
+				"application/views/nav_view.php"
+			],
+			[
+				"tra_",
+				"application/models/translation_model.php"
+			],
+			[
+				"api_tr",
+				"application/controllers/api/api_translation.php"
+			],
+			[
+				"con.p",
+				"application/config/config.php"
+			],
+			[
+				"tra_m",
+				"application/models/translation_model.php"
+			],
+			[
+				"tra.js",
+				"assets/js/translate.js"
+			],
+			[
+				"app.js",
+				"assets/js/application.js"
+			],
+			[
+				"lan_f",
+				"application/views/templates/language_file_view.php"
+			],
+			[
+				"rote.",
+				"assets/js/routes.js"
+			],
+			[
+				"appl",
+				"assets/js/application.js"
+			],
+			[
+				"app",
+				"assets/js/application.js"
+			],
+			[
+				"route",
+				"assets/js/routes.js"
+			],
+			[
+				"appli.",
+				"assets/js/application.js"
+			],
+			[
+				"add_file",
+				"application/views/templates/project_language_add_file_view.php"
+			],
+			[
+				"key",
+				"application/libraries/key.php"
+			],
+			[
+				"rou.js",
+				"assets/js/routes.js"
+			],
+			[
+				"rou",
+				"application/config/routes.php"
+			],
+			[
+				"file_v",
+				"application/views/templates/language_file_view.php"
+			],
+			[
+				"api_pr",
+				"application/controllers/api/api_project.php"
+			],
+			[
+				"aut",
+				"application/config/autoload.php"
+			],
+			[
+				"file",
+				"application/libraries/file.php"
+			],
+			[
+				"pro",
+				"application/libraries/project.php"
+			],
+			[
+				"api_or",
+				"application/controllers/api/api_export.php"
+			],
+			[
+				"fro_",
+				"application/language/english/front_lang.php"
+			],
+			[
+				"bat_",
+				"application/libraries/batch_loader.php"
+			],
+			[
+				"std_",
+				"application/libraries/std_library.php"
+			],
+			[
+				"bat",
+				"application/libraries/batch_loader.php"
+			],
+			[
+				"api_e",
+				"application/controllers/api/api_export.php"
+			],
+			[
+				"lang",
+				"application/libraries/language.php"
+			],
+			[
+				"rest_",
+				"application/libraries/REST_Controller.php"
+			],
+			[
+				"t_a",
+				"application/libraries/api/T_API_Controller.php"
+			],
+			[
+				"pro_",
+				"application/models/project_model.php"
+			],
+			[
+				"rest_c",
+				"application/libraries/REST_Controller.php"
+			],
+			[
+				"rest.ph",
+				"application/config/rest.php"
+			],
+			[
+				"rest.p",
+				"application/config/rest.php"
+			],
+			[
+				"t_ap",
+				"application/libraries/api/T_API_Controller.php"
+			],
+			[
+				"lan_m",
+				"application/models/language_model.php"
+			],
+			[
+				"http_",
+				"application/helpers/http_helper.php"
+			],
+			[
+				"pro_m",
+				"application/models/project_model.php"
+			],
+			[
+				"lan_mo",
+				"application/models/language_model.php"
+			],
+			[
+				"api_",
+				"application/controllers/api/api_project.php"
+			],
+			[
+				"ro.",
+				"application/config/routes.php"
+			],
+			[
+				"apipr",
+				"application/controllers/api/api_project.php"
+			],
+			[
+				"pro_laa",
+				"application/views/templates/project_language_files_view.php"
+			],
+			[
+				"pro_v",
+				"application/views/templates/project_view.php"
+			],
+			[
+				"langu_f",
+				"application/views/templates/language_file_view.php"
+			],
+			[
+				"proje_v",
+				"application/views/templates/project_view.php"
+			],
+			[
+				"lan",
+				"application/libraries/language.php"
+			],
+			[
+				"ro.ph",
+				"application/config/routes.php"
+			],
+			[
+				"api_la",
+				"application/controllers/api/api_language.php"
+			],
+			[
+				"fun",
+				"assets/js/functions.js"
+			],
+			[
+				"pro_ad",
+				"application/views/templates/project_language_add_file_view.php"
+			],
+			[
+				"fr_l",
+				"application/language/english/front_lang.php"
+			],
+			[
+				"fron_v",
+				"application/views/front_view.php"
+			],
+			[
+				"fo_v",
+				"system/libraries/Form_validation.php"
+			],
+			[
+				"add_l",
+				"application/views/templates/project_add_language_view.php"
+			],
+			[
+				"ap",
+				"application/controllers/api/api_project.php"
+			],
+			[
+				"la_f_v",
+				"application/views/templates/language_file_view.php"
+			],
+			[
+				"fro_l",
+				"application/language/english/front_lang.php"
+			],
+			[
+				"url",
+				"assets/js/urlhandling.js"
+			],
+			[
+				"fr",
+				"application/controllers/front.php"
+			],
+			[
+				"fro.p",
+				"application/controllers/front.php"
+			],
+			[
+				"error_la",
+				"application/language/english/errors_lang.php"
+			],
+			[
+				"proje_te",
+				"application/views/templates/project_edit_view.php"
+			],
+			[
+				"fro_v",
+				"application/views/front_view.php"
+			],
+			[
+				"proje_la",
+				"application/views/templates/project_language_files_view.php"
+			],
+			[
+				"pro_la_ad",
+				"application/views/templates/project_language_add_file_view.php"
+			],
+			[
+				"fro_p",
+				"application/views/front_view.php"
+			],
+			[
+				"rot.ph",
+				"application/config/routes.php"
+			],
+			[
+				"api_f",
+				"application/controllers/api/api_file.php"
+			],
+			[
+				"pro_f_v",
+				"application/views/templates/project_language_files_view.php"
+			],
+			[
+				"api_key",
+				"application/controllers/api/api_language_key.php"
+			],
+			[
+				"api_t",
+				"application/controllers/api/api_token.php"
+			],
+			[
+				"file_m",
+				"application/models/file_model.php"
+			],
+			[
+				"fil",
+				"application/libraries/file.php"
+			],
+			[
+				"api_p",
+				"application/controllers/api/api_project.php"
+			],
+			[
+				"tr_m",
+				"application/models/translation_model.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 228.0,
+	"status_bar_visible": true
+}

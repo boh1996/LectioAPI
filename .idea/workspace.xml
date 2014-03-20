@@ -2,45 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b74b9c0-d571-48f0-bac6-1e16caa1d989" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/run.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/settings.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schemas/student.py" />
-      <change type="DELETED" beforePath="R:\LectioAPI\activity_info.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\asignments.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\authenticate.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\books.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\classes.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\database.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\documents.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\functions.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\importClasses.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\importStudents.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\models.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\ressources.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\rooms.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\schools.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\students.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\teachers.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\teams.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\test.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\timetable.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\urls.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\userinfo.py" afterPath="" />
-      <change type="DELETED" beforePath="R:\LectioAPI\values.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="LectioAPI.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386669502662" ignored="false" />
+    <file path="/Dummy.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1391973080059" ignored="false" />
     <file path="/config.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384615517353" ignored="false" />
     <file path="/students.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384950321516" ignored="false" />
     <file path="/schools.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384865326535" ignored="false" />
     <file path="/urls.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386670810269" ignored="false" />
     <file path="/models.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384967086698" ignored="false" />
     <file path="/database.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1384721287782" ignored="false" />
-    <file path="/requirements.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1379253857538" ignored="false" />
+    <file path="/requirements.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386678919948" ignored="false" />
     <file path="/asignments.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386243972793" ignored="false" />
-    <file path="/authenticate.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386284832201" ignored="false" />
+    <file path="/authenticate.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1391973613234" ignored="false" />
     <file path="/functions.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386424817806" ignored="false" />
     <file path="R:/lectio-assignments-google-calendar/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386280062781" ignored="false" />
     <file path="/main.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386279785100" ignored="false" />
@@ -59,12 +34,19 @@
     <file path="/timetable.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1385512134899" ignored="false" />
     <file path="R:/MyCalendarWeb/dk_holidays.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1385592435328" ignored="false" />
     <file path="/dk_holidays.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1385592435328" ignored="false" />
-    <file path="R:/MyCalendarWeb/test.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1385591381931" ignored="false" />
+    <file path="R:/MyCalendarWeb/test.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386677251844" ignored="false" />
     <file path="/activity_info.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386425914447" ignored="false" />
     <file path="/values.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386324967293" ignored="false" />
-    <file path="/assignment_info.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386426943873" ignored="false" />
+    <file path="/assignment_info.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1389345140318" ignored="false" />
     <file path="/settings.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386620866911" ignored="false" />
     <file path="/student.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386670259956" ignored="false" />
+    <file path="R:/MyCalendarWeb/scrapers/dk_holidays.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386677251844" ignored="false" />
+    <file path="R:/MyCalendarWeb/scrapers/__init__.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386677251844" ignored="false" />
+    <file path="R:/MyCalendarWeb/holidays.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386681380970" ignored="false" />
+    <file path="/holidays.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386681380970" ignored="false" />
+    <file path="R:/MyCalendarWeb/requirements.txt" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1386678919948" ignored="false" />
+    <file path="R:/lan-signup/__main__.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1389738747938" ignored="false" />
+    <file path="/__main__.py" changelist="3b74b9c0-d571-48f0-bac6-1e16caa1d989" time="1389738747509" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +69,25 @@
       <file leaf-file-name="assignment_info.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scrapers/assignment_info.py">
           <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="24" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teams.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scrapers/teams.py">
+          <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scrapers/functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="0" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -102,10 +102,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="62" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
+            <state line="22" column="62" selection-start="806" selection-end="806" vertical-scroll-proportion="0.54124457">
               <folding />
             </state>
           </provider>
@@ -129,10 +129,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="schools.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scrapers/schools.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="24" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scrapers/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="97" selection-start="3953" selection-end="3953" vertical-scroll-proportion="0.8072626">
+            <state line="21" column="50" selection-start="2400" selection-end="2400" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -156,8 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/ressources.py" />
-        <option value="$PROJECT_DIR$/models.py" />
         <option value="$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/datetime.py" />
         <option value="$PROJECT_DIR$/timetable.py" />
         <option value="$PROJECT_DIR$/asignments.py" />
@@ -172,6 +181,8 @@
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/schemas/student.py" />
         <option value="$PROJECT_DIR$/scrapers/urls.py" />
+        <option value="$PROJECT_DIR$/scrapers/assignment_info.py" />
+        <option value="$PROJECT_DIR$/scrapers/authenticate.py" />
       </list>
     </option>
   </component>
@@ -207,7 +218,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,34 +250,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LectioAPI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LectioAPI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="schemas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="reference.settings.ide.settings.web.browsers" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="R:/MyCalendarWeb" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -397,13 +394,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884097" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.218125" sideWeight="0.671159" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22651222" sideWeight="0.671159" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -481,13 +478,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scrapers/assignment_info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
@@ -521,28 +511,21 @@
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm20/system/python_stubs/-762174762/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="879" column="8" selection-start="27900" selection-end="27900" vertical-scroll-proportion="0.33240223">
-          <folding />
+        <state line="879" column="8" selection-start="27900" selection-end="27900" vertical-scroll-proportion="0.33240223" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrapers/schools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="24" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scrapers/assignment_info.py">
+    <entry file="file://$PROJECT_DIR$/scrapers/teams.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="62" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -563,7 +546,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scrapers/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="97" selection-start="3953" selection-end="3953" vertical-scroll-proportion="0.8072626">
+        <state line="21" column="50" selection-start="2400" selection-end="2400" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrapers/authenticate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="37" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.54867256">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrapers/assignment_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="24" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrapers/functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="62" selection-start="806" selection-end="806" vertical-scroll-proportion="0.54124457">
           <folding />
         </state>
       </provider>

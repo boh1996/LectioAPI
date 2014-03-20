@@ -62,18 +62,21 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             else:
                 studentClass = ""
 
+            urlProg = re.compile(r"/lectio/(?P<school_id>[0-9].*)/SkemaNy.aspx?type=(?P<type_name>.*)&elevid=(?P<student_id>.*)")
+            urlGroups = urlProg.match(student["href"])
+
             # Append the student information
             studentList.append({
                 "context_card_id" : student["lectiocontextcard"],
-                "student_id" : student["href"].replace("/lectio/%s/SkemaNy.aspx?type=elev&elevid=" % (config["school_id"]), ""),
+                "student_id" : urlGroups.group("student_id") if "student_id" in groups else "",
                 "name" : studentInformation.group("name") if "name" in groups else "",
                 "class_name" : studentClass,
                 "class_student_id" : studentInformation.group("class_student_id") if "class_student_id" in groups else "",
                 "class_description" : studentInformation.group("class_description") if "class_description" in groups else "",
                 "status" : studentInformation.group("status") if "status" in groups else "",
                 "school_id" : config["school_id"],
-                "branch_id" : config["branch_id"]
-
+                "branch_id" : config["branch_id"],
+                "type" : urlGroups.group("type_name") if "type_name" in urlGroups else ""
             })
 
     return {

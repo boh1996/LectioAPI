@@ -2,14 +2,13 @@
 # -*- coding: utf8 -*-
 
 from bs4 import BeautifulSoup as Soup
-import cookielib, urllib2, urllib
 import urls
-import requests
+import proxy
 import re
 from datetime import *
 
-def classes(config):
-    url = urls.student_classes.replace("{{SCHOOL_ID}}", config["school_id"]).replace("{{BRANCH_ID}}", config["branch_id"])
+def classes( config ):
+    url = urls.student_classes.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
     classList = []
 
@@ -27,7 +26,7 @@ def classes(config):
         "Origin" : "https://www.lectio.dk"
     }
 
-    response = requests.post(url, data={}, headers=headers)
+    response = proxy.session.get(url, headers=headers)
 
     html = response.text
 
@@ -36,9 +35,12 @@ def classes(config):
     classListObjects = soup.find("table", attrs={"id" : "m_Content_contenttbl"}).findAll("a")
 
     for classElement in classListObjects:
+        prog = re.compile(r"\/lectio\/(?P<school_id>[0-9]*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&klasseid=(?P<class_id>[0-9]*)")
+        groups = prog.match(classElement["href"])
         classList.append({
-            "name" : classElement.text,
-            "class_id" : classElement["href"].replace("/lectio/%s/SkemaNy.aspx?type=stamklasse&klasseid=" % (config["school_id"]), ""),
+            "name" : classElement.text.encode("utf8"),
+            "class_id" : groups.group("class_id").encode("utf8") if not groups is None else "",
+            "type" : groups.group("type_name").encode("utf8") if not groups is None else "",
             "school_id" : config["school_id"],
             "branch_id" : config["branch_id"]
         })

@@ -1,6 +1,5 @@
-from database import *
-from models import *
 import students as studentsApi
+import pymongo
 
 schools = [{
     "school_id" : "517",
@@ -16,7 +15,6 @@ for school in schools:
     classes = session.query(Class).filter(Class.school_branch_id==school["branch_id"])
     studentsList = studentsApi.students(school)
     if studentsList["status"] == "ok":
-        print len(studentsList["students"])
         for student in studentsList["students"]:
             try:
                 session.merge(Student(

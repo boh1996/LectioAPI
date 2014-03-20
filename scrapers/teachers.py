@@ -34,14 +34,18 @@ def teachers(config):
         prog = re.compile(r"(?P<name>\w*) \(?P<initial>\w*\)")
         nameReg = prog.match(unicode(teacher.text))
 
+        idProg = re.compile(r"\/lectio\/(?P<school_id>[0-9]*)/SkemaNy.aspx\?type=(?P<type_name>.*)&laererid=(?P<teacher_id>.*)")
+        idGroups = idProg.match(teacher["href"])
+
         # Append the teacher data to the list
         teachersList.append({
-            "name" : nameReg.group("name"),
-            "initial" : nameReg.group("initial"),
-            "context_card_id" : teacher["lectiocontextcard"],
-            "teacher_id" : teacher["href"].replace("/lectio/%s/SkemaNy.aspx?type=laerer&laererid=" % (config["school_id"]), ""),
+            "name" : nameReg.group("name").encode("utf8") if "name" in nameReg else "",
+            "initial" : nameReg.group("initial").encode("utf8") if "initial" in nameReg else "",
+            "context_card_id" : teacher["lectiocontextcard"].encode("utf8") if "lectiocontextcard" in teacher else "",
+            "teacher_id" : idGroups.group("teacher_id") if "teacher_id" in idGroups else "",
+            "type" : idGroups.group("type_name").encode("utf8") if "type_name" in idGroups else "",
             "school_id" : config["school_id"],
-            "brand_id" : config["branch_id"]
+            "branch_id" : config["branch_id"]
         })
 
     # Return status and the list
