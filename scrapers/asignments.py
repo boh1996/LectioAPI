@@ -17,7 +17,7 @@ def assignments(config):
 	if session == False:
 		return {"status" : "error", "type" : "authenticate"}
 	else:
-		url = urls.assigment_list.replace("{{SCHOOL_ID}}", config.school_id).replace("{{STUDENT_ID}}", config.lectio_id)
+		url = urls.assigment_list.replace("{{SCHOOL_ID}}", str(config.school_id)).replace("{{STUDENT_ID}}", str(config.lectio_id))
 
 		# Insert the session information from the auth function
 		cookies = {

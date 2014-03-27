@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup as Soup
 import cookielib, urllib2, urllib
 import urls
 import re
-import requests
+import proxy
 from datetime import *
 
 def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Z", "Æ", "Ø", "Å", "?"]):
@@ -13,7 +13,7 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
 
     # Loop through all the letters
     for letter in letters:
-        url = urls.students.replace("{{SCHOOL_ID}}", config["school_id"]).replace("{{FIRST_LETTER}}", letter).replace("{{BRANCH_ID}}", config["branch_id"])
+        url = urls.students.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{FIRST_LETTER}}", letter).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
         # Sorting settings
         settings = {
@@ -28,11 +28,17 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             "Origin" : "https://www.lectio.dk"
         }
 
-        response = requests.post(url, data={}, headers=headers)
+        response = proxy.session.get(url)
 
         html = response.text
 
         soup = Soup(html)
+
+        if soup.find("table", attrs={"id" : "m_Content_contenttbl"}) is None:
+            return {
+                "status" : False,
+                "error" : "Data not found"
+            }
 
         studentRows = soup.find("table", attrs={"id" : "m_Content_contenttbl"}).findAll("a")
 
@@ -62,24 +68,28 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             else:
                 studentClass = ""
 
-            urlProg = re.compile(r"/lectio/(?P<school_id>[0-9].*)/SkemaNy.aspx?type=(?P<type_name>.*)&elevid=(?P<student_id>.*)")
+            urlProg = re.compile(r"\/lectio\/(?P<school_id>[0-9].*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&elevid=(?P<student_id>.*)")
             urlGroups = urlProg.match(student["href"])
 
             # Append the student information
             studentList.append({
                 "context_card_id" : student["lectiocontextcard"],
-                "student_id" : urlGroups.group("student_id") if "student_id" in groups else "",
-                "name" : studentInformation.group("name") if "name" in groups else "",
+                "student_id" : urlGroups.group("student_id") if not urlGroups is None and "student_id" in urlGroups.groupdict() else "",
+                "name" : studentInformation.group("name") if not groups is None and "name" in groups else "",
                 "class_name" : studentClass,
-                "class_student_id" : studentInformation.group("class_student_id") if "class_student_id" in groups else "",
-                "class_description" : studentInformation.group("class_description") if "class_description" in groups else "",
-                "status" : studentInformation.group("status") if "status" in groups else "",
+                "class_student_id" : studentInformation.group("class_student_id") if not groups is None and "class_student_id" in groups else "",
+                "class_description" : studentInformation.group("class_description") if not groups is None and "class_description"in groups else "",
+                "status" : studentInformation.group("status") if not groups is None and "status" in groups else "",
                 "school_id" : config["school_id"],
                 "branch_id" : config["branch_id"],
-                "type" : urlGroups.group("type_name") if "type_name" in urlGroups else ""
+                "type" : urlGroups.group("type_name") if not urlGroups is None and "type_name" in groups else ""
             })
 
     return {
         "status" : "ok",
-        "students" : studentList
+        "students" : studentList,
+        "term" : {
+            "value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+            "years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+        }
     }

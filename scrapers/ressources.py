@@ -4,19 +4,18 @@
 from bs4 import BeautifulSoup as Soup
 import urls
 import re
-import requests
+import proxy
 from datetime import *
 import functions
 
 def ressources(config):
     ressourceList = []
 
-    url = urls.ressources.replace("{{SCHOOL_ID}}", config["school_id"]).replace("{{BRANCH_ID}}", config["branch_id"])
+    url = urls.ressources.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
     # Sorting settings
     settings = {
         "__EVENTTARGET" : "m$Content$AktuelAndAfdelingCB$ShowOnlyAktulleCB",
-        "m%24ChooseTerm%24term" : str(datetime.strftime(datetime.now(), "%Y")),
     }
 
     # Insert User-agent headers and the cookie information
@@ -27,25 +26,39 @@ def ressources(config):
         "Origin" : "https://www.lectio.dk"
     }
 
-    response = requests.post(url, data=settings, headers=headers)
+    response = proxy.session.post(url, data=settings, headers=headers)
 
     html = response.text
 
     soup = Soup(html)
 
+    if soup.find("table", attrs={"id" : "m_Content_contenttbl"}) is None:
+        return {
+            "status" : False,
+            "error" : "Data not found"
+        }
+
     ressourceRows = soup.find("table", attrs={"id" : "m_Content_contenttbl"}).findAll("a")
 
+    idProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&nosubnav=1&id=(?P<ressource_id>.*)")
+
     for name, title in functions.grouped(ressourceRows, 2):
+        idGroups = idProg.match(name["href"])
         ressourceList.append({
             "name" : unicode(name.text),
-            "ressource_id" : name["href"].replace("/lectio/%s/SkemaNy.aspx?type=lokale&nosubnav=1&id=" % (config["school_id"]), ""),
+            "ressource_id" : idGroups.group("ressource_id") if not idGroups is None else "",
             "title" : unicode(title.text),
             "school_id" : config["school_id"],
-            "branch_id" : config["branch_id"]
+            "branch_id" : config["branch_id"],
+            "type" : idGroups.group("type_name").encode("utf-8") if not idGroups is None else ""
         })
 
     return {
         "status" : "ok",
-        "ressources" : ressourceList
+        "ressources" : ressourceList,
+        "term" : {
+            "value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+            "years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+        }
     }
 

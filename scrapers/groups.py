@@ -1,9 +1,5 @@
 '''
-https://www.lectio.dk/lectio/517/FindSkema.aspx?type=hold
-https://www.lectio.dk/lectio/517/FindSkema.aspx?type=hold&fag=521
-https://www.lectio.dk/lectio/517/FindSkema.aspx?type=hold&fag=1361688526 - Groups
-https://www.lectio.dk/lectio/517/FindSkema.aspx?type=hold&fag=521
-
+https://www.lectio.dk/lectio/517/FindSkema.aspx?type=hold&fag=1361688526
 Bed om URL:https://www.lectio.dk/lectio/517/FindSkema.aspx?type=hold
 Bed om metode:POST
 Statuskode:200 OK

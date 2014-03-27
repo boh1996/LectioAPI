@@ -1,34 +1,32 @@
-import students as studentsApi
 import sys, os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scrapers'))
 sys.path.append("..")
 from datetime import datetime
-import database
+from database import *
 import error
 import sync
+import students as studentsApi
 
 def findClassId( class_name, classes ):
 	for classObject in classes:
-		if classObject.name == class_name:
-			return classObject.class_id
+		if classObject["name"] == class_name:
+			return classObject["class_id"]
 
-def school ( table, school_id, branch_id ):
+def school ( school_id, branch_id ):
 	try:
-		classes = table.find()
+		classes = db.classes.find()
 		studentsList = studentsApi.students({
 			"school_id" : school_id,
 			"branch_id" : branch_id
 		})
 
-		db = database.db
-
 		if studentsList is None:
 			error.log(__file__, False, "Unknown Object")
-			return
+			return False
 
 		if not "status" in studentsList:
 			error.log(__file__, False, "Unknown Object")
-			return
+			return False
 
 		if studentsList["status"] == "ok":
 			for student in studentsList["students"]:
@@ -51,14 +49,14 @@ def school ( table, school_id, branch_id ):
 					"class_id" : findClassId(student["class_name"], classes),
 					"class_student_id" : student["class_student_id"],
 					"student_id" : student["student_id"],
-					"term" : classList["term"]["value"],
+					"term" : studentsList["term"]["value"],
 				}
 
 				classStudentElement = {
 					"class_id" : findClassId(student["class_name"], classes),
 					"class_student_id" : student["class_student_id"],
 					"student_id" : student["student_id"],
-					"term" : classList["term"]["value"]
+					"term" : studentsList["term"]["value"]
 				}
 
 				status = sync.sync(db.students, uniqueStudent, elementStudent)
@@ -70,10 +68,15 @@ def school ( table, school_id, branch_id ):
 
 					for url in sync.find_general_listeners('student_general'):
 						sync.send_event(url, status["action"], elementStudent)
+
+			return True
 		else:
 			if "error" in studentsList:
 				error.log(__file__, False, studentsList["error"])
+				return False
 			else:
 				error.log(__file__, False, "Unknown Error")
+				return False
 	except Exception, e:
 		error.log(__file__, False, str(e))
+		return False

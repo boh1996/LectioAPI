@@ -13,7 +13,7 @@ import codecs
 import functions
 
 def assignment_info(config, session, assignment_id):
-    url = urls.assignment_info.replace("{{SCHOOL_ID}}", config.school_id).replace("{{ASSIGNMENT_ID}}", assignment_id).replace("{{STUDENT_ID}}",config["lectio_id"])
+    url = urls.assignment_info.replace("{{SCHOOL_ID}}", str(config.school_id)).replace("{{ASSIGNMENT_ID}}", str(assignment_id)).replace("{{STUDENT_ID}}",str(config["lectio_id"]))
 
     # Insert the session information from the auth function
     cookies = {

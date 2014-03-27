@@ -4,14 +4,14 @@
 from bs4 import BeautifulSoup as Soup
 import urls
 import re
-import requests
+import proxy
 from datetime import *
 import functions
 
 def rooms(config):
     roomsList = []
 
-    url = urls.rooms.replace("{{SCHOOL_ID}}", config["school_id"]).replace("{{BRANCH_ID}}", config["branch_id"])
+    url = urls.rooms.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
     # Sorting settings
     settings = {
@@ -27,21 +27,31 @@ def rooms(config):
         "Origin" : "https://www.lectio.dk"
     }
 
-    response = requests.post(url, data=settings, headers=headers)
+    response = proxy.session.post(url, data=settings, headers=headers)
 
     html = response.text
 
     soup = Soup(html)
 
+    if soup.find("table", attrs={"id" : "m_Content_contenttbl"}) is None:
+        return {
+            "status" : False,
+            "error" : "Data not found"
+        }
+
     roomRows = soup.find("table", attrs={"id" : "m_Content_contenttbl"}).findAll("a")
 
+    idProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&nosubnav=1&id=(?P<room_id>.*)")
+
     for number, name in functions.grouped(roomRows, 2):
+        idGroups = idProg.match(number["href"])
         roomsList.append({
             "name" : unicode(name.text),
             "number" : unicode(number.text),
-            "room_id" : number["href"].replace("/lectio/%s/SkemaNy.aspx?type=lokale&nosubnav=1&id=" % (config["school_id"]), ""),
+            "room_id" : idGroups.group("room_id") if "room_id" in idGroups.groupdict() else "",
             "school_id" : config["school_id"],
-            "brand_id" : config["branch_id"]
+            "branch_id" : config["branch_id"],
+            "type" : idGroups.group("type_name") if "type_name" in idGroups.groupdict() else ""
         })
 
     return {
