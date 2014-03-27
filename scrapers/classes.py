@@ -48,5 +48,9 @@ def classes( config ):
     return {
         "status" : "ok",
         "classes" : classList,
-        "year" : str(datetime.strftime(datetime.now(), "%Y"))
+        "year" : str(datetime.strftime(datetime.now(), "%Y")),
+        "term" : {
+            "value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+            "years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+        }
     }
