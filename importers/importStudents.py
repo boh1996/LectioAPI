@@ -9,16 +9,26 @@ import students as studentsApi
 
 def findClassId( class_name, classes ):
 	for classObject in classes:
-		if classObject["name"] == class_name:
+		if unicode(classObject["name"]) == unicode(class_name):
 			return classObject["class_id"]
 
+	return ""
 def school ( school_id, branch_id ):
 	try:
-		classes = db.classes.find()
 		studentsList = studentsApi.students({
 			"school_id" : school_id,
 			"branch_id" : branch_id
 		})
+
+		classes = db.classes.find({"term" : studentsList["term"]["value"]})
+
+		classList = []
+
+		for classObject in classes:
+			classList.append({
+				"name" : classObject["name"],
+				"class_id" : classObject["class_id"]
+			})
 
 		if studentsList is None:
 			error.log(__file__, False, "Unknown Object")
@@ -30,6 +40,8 @@ def school ( school_id, branch_id ):
 
 		if studentsList["status"] == "ok":
 			for student in studentsList["students"]:
+				class_id = findClassId(student["class_name"], classList)
+
 				uniqueStudent = {
 					"student_id" : student["student_id"]
 				}
@@ -46,17 +58,18 @@ def school ( school_id, branch_id ):
 
 				# Link student with a class
 				uniqueClassStudent = {
-					"class_id" : findClassId(student["class_name"], classes),
+					"class_id" : class_id,
 					"class_student_id" : student["class_student_id"],
 					"student_id" : student["student_id"],
 					"term" : studentsList["term"]["value"],
 				}
 
 				classStudentElement = {
-					"class_id" : findClassId(student["class_name"], classes),
+					"class_id" : class_id,
 					"class_student_id" : student["class_student_id"],
 					"student_id" : student["student_id"],
-					"term" : studentsList["term"]["value"]
+					"term" : studentsList["term"]["value"],
+					"class_name" : student["class_name"]
 				}
 
 				status = sync.sync(db.students, uniqueStudent, elementStudent)

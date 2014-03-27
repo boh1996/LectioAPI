@@ -47,7 +47,7 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             patterns = [
                 r"(?P<name>.*) \((?P<class>.*) (?P<class_student_id>.*)\)",
                 r"(?P<name>.*) \((?P<class>.*), (?P<year>.*) (?P<class_description>.*), (?P<status>.*)\)",
-                r"(?P<name>.*) \((?P<organization>.*), (?P<class>.*) (?P<status>.*)\)",
+                r"(?P<name>.*) \((?P<organization>.*), (?P<class>.*), (?P<status>.*)\)",
                 r"(?P<name>.*) \((?P<class_number>.*) (?P<class>.*) (?P<class_student_id>[0-9]*)\)"
             ]
 
