@@ -43,8 +43,21 @@ def importRessources ( school_id, branch_id ):
 					for url in sync.find_listeners('ressource', unique):
 						sync.send_event(url, status["action"], element)
 
+					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+						sync.send_event(url, "ressource", element)
+
 					for url in sync.find_general_listeners('ressource_general'):
 						sync.send_event(url, status["action"], element)
+
+			deleted = sync.find_deleted(db.ressources, {"school_id" : school_id, "branch_id" : branch_id}, ["ressource_id"], objectList["ressources"])
+
+			for element in deleted:
+				for url in sync.find_listeners('ressource', {"ressource_id" : element["ressource_id"]}):
+					sync.send_event(url, 'deleted', element)
+
+				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+					sync.send_event(url, "ressource_deleted", element)
+
 
 			return True
 		else:

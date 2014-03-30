@@ -79,8 +79,20 @@ def school ( school_id, branch_id ):
 					for url in sync.find_listeners('student', uniqueStudent):
 						sync.send_event(url, status["action"], elementStudent)
 
+					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+						sync.send_event(url, "student", element)
+
 					for url in sync.find_general_listeners('student_general'):
 						sync.send_event(url, status["action"], elementStudent)
+
+			deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id}, ["student_id"], objectList["students"])
+
+			for element in deleted:
+				for url in sync.find_listeners('student', {"student_id" : element["student_id"]}):
+					sync.send_event(url, 'deleted', element)
+
+				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+					sync.send_event(url, "student_deleted", element)
 
 			return True
 		else:

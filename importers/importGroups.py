@@ -46,8 +46,21 @@ def importGroups ( school_id, branch_id ):
 					for url in sync.find_listeners('group', unique):
 						sync.send_event(url, status["action"], element)
 
+					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+						sync.send_event(url, "group", element)
+
 					for url in sync.find_general_listeners('group_general'):
 						sync.send_event(url, status["action"], element)
+
+			deleted = sync.find_deleted(db.groups, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"]}, ["group_id"], objectList["groups"])
+
+			for element in deleted:
+				for url in sync.find_listeners('group', {"group_id" : element["group_id"]}):
+					sync.send_event(url, 'deleted', element)
+
+				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+					sync.send_event(url, "group_deleted", element)
+
 			return True
 		else:
 			if "error" in objectList:

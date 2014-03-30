@@ -1,14 +1,14 @@
 import urllib
-import requests
+import proxy
 from bs4 import BeautifulSoup as Soup
 import urls
 import functions
 
-def authenticate (config):
-    url = urls.login_url.replace("{{SCHOOL_ID}}", config.school_id).replace("{{BRANCH_ID}}", config.branch_id)
+def authenticate ( config ):
+    url = urls.login_url.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
     # Retrieve the base information, to retrieve ViewState
-    base = requests.get(url)
+    base = proxy.session.get(url)
     soup = Soup(base.text)
 
     headers = {
@@ -34,7 +34,7 @@ def authenticate (config):
     eventV = eventValidation
 
     #response = requests.post(url, data="m%24Content%24username2="+config.username.strip()+"&m%24Content%24password2="+config.password.strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventValidation+"&__EVENTTARGET=m%24Content%24submitbtn2&__VIEWSTATEX="+soup.find(id="__VIEWSTATEX")["value"],headers=headers, allow_redirects=True)
-    response = requests.post(url, data="m%24Content%24username2="+config.username.strip()+"&m%24Content%24password2="+config.password.strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventV+"&__EVENTTARGET=m%24Content%24submitbtn2&"+viewS,headers=headers, allow_redirects=False)
+    response = proxy.session.post(url, data="m%24Content%24username2="+config["username"].strip()+"&m%24Content%24password2="+config["password"].strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventV+"&__EVENTTARGET=m%24Content%24submitbtn2&"+viewS,headers=headers, allow_redirects=False)
 
     if "LastLoginUserName" in response.cookies:
         return response.cookies

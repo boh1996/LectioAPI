@@ -45,8 +45,21 @@ def importTeamElements ( school_id, branch_id, team_id ):
 					for url in sync.find_listeners('team_element', unique):
 						sync.send_event(url, status["action"], element)
 
+					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+						sync.send_event(url, "team_element", element)
+
 					for url in sync.find_general_listeners('team_element_general'):
 						sync.send_event(url, status["action"], element)
+
+			deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"]}, ["team_element_id"], objectList["team_elements"])
+
+			for element in deleted:
+				for url in sync.find_listeners('team_element', {"team_element_id" : element["team_element_id"]}):
+					sync.send_event(url, 'deleted', element)
+
+				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+					sync.send_event(url, "team_element_deleted", element)
+
 
 			return True
 		else:

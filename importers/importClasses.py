@@ -47,8 +47,21 @@ def importClasses ( school_id, branch_id ):
 					for url in sync.find_listeners('class', unique):
 						sync.send_event(url, status["action"], element)
 
+					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+						sync.send_event(url, "class", element)
+
 					for url in sync.find_general_listeners('class_general'):
 						sync.send_event(url, status["action"], element)
+
+			deleted = sync.find_deleted(db.classes, {"school_id" : school_id, "branch_id" : branch_id, "term" : classList["term"]["value"]}, ["class_id"], classList["classes"])
+
+			for element in deleted:
+				for url in sync.find_listeners('class', {"class_id" : element["class_id"]}):
+					sync.send_event(url, 'deleted', element)
+
+				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+					sync.send_event(url, "class_deleted", element)
+
 
 		else:
 			if "error" in classList:

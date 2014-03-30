@@ -85,3 +85,39 @@ def find_general_listeners ( type ):
 
 def send_event ( url, event, data ):
 	pass
+
+def find_deleted ( table, query, uniqueRows, current ):
+	deleted = []
+
+	existsing = table.find(query)
+
+	if existsing is None:
+		return deleted
+
+	for row in existsing:
+		found = False
+		for element in current:
+			if same(uniqueRows, element, row):
+				found = True
+
+		if not found:
+			table.remove({
+				"_id" : row["_id"]
+			})
+			deleted.append(row)
+
+	return deleted
+
+def same ( uniqueRows, element1, element2 ):
+	same = True
+	for row in uniqueRows:
+		if not row in element1 and row in element2:
+			same = False
+
+		if not row in element2 and row in element1:
+			same = False
+
+		if row in element1 and row in element2 and not element1[row] == element2[row]:
+			same = False
+
+	return same

@@ -1,23 +1,20 @@
 from bs4 import BeautifulSoup as Soup
 import cookielib, urllib2, urllib
 import urls
-import requests
 from datetime import *
 import re
-import models
 import database
+import proxy
 import functions
-import requests
-from sqlalchemy.exc import IntegrityError
 import authenticate
 
-def assignments(config):
+def assignments( config ):
 	session = authenticate.authenticate(config)
 
 	if session == False:
 		return {"status" : "error", "type" : "authenticate"}
 	else:
-		url = urls.assigment_list.replace("{{SCHOOL_ID}}", str(config.school_id)).replace("{{STUDENT_ID}}", str(config.lectio_id))
+		url = urls.assigment_list.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{STUDENT_ID}}", str(config["student_id"]))
 
 		# Insert the session information from the auth function
 		cookies = {
@@ -45,7 +42,7 @@ def assignments(config):
 			"Cookie" : functions.implode(cookies, "{{index}}={{value}}", "; ")
 		}
 
-		response = requests.post(url, data=settings, headers=headers)
+		response = proxy.session.post(url, data=settings, headers=headers)
 
 		html = response.text
 
@@ -82,7 +79,7 @@ def assignments(config):
 			except BaseException:
 				object["context_card_id"] = ""
 			try:
-				prog = re.compile(r"/lectio/(?P<school_id>[0-9*])/ElevAflevering.aspx?elevid=(?P<student_id>[0-9*])&exerciseid=(?P<exercise_id>[0-9*])&prevurl=OpgaverElev.aspx%3felevid%3d(?P<prev_student_id>[0-9*])")
+				prog = re.compile(r"\/lectio\/(?P<school_id>.*)\/ElevAflevering.aspx\?elevid=(?P<student_id>.*)&exerciseid=(?P<exercise_id>.*)&(?P<the_other>.*)")
 				urlGroups = prog.match(cells[2].find("a")["href"])
 				object["exercise_id"] = urlGroups.group("exercise_id")
 			except BaseException:
@@ -104,7 +101,7 @@ def assignments(config):
 			except BaseException:
 				object["status"] = ""
 			try:
-				object["leave"] = cells[6].text
+				object["leave"] = cells[6].text.replace(",", ".")
 			except BaseException:
 				object["leave"] = ""
 			try:
