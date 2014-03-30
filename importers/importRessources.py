@@ -58,5 +58,3 @@ def importRessources ( school_id, branch_id ):
 	except Exception, e:
 		error.log(__file__, False, str(e))
 		return False
-
-importRessources(517, 4733693427)

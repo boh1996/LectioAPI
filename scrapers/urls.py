@@ -1,6 +1,6 @@
 schools_list = "https://www.lectio.dk/lectio/login_list.aspx?showall=1" # Test missing
 assigment_list = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/OpgaverElev.aspx?elevid={{STUDENT_ID}}" # Test Missing
-login_url = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/login.aspx?lecafdeling={{BRANCH_ID}}"
+login_url = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/login.aspx?lecafdeling={{BRANCH_ID}}" # Done
 picture_url = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/GetImage.aspx?pictureid={{PICTURE_ID}}"
 front_page_url = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/forside.aspx" # Done
 survey_list = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/spoergeskema_rapport.aspx?type=mine&elevid={{STUDENT_ID}}"
@@ -33,3 +33,8 @@ class_timetable = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/SkemaNy.aspx?type=
 module_account = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/subnav/modulregnskab.aspx?holdelementid={{TEAM_ID}}"
 education_description = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieplan/hold_undervisningsbeskrivelse.aspx?holdelementid={{TEAM_ID}}"
 groups = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag={{SUBJECT_ID}}"
+groups_list = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag=1361688526" # Done
+teams = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold" # Done
+team_elements = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag={{TEAM_ID}}" # Done
+change_password = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/skift_password.aspx"
+field_of_study = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieretningSe.aspx?sid={{FIELD_OF_STUDY_ID}}"
