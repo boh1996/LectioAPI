@@ -25,15 +25,10 @@ def authenticate ( config ):
 
     eventValidation = urllib.urlencode({"__EVENTVALIDATION" : eventValidationTest})
 
-    #viewS = "8AAAAGlpZQotMjMxNTQyMTExaWwEawBnAWsBZwFsAmhpZGwCZwJpbAJrAmUDb2ZmbAJnA2lkbAJnAWlkbAJnBWlkbAJnBWlkbARoaWRsAmcDaWRsBmcBaWwCawNlNUhUWCBTdWtrZXJ0b3BwZW4gLSBLJiMyNDg7YmVuaGF2bnMgVGVrbmlza2UgR3ltbmFzaXVtZGcFaWRsAmcBaWRsAmhpbAJrBGUCNTBkZwdpZGwCZwFpZGwCaGlqaWwCawVwZGRkZGcBaWRsAmcDaWlsAmsGZzJkZHIBZRFtJENvbnRlbnQkTG9naW5NVmlpZGhkBwAAAAlMb2dpblZpZXcTVmFsaWRhdGVSZXF1ZXN0TW9kZQxhdXRvY29tcGxldGUJaW5uZXJodG1sCW1heGxlbmd0aAdDaGVja2VkCU1heExlbmd0aAAj19IUcjRcRxl5n5r%2BQAW3cK1O1g%3D%3D"
-
     viewS = urllib.urlencode({"__VIEWSTATEX" : soup.find(id="__VIEWSTATEX")["value"]})
-
-    #viewS = soup.find(id="__VIEWSTATEX")["value"]
 
     eventV = eventValidation
 
-    #response = requests.post(url, data="m%24Content%24username2="+config.username.strip()+"&m%24Content%24password2="+config.password.strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventValidation+"&__EVENTTARGET=m%24Content%24submitbtn2&__VIEWSTATEX="+soup.find(id="__VIEWSTATEX")["value"],headers=headers, allow_redirects=True)
     response = proxy.session.post(url, data="m%24Content%24username2="+config["username"].strip()+"&m%24Content%24password2="+config["password"].strip()+"&time=0&__EVENTARGUMENT=&__VIEWSTATE=&"+eventV+"&__EVENTTARGET=m%24Content%24submitbtn2&"+viewS,headers=headers, allow_redirects=False)
 
     if "LastLoginUserName" in response.cookies:
