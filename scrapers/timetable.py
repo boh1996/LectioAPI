@@ -9,6 +9,7 @@ from datetime import *
 import time
 from time import mktime
 import functions
+from pytz import timezone
 
 def timetable( config, url, week, year, session = False ):
 	if session == False:
@@ -37,7 +38,7 @@ def timetable( config, url, week, year, session = False ):
 		"Cookie" : functions.implode(cookies, "{{index}}={{value}}", "; ")
 	}
 
-	response = proxy.session.post(url, data=settings, headers=headers)
+	response = proxy.session.get(url, headers=headers)
 
 	html = response.text
 
@@ -191,6 +192,68 @@ def timetable( config, url, week, year, session = False ):
 			timeProg = re.compile(r"(?P<start_hour>[0-9]*):(?P<start_minute>[0-9]*) til (?P<end_hour>[0-9]*):(?P<end_minute>[0-9]*)")
 			timeGroups = timeProg.search(unicode(title).encode("utf8"), re.MULTILINE)
 
+			# Get the "main sections" separated by a double return \n\n
+			mainSections = title.split("\n\n")
+
+			# Grab the top section and split it by a single return \n
+			topSection = mainSections[0].split("\n")
+
+			# Initialize variables, assume that nothing is cancelled or changed
+			isChangedOrCancelled = 0
+			isCancelled = False
+			isChanged = False
+
+			# If the first item in the top section doesn't contain 'til',
+			# it must be either cancelled or changed
+
+			if not "til" in topSection[0]:
+				isChangedOrCancelled = 1
+
+				# If it says 'Aflyst!'
+				if "Aflyst!" in topSection[0]:
+					# It must be cancelled
+					isCancelled = True
+				else:
+					# Otherwise it must be changed
+					isChanged = True
+
+			if not timeGroups is None:
+				startTime = datetime.fromtimestamp(mktime(time.strptime("%s %s %s %s %s" % (timeGroups.group("start_hour"),timeGroups.group("start_minute"), dayOfWeek , timeWeek, year),"%H %M %w %W %Y")))
+				endTime = datetime.fromtimestamp(mktime(time.strptime("%s %s %s %s %s" % (timeGroups.group("end_hour"),timeGroups.group("end_minute"), dayOfWeek , timeWeek, year),"%H %M %w %W %Y")))
+			else:
+				# Grab the date sections, fx: "15/5-2013 15:30 til 17:00"
+				dateSections = topSection[0+isChangedOrCancelled].split(" ")
+
+				# Grab the date, being the first (0) section
+				if len(dateSections) == 4:
+					startDateSection = dateSections[0]
+					endDateSection = dateSections[0]
+
+					startTimeSection = dateSections[1]
+					endTimeSection = dateSections[3]
+				else:
+					startDateSection = dateSections[0]
+					endDateSection = dateSections[3]
+
+					startTimeSection = dateSections[1]
+					endTimeSection = dateSections[4]
+
+				currentTimezone = timezone("Europe/Copenhagen")
+
+				alternativeDayProg = re.compile(r"(?P<day>[0-9]*)/(?P<month>[0-9]*)-(?P<year>[0-9]*)")
+				alternativeStartDayGroups = alternativeDayProg.match(startDateSection.strip())
+				alternativeEndDayGroups = alternativeDayProg.match(endDateSection.strip())
+
+				startTime = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(alternativeStartDayGroups.group("day")), functions.zeroPadding(alternativeStartDayGroups.group("month")), alternativeStartDayGroups.group("year"), startTimeSection.strip()), "%d/%m-%Y %H:%M")
+				endTime = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(alternativeEndDayGroups.group("day")), functions.zeroPadding(alternativeEndDayGroups.group("month")), alternativeEndDayGroups.group("year"), endTimeSection.strip()), "%d/%m-%Y %H:%M")
+
+			roomText = ""
+			try:
+				if not "rer:" in topSection[3 + isChangedOrCancelled]:
+					room = topSection[3 + isChangedOrCancelled].strip("Lokale: ").encode('utf-8').replace("r: ","")
+			except IndexError:
+				pass
+
 			# Add to the list
 			timeElements.append({
 				"text" : unicode(timetableElement.text),
@@ -198,10 +261,11 @@ def timetable( config, url, week, year, session = False ):
 				"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
 				"teachers" : teachers,
 				"teams" : teams,
-				"startTime" : time.strptime("%s %s %s %s %s" % (timeGroups.group("start_hour"),timeGroups.group("start_minute"), dayOfWeek , timeWeek, year),"%H %M %w %W %Y"),
-				"endTime" : time.strptime("%s %s %s %s %s" % (timeGroups.group("end_hour"),timeGroups.group("end_minute"), dayOfWeek , timeWeek, year),"%H %M %w %W %Y"),
+				"startTime" : startTime,
+				"endTime" : endTime,
 				"type" : type,
-				"location_text" : unicode(div.text)
+				"location_text" : unicode(div.text),
+				"room_text" : unicode(roomText)
 			})
 
 	return {
@@ -209,7 +273,7 @@ def timetable( config, url, week, year, session = False ):
 		"timetable" : timeElements,
 		"information" : generalInformation,
 		"term" : {
-        	"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
-        	"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
-    	}
+			"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+			"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+		}
 	}
