@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"star",
+				"startTime"
+			],
+			[
+				"alter",
+				"alternativeEndDayGroups"
+			],
+			[
+				"alt",
+				"alternativeStartDayGroups"
+			],
+			[
+				"date",
+				"dateSections"
+			],
+			[
+				"al",
+				"alternativeDayProg"
+			],
+			[
 				"gr",
 				"group_text"
 			],
@@ -89,10 +109,6 @@
 			],
 			[
 				"year",
-				"startYear"
-			],
-			[
-				"star",
 				"startYear"
 			],
 			[
@@ -498,48 +514,16 @@
 			[
 				"twee",
 				"tweetElements"
-			],
-			[
-				"page_",
-				"next_page_data"
-			],
-			[
-				"ref",
-				"refresh_cursor"
-			],
-			[
-				"local",
-				"local_tweets"
-			],
-			[
-				"sett",
-				"settings_model"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "scrapers/field_of_studies.py",
-			"settings":
-			{
-				"buffer_size": 2125,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "scrapers/field_of_study_presentation.py",
-			"settings":
-			{
-				"buffer_size": 3096,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "scrapers/timetable.py",
 			"settings":
 			{
-				"buffer_size": 6880,
+				"buffer_size": 9629,
 				"line_ending": "Windows"
 			}
 		}
@@ -608,6 +592,10 @@
 	},
 	"file_history":
 	[
+		"/R/LectioAPI/scrapers/field_of_studies.py",
+		"/R/LectioAPI/scrapers/field_of_study_presentation.py",
+		"/R/LectioAPI/scrapers/functions.py",
+		"/R/LectioAPI/scrapers/timetable.py",
 		"/R/LectioAPI/scrapers/urls.py",
 		"/R/LectioAPI/config.py",
 		"/R/LectioAPI/scrapers/ressources.py",
@@ -630,7 +618,6 @@
 		"/R/LectioAPI/importers/importSchools.py",
 		"/R/LectioAPI/scrapers/test.py",
 		"/R/LectioAPI/scrapers/values.py",
-		"/R/LectioAPI/scrapers/field_of_studies.py",
 		"/R/LectioAPI/scrapers/team_elements.py",
 		"/R/LectioAPI/scrapers/teams.py",
 		"/R/LectioAPI/scrapers/groups.py",
@@ -644,7 +631,6 @@
 		"/R/LectioAPI/scrapers/tasks.py",
 		"/R/LectioAPI/database.py",
 		"/R/LectioAPI/scrapers/userinfo.py",
-		"/R/LectioAPI/scrapers/timetable.py",
 		"/R/LectioAPI/scrapers/schools.py",
 		"/R/LectioAPI/scrapers/documents.py",
 		"/R/LectioAPI/error.py",
@@ -733,9 +719,7 @@
 		"/R/TwitterAnalytics/application/libraries/Format.php",
 		"/R/TwitterAnalytics/assets/css/admin.css",
 		"/R/TwitterAnalytics/application/config/profiler.php",
-		"/R/TwitterAnalytics/application/views/admin_access_control.php",
-		"/R/TwitterAnalytics/application/language/english/common_lang.php",
-		"/R/TwitterAnalytics/assets/bootstrap/css/docs.css"
+		"/R/TwitterAnalytics/application/views/admin_access_control.php"
 	],
 	"find":
 	{
@@ -765,6 +749,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"alternativeStartDayGroups",
+			"date",
 			"select",
 			"team_element_id",
 			"room_id",
@@ -890,9 +876,7 @@
 			"options",
 			"OPTIONS",
 			"get",
-			"GET",
-			"Project",
-			"i"
+			"GET"
 		],
 		"highlight": true,
 		"in_selection": true,
@@ -1028,261 +1012,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "scrapers/field_of_studies.py",
-					"settings":
-					{
-						"buffer_size": 2125,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								823,
-								850
-							]
-						],
-						"settings":
-						{
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110
-							],
-							"gjslint_options":
-							[
-							],
-							"incomplete_sync": null,
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"remote_loading": false,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"synced": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "scrapers/field_of_study_presentation.py",
-					"settings":
-					{
-						"buffer_size": 3096,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								568,
-								568
-							]
-						],
-						"settings":
-						{
-							"annotations":
-							[
-								"TODO",
-								"README",
-								"FIXME"
-							],
-							"csslint_options":
-							{
-								"adjoining-classes": "warning",
-								"box-model": true,
-								"box-sizing": "warning",
-								"compatible-vendor-prefixes": "warning",
-								"display-property-grouping": true,
-								"duplicate-background-images": "warning",
-								"duplicate-properties": true,
-								"empty-rules": true,
-								"errors": true,
-								"fallback-colors": "warning",
-								"floats": "warning",
-								"font-faces": "warning",
-								"font-sizes": "warning",
-								"gradients": "warning",
-								"ids": "warning",
-								"import": "warning",
-								"important": "warning",
-								"known-properties": true,
-								"outline-none": "warning",
-								"overqualified-elements": "warning",
-								"qualified-headings": "warning",
-								"regex-selectors": "warning",
-								"rules-count": "warning",
-								"shorthand": "warning",
-								"star-property-hack": "warning",
-								"text-indent": "warning",
-								"underscore-property-hack": "warning",
-								"unique-headings": "warning",
-								"universal-selector": "warning",
-								"vendor-prefix": true,
-								"zero-units": "warning"
-							},
-							"gjslint_ignore":
-							[
-								110
-							],
-							"gjslint_options":
-							[
-							],
-							"incomplete_sync": null,
-							"javascript_linter": "jshint",
-							"jshint_options":
-							{
-								"browser": true,
-								"evil": true,
-								"regexdash": true,
-								"sub": true,
-								"trailing": true,
-								"wsh": true
-							},
-							"pep8": true,
-							"pep8_ignore":
-							[
-								"E501"
-							],
-							"perl_linter": "perlcritic",
-							"pyflakes_ignore":
-							[
-							],
-							"pyflakes_ignore_import_*": true,
-							"remote_loading": false,
-							"sublimelinter": true,
-							"sublimelinter_delay": 2,
-							"sublimelinter_disable":
-							[
-							],
-							"sublimelinter_executable_map":
-							{
-							},
-							"sublimelinter_fill_outlines": false,
-							"sublimelinter_gutter_marks": true,
-							"sublimelinter_gutter_marks_theme": "simple",
-							"sublimelinter_mark_style": "none",
-							"sublimelinter_notes": false,
-							"sublimelinter_objj_check_ascii": false,
-							"sublimelinter_popup_errors_on_save": false,
-							"sublimelinter_syntax_map":
-							{
-								"C++": "c",
-								"Python Django": "python",
-								"Ruby on Rails": "ruby"
-							},
-							"sublimelinter_wrap_find": true,
-							"synced": false,
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "scrapers/timetable.py",
 					"settings":
 					{
-						"buffer_size": 6880,
+						"buffer_size": 9629,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4814,
-								4814
+								0,
+								9629
 							]
 						],
 						"settings":
@@ -1383,7 +1129,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1989.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1448,6 +1194,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"fun",
+				"scrapers/functions.py"
+			],
 			[
 				"ro",
 				"static/js/app/routes.js"
@@ -1851,10 +1601,6 @@
 			[
 				"api_la",
 				"application/controllers/api/api_language.php"
-			],
-			[
-				"fun",
-				"assets/js/functions.js"
 			],
 			[
 				"pro_ad",

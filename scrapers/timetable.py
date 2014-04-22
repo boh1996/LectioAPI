@@ -11,6 +11,10 @@ from time import mktime
 import functions
 from pytz import timezone
 
+def sameDay ( date, dayOfWeek, week, year ):
+	theDay = datetime.fromtimestamp(mktime(time.strptime("%s %s %s %s %s" % ("12", "00", dayOfWeek , week, year),"%H %M %w %W %Y")))
+	return theDay.date() == date.date()
+
 def timetable( config, url, week, year, session = False ):
 	if session == False:
 		cookies = {}
@@ -254,19 +258,20 @@ def timetable( config, url, week, year, session = False ):
 			except IndexError:
 				pass
 
-			# Add to the list
-			timeElements.append({
-				"text" : unicode(timetableElement.text),
-				"activity_id" : groups.group("activity_id"),
-				"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
-				"teachers" : teachers,
-				"teams" : teams,
-				"startTime" : startTime,
-				"endTime" : endTime,
-				"type" : type,
-				"location_text" : unicode(div.text),
-				"room_text" : unicode(roomText)
-			})
+			if sameDay(startTime, dayOfWeek, timeWeek, year):
+				# Add to the list
+				timeElements.append({
+					"text" : unicode(timetableElement.text),
+					"activity_id" : groups.group("activity_id"),
+					"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
+					"teachers" : teachers,
+					"teams" : teams,
+					"startTime" : startTime,
+					"endTime" : endTime,
+					"type" : type,
+					"location_text" : unicode(div.text),
+					"room_text" : unicode(roomText)
+				})
 
 	return {
 		"status" : "ok",

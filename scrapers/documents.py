@@ -36,4 +36,67 @@ s$m$ChooseTerm$term:2013
 s$m$searchinputfield:
 s$m$Content$Content$FolderSelect$ctl03:H7371036167__
 LectioPostbackId:
+
+div#s_m_Content_Content_FolderTreeView
+
+
+https://www.lectio.dk/lectio/517/DokumentOversigt.aspx?elevid=4789793691&folderid=H*TeamID*_FH*FOLDER_TEAMID*_
+/lectio/517/DokumentOversigt.aspx?elevid=4789793691&folderid=S*STUDENT_ID*_FS*STUDENTFOLDER_ID*_
+
+Egne dokumenter - https://www.lectio.dk/lectio/517/DokumentOversigt.aspx?elevid=4789793691
+	__EVENTTARGET:__Page
+	__EVENTARGUMENT:TREECLICKED_S**Student_ID**__
+table#s_m_Content_Content_DocumentGridView_ctl00 -> tr
+
+[0] = checkbox
+[1] =
+	name = span[title] - "Fulde filnavn: "
+[2] = Kommentar
+[3] = Edited by
+[4] = Edited date
+[5] = Size
 '''
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+
+from bs4 import BeautifulSoup as Soup
+import urls
+import re
+import proxy
+from datetime import *
+import time
+from time import mktime
+import functions
+from pytz import timezone
+
+def documents ( config ):
+	cookies = {
+		"lecmobile" : "0",
+		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
+		"LastLoginUserName" : session["LastLoginUserName"],
+		"lectiogsc" : session["lectiogsc"],
+		"LectioTicket" : session["LectioTicket"]
+	}
+
+	# Insert User-agent headers and the cookie information
+	headers = {
+		"User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1665.2 Safari/537.36",
+		"Content-Type" : "application/x-www-form-urlencoded",
+		"Host" : "www.lectio.dk",
+		"Origin" : "https://www.lectio.dk",
+		"Cookie" : functions.implode(cookies, "{{index}}={{value}}", "; ")
+	}
+
+	url = "https://www.lectio.dk/lectio/%s/DokumentOversigt.aspx?elevid=%s" %( str(config["school_id"]), str(config["student_id"]) )
+
+	response = proxy.session.get(url, headers=headers)
+
+	html = response.text
+
+	soup = Soup(html)
+
+	if soup.find("table", attrs={"id" : "s_m_Content_Content_DocumentGridView_ctl00"}) is None:
+		return {
+			"status" : False,
+			"error" : "Data not found"
+		}
