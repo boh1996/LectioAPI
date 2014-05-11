@@ -10,6 +10,7 @@ import time
 from time import mktime
 import functions
 from pytz import timezone
+import authenticate
 
 def sameDay ( date, dayOfWeek, week, year ):
 	theDay = datetime.fromtimestamp(mktime(time.strptime("%s %s %s %s %s" % ("12", "00", dayOfWeek , week, year),"%H %M %w %W %Y")))
@@ -19,6 +20,7 @@ def timetable( config, url, week, year, session = False ):
 	if session == False:
 		cookies = {}
 	else:
+		session = authenticate.authenticate(config)
 		# Insert the session information from the auth function
 		cookies = {
 			"lecmobile" : "0",
