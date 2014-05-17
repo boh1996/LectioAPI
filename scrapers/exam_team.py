@@ -37,6 +37,10 @@ def exam_team ( config ):
 		}
 
 	tables = soup.find("div", attrs={"id" : "m_Content_LectioDetailIslandProevehold_pa"}).findAll("table")
+	oneDayProg = re.compile(r"(?P<day>.*)\/(?P<month>.*)-(?P<year>.*)")
+	dateTimeProg = re.compile(r"(?P<day>.*)\/(?P<month>.*)-(?P<year>.*) (?P<hour>.*):(?P<minute>.*)")
+	dayTimeProg = re.compile(r"(?P<day>.*)\/(?P<month>.*) (?P<hour>.*):(?P<minute>.*)")
+	multiDayProg = re.compile(r"(?P<start_day>.*)\/(?P<start_month>.*)-(?P<start_year>.*) - (?P<end_day>.*)\/(?P<end_month>.*)-(?P<end_year>.*)")
 
 	informationElements = tables[0].findAll("td")
 
@@ -65,12 +69,139 @@ def exam_team ( config ):
 		})
 
 	students = []
+	studentRows = tables[1].findAll("tr")
+	headers = studentRows[0].findAll("td")
+	studentRows.pop(0)
+
+	examStart = None
+	examEnd = None
+	preperationStart = None
+	preperationEnd = None
+	eventStart = None
+	eventEnd = None
+
+	longPreperationTime = False
+	preperation = False
+	inGroups = False
+
+	if headers[len(headers)-1].text == "Gruppe slut":
+		inGroups = True
+
+	studentClassIdProg = re.compile(r"(?P<class_name>.*) (?P<student_class_id>.*)")
+
+	for student in studentRows:
+		groupStart = None
+		groupEnd = None
+		studentPreperationStart = None
+		studentPreperationEnd = None
+		group_number = None
+
+		elements = student.findAll("td")
+
+		studentClassIdGrups = studentClassIdProg.match(elements[0].text)
+		studentClassIdFull = elements[0].text
+		name = unicode(elements[1].text)
+		class_code = elements[2].text
+
+		if inGroups is True:
+			startDayGroups = oneDayProg.match(elements[3].text)
+			endDayGroups = oneDayProg.match(elements[3].text)
+			studentStartTime = elements[4].text
+			studentEndTime = elements[5].text
+			group_number = elements[6].text
+
+			groupStart = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(startDayGroups.group("day")), functions.zeroPadding(startDayGroups.group("month")), "20" + startDayGroups.group("year"), elements[7].text), "%d/%m-%Y %H:%M")
+			groupEnd = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(startDayGroups.group("day")), functions.zeroPadding(startDayGroups.group("month")), "20" + startDayGroups.group("year"), elements[8].text), "%d/%m-%Y %H:%M")
+		elif headers[3].text == "Lang forb. start":
+			longPreperationTime = True
+
+			startDayGroups = oneDayProg.match(elements[4].text)
+			endDayGroups = oneDayProg.match(elements[4].text)
+			studentStartTime = elements[5].text
+			studentEndTime = elements[6].text
+
+			longPreperationGroups = dayTimeProg.match(elements[3].text)
+
+			studentPreperationStartTime =  longPreperationGroups.group("hour") + ":" + longPreperationGroups.group("minute")
+
+			studentPreperationStart = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(longPreperationGroups.group("day")), functions.zeroPadding(longPreperationGroups.group("month")), "20" + startDayGroups.group("year"), studentPreperationStartTime), "%d/%m-%Y %H:%M")
+			studentPreperationEnd = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(startDayGroups.group("day")), functions.zeroPadding(startDayGroups.group("month")), "20" + startDayGroups.group("year"), studentStartTime), "%d/%m-%Y %H:%M")
+		elif headers[4].text == "Forb.":
+			preperation = True
+
+			startDayGroups = oneDayProg.match(elements[3].text)
+			endDayGroups = oneDayProg.match(elements[3].text)
+			studentStartTime = elements[5].text
+			studentEndTime = elements[6].text
+
+			studentPreperationStartTime =  elements[4].text
+
+			studentPreperationStart = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(startDayGroups.group("day")), functions.zeroPadding(startDayGroups.group("month")), "20" + startDayGroups.group("year"), studentPreperationStartTime), "%d/%m-%Y %H:%M")
+			studentPreperationEnd = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(startDayGroups.group("day")), functions.zeroPadding(startDayGroups.group("month")), "20" + startDayGroups.group("year"), studentStartTime), "%d/%m-%Y %H:%M")
+		else:
+			startDayGroups = oneDayProg.match(elements[3].text)
+			endDayGroups = startDayGroups
+			studentStartTime = elements[4].text
+			studentEndTime = elements[5].text
+
+		studentStart = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(startDayGroups.group("day")), functions.zeroPadding(startDayGroups.group("month")), "20" + startDayGroups.group("year"), studentStartTime), "%d/%m-%Y %H:%M")
+		studentEnd = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(endDayGroups.group("day")), functions.zeroPadding(endDayGroups.group("month")), "20" + endDayGroups.group("year"),studentEndTime), "%d/%m-%Y %H:%M")
+
+		if preperationStart is None:
+			preperationStart = studentPreperationStart
+		elif studentPreperationStart < preperationStart:
+			preperationStart = studentPreperationStart
+
+		if preperationEnd is None:
+			preperationEnd = studentPreperationEnd
+		elif studentPreperationEnd < preperationEnd:
+			preperationEnd = studentPreperationEnd
+
+		if examStart is None:
+			examStart = studentStart
+		elif studentStart < examStart:
+			examStart = studentStart
+
+		if examEnd is None:
+			examEnd = studentEnd
+		elif studentEnd > examEnd:
+			examEnd = studentEnd
+
+		if preperationStart is None:
+			eventStart = examStart
+		else:
+			eventStart = preperationStart
+
+		eventEnd = examEnd
+
+		students.append({
+			"student_class_id_full" : studentClassIdFull,
+			"student_class_id" : studentClassIdGrups.group("student_class_id") if not studentClassIdGrups is None else "",
+			"class_name" : studentClassIdGrups.group("class_name") if not studentClassIdGrups is None else "",
+			"class_code" : class_code,
+			"name" : name,
+			"is_group" : inGroups,
+			"group_number" : group_number,
+			"group_time" : {
+				"start" : groupStart,
+				"end" : groupEnd
+			},
+			"examination" : {
+				"start" : studentStart,
+				"end" : studentEnd
+			},
+			"preperation_type" : "long" if longPreperationTime is True else "normal" if preperation is True else "none",
+			"preperation" : {
+				"start" : studentPreperationStart,
+				"end" : studentPreperationEnd
+			}
+		})
 
 	teachers = []
 	teacherProg = re.compile(r"(?P<abbrevation>.*) - (?P<name>.*)")
 	for teacher in informationElements[3].contents:
-		if teacher and not str(teacher) == str("<br/>"):
-			teacherGroups = teacherProg.match(str(teacher))
+		if len(teacher) > 1 and not unicode(teacher) == u"<br/>":
+			teacherGroups = teacherProg.match(unicode(teacher))
 			teachers.append({
 				"name" : unicode(teacherGroups.group("name")) if not teacherGroups is None else "",
 				"abbrevation" : unicode(teacherGroups.group("abbrevation")) if not teacherGroups is None else ""
@@ -86,19 +217,18 @@ def exam_team ( config ):
 				"name" : unicode(censorGroups.group("censor_name")) if not censorGroups is None else ""
 			})
 
-	oneDayProg = re.compile(r"(?P<start_day>.*)\/(?P<start_month>.*)-(?P<start_year>.*)")
-	multiDayProg = re.compile(r"(?P<start_day>.*)\/(?P<start_month>.*)-(?P<start_year>.*) - (?P<end_day>.*)\/(?P<end_month>.*)-(?P<end_year>.*)")
-
 	start = None
 	end = None
 
 	'''if not oneDayProg.match(informationElements[15].text) is None:
-		start = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(alternativeStartDayGroups.group("day")), functions.zeroPadding(alternativeStartDayGroups.group("month")), alternativeStartDayGroups.group("year")), "%d/%m-%Y %H:%M")
+		oneDayGroups = oneDayProg
+		start = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(alternativeStartDayGroups.group("day")), functions.zeroPadding(alternativeStartDayGroups.group("month")), alternativeStartDayGroups.group("year")),examStartTime, "%d/%m-%Y %H:%M")
 	else'''
 
 	information = {
 		"test_team_name" : unicode(informationElements[1].text),
 		"teachers" : teachers,
+		"students" : students,
 		"censors" : censors,
 		"team" : {
 			"full_name" : unicode(teamNameGroups.group("team_full_name")) if not teamNameGroups is None else "",
@@ -113,11 +243,21 @@ def exam_team ( config ):
 		},
 		"test_type" : "written" if test_type == "Skriftlig eksamen" else "oral" if test_type == "Mundtlig eksamen" else "combined" if test_type == "Samlet vurdering" else "other",
 		"number_of_students" : informationElements[19].text,
-		"note" : unicode(informationElements[17].text),
+		"note" : unicode(informationElements[17].text) if len(unicode(informationElements[17].text)) > 1 else "",
 		"rooms" : rooms,
 		"time" : {
-			"start" : start,
-			"end" : end
+			"start" : examStart,
+			"end" : examEnd
+		},
+		"preperation" : {
+			"start" : preperationStart,
+			"end" : preperationEnd
+		},
+		"group_examination" : inGroups,
+		"preperation_type" : "long" if longPreperationTime is True else "normal" if preperation is True else "none",
+		"event" : {
+			"start" : eventStart,
+			"end" : eventEnd
 		}
 	}
 
@@ -125,8 +265,3 @@ def exam_team ( config ):
 		"status" : "ok",
 		"information" : information
 	}
-
-print exam_team({
-	"test_team_id" : "8703335638",
-	"school_id" : "517"
-})

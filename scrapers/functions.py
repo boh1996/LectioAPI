@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 from itertools import izip
+import re
 
 def implode (list, pattern, delemiter):
     string = ""
@@ -38,3 +39,24 @@ def mapRows(headers, rows, seperator = ":"):
         mappings[headerName] = rows[index]
 
     return mappings
+
+timeProg = re.compile(r"(?P<hour>.*):(?P<minute>)")
+
+# Test if new is larger than old
+def timeLarger ( new, old ):
+    newTimeGroups = timeProg.match(new)
+    oldTimeGroups = timeProg.match(old)
+    larger = False
+
+    if newTimeGroups is None or oldTimeGroups is None:
+        return False
+
+    if newTimeGroups.group("hour") == oldTimeGroups("hour"):
+        if newTimeGroups.group("minute") > oldTimeGroups("minute"):
+            return True
+        else:
+            return False
+    elif newTimeGroups.group("hour") > oldTimeGroups("hour"):
+        return True
+    else:
+        return False
