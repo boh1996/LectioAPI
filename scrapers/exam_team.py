@@ -217,14 +217,6 @@ def exam_team ( config ):
 				"name" : unicode(censorGroups.group("censor_name")) if not censorGroups is None else ""
 			})
 
-	start = None
-	end = None
-
-	'''if not oneDayProg.match(informationElements[15].text) is None:
-		oneDayGroups = oneDayProg
-		start = datetime.strptime("%s/%s-%s %s" % (functions.zeroPadding(alternativeStartDayGroups.group("day")), functions.zeroPadding(alternativeStartDayGroups.group("month")), alternativeStartDayGroups.group("year")),examStartTime, "%d/%m-%Y %H:%M")
-	else'''
-
 	information = {
 		"test_team_name" : unicode(informationElements[1].text),
 		"teachers" : teachers,
