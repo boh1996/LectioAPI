@@ -46,6 +46,8 @@ def exam_team ( config ):
 
 	teamNameProg = re.compile(r"(?P<team_full_name>.*) \((?P<team_class>.*) (?P<subject_abbrevation>.*)\)")
 	teamNameGroups = teamNameProg.match(informationElements[5].text)
+	teamNameAlternativeProg = re.compile(r"(?P<team_full_name>.*) \((?P<class_number>) (?P<team_class>.*) (?P<team_name>.*)\)")
+	teamNameAlternativeGroups = teamNameAlternativeProg.match(informationElements[5].text)
 
 	xprsProg = re.compile(r"(?P<code>.*) (?P<type>.*) (?P<subject_name>.*)")
 	xprsGroups = xprsProg.match(unicode(informationElements[7].text))
@@ -217,16 +219,26 @@ def exam_team ( config ):
 				"name" : unicode(censorGroups.group("censor_name")) if not censorGroups is None else ""
 			})
 
+	if not teamNameGroups is None:
+		team = {
+			"full_name" : unicode(teamNameGroups.group("team_full_name")) if not teamNameGroups is None else "",
+			"team_class" : unicode(teamNameGroups.group("team_class")) if not teamNameGroups is None else "",
+			"subject_abbrevation" : unicode(teamNameGroups.group("subject_abbrevation")) if not teamNameGroups is None else "",
+		}
+	else:
+		team = {
+			"full_name" : unicode(teamNameAlternativeGroups.group("team_full_name")) if not teamNameAlternativeGroups is None else "",
+			"team_class" : unicode(teamNameAlternativeGroups.group("team_class")) if not teamNameAlternativeGroups is None else "",
+			"class_number" : unicode(teamNameAlternativeGroups.group("class_number")) if not teamNameAlternativeGroups is None else "",
+			"team_name" : unicode(teamNameAlternativeGroups.group("team_name")) if not teamNameAlternativeGroups is None else "",
+		}
+
 	information = {
 		"test_team_name" : unicode(informationElements[1].text),
 		"teachers" : teachers,
 		"students" : students,
 		"censors" : censors,
-		"team" : {
-			"full_name" : unicode(teamNameGroups.group("team_full_name")) if not teamNameGroups is None else "",
-			"team_class" : unicode(teamNameGroups.group("team_class")) if not teamNameGroups is None else "",
-			"subject_abbrevation" : unicode(teamNameGroups.group("subject_abbrevation")) if not teamNameGroups is None else "",
-		},
+		"team" : team,
 		"xprs" : {
 			"full_name" : unicode(informationElements[7].text),
 			"code" : xprsGroups.group("code") if not xprsGroups is None else "",

@@ -20,6 +20,9 @@ def zeroPadding(string):
 def grouped(iterable, n):
     return izip(*[iter(iterable)]*n)
 
+def cleanText ( text ):
+    return text.replace("\t", "").replace("\n", "").replace("\r", "").strip()
+
 # Map the rows with appropriate headingnames if headers[n] = rows[n]
 def mapRows(headers, rows, seperator = ":"):
     mappings = {}
