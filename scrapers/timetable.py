@@ -12,6 +12,8 @@ import functions
 from pytz import timezone
 import authenticate
 
+#s2module-bg s2time-off
+
 def sameDay ( date, dayOfWeek, week, year ):
 	theDay = datetime.fromtimestamp(mktime(time.strptime("%s %s %s %s %s" % ("12", "00", dayOfWeek , week, year),"%H %M %w %W %Y")))
 	return theDay.date() == date.date()

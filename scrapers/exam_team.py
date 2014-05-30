@@ -225,12 +225,16 @@ def exam_team ( config ):
 			"team_class" : unicode(teamNameGroups.group("team_class")) if not teamNameGroups is None else "",
 			"subject_abbrevation" : unicode(teamNameGroups.group("subject_abbrevation")) if not teamNameGroups is None else "",
 		}
-	else:
+	elif not teamNameAlternativeGroups is None:
 		team = {
 			"full_name" : unicode(teamNameAlternativeGroups.group("team_full_name")) if not teamNameAlternativeGroups is None else "",
 			"team_class" : unicode(teamNameAlternativeGroups.group("team_class")) if not teamNameAlternativeGroups is None else "",
 			"class_number" : unicode(teamNameAlternativeGroups.group("class_number")) if not teamNameAlternativeGroups is None else "",
 			"team_name" : unicode(teamNameAlternativeGroups.group("team_name")) if not teamNameAlternativeGroups is None else "",
+		}
+	else:
+		team = {
+			"full_name" : unicode(informationElements[5].text)
 		}
 
 	information = {
@@ -239,6 +243,7 @@ def exam_team ( config ):
 		"students" : students,
 		"censors" : censors,
 		"team" : team,
+		"xprs_test" : True if not informationElements[7].text == "(ikke XPRS eksamen)" else False,
 		"xprs" : {
 			"full_name" : unicode(informationElements[7].text),
 			"code" : xprsGroups.group("code") if not xprsGroups is None else "",

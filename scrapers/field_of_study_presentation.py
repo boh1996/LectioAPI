@@ -27,14 +27,76 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 
 	subjectType = None
 	nameProg = re.compile(r"(?P<name>.*) (?P<level>.*)$")
-	termTranslations = {
-		"1gG" : "1_term_basic",
-		"1g2" : "1_term_second",
-		"2g" : "2_term",
-		"3g" : "3_term"
+
+	semester_translations = {
+		"1. semester" : {
+			"year" : 1,
+			"term" : 1,
+			"text" : "first_year_second_term"
+		},
+		"2. semester" : {
+			"year" : 1,
+			"term" : 2,
+			"text" : "first_year_second_term"
+		},
+		"3. semester" : {
+			"year" : 2,
+			"term" : 1,
+			"text" : "second_year_first_term"
+		},
+		"4. semester" : {
+			"year" : 2,
+			"term" : 2,
+			"text" : "second_year_second_term"
+		},
+		"5. semester" : {
+			"year" : 3,
+			"term" : 1,
+			"text" : "third_year_first_term"
+		},
+		"6. semester" : {
+			"year" : 3,
+			"term" : 2,
+			"text" : "third_year_second_term"
+		},
+		"7.semester" : {
+			"year" : 4,
+			"term" : 1,
+			"text" : "fourth_year_first_term"
+		},
+		"8.semester" : {
+			"year" : 4,
+			"term" : 2,
+			"text" : "fourth_year_second_term"
+		},
+		"9.semester" : {
+			"year" : 5,
+			"term" : 1,
+			"text" : "fifth_year_first_term"
+		},
+		"10.semester" : {
+			"year" : 5,
+			"term" : 2,
+			"text" : "fifth_year_second_term"
+		},
 	}
+
+	termSemesters = {
+		"1gG" : ["1. semester"],
+		"1g2" : ["2. semester"],
+		"2g" : ["3. semester", "4. semester"],
+		"3g" : ["5. semester", "6. semester"],
+		"4g" : ["7.semester", "8.semester"]
+	}
+
 	subjectTypes = {}
 	group_text = "standard"
+
+	rows = soup.find("table", attrs={"id" : "studieTabel"}).findAll("tr")
+	semesters = []
+
+	for row in rows[3].findAll("td"):
+		semesters.append(row.text)
 
 	for row in soup.find("table", attrs={"id" : "studieTabel"}).findAll("tr"):
 		if "class" in row.attrs and "fagtype" in row.attrs["class"]:
@@ -53,6 +115,7 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 				terms = []
 				hours = 0
 				typeName = "standard_subject"
+				index = 0
 
 				for element in row.findAll("td"):
 					if "class" in element.attrs:
@@ -64,14 +127,22 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 									terms.append("1_term")
 								if type == "student" and "notchosensubject" in element["class"]:
 									typeName = "not_chosen_subject"
-								termName = " ".join(element["class"]).replace("programsubject", "").replace("notchosensubject", "").strip()
-								terms.append(termTranslations[termName])
+								if semesters[index] in semester_translations:
+									terms.append(semester_translations[semesters[index]])
+								else:
+									termName = " ".join(element["class"]).replace("programsubject", "").replace("notchosensubject", "").strip()
+									if termName in termSemesters:
+										for item in termSemesters[termName]:
+											terms.append(semester_translations[item])
+
 								if name == "" and not element.find("span") is None:
 									nameGroups = nameProg.match(element.find("span").text)
 									name = nameGroups.group("name") if not nameGroups is None else ""
 									level = nameGroups.group("level") if not nameGroups is None else ""
 					else:
 						subjectTypes[subjectType]["presentation"] = element.encode("utf-8")
+
+					index = index + 1
 
 				objectList.append({
 					"subject_type" : subjectType,
@@ -89,5 +160,3 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 		"subject_types" : subjectTypes,
 		"presentation" : soup.find("td", attrs={"id" : "m_Content_StudieretningPresentationCtrl1_footertd"}).text.encode("utf-8")
 	}
-
-print field_of_study({"school_id" : 517}, 7311376919)

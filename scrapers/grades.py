@@ -166,6 +166,7 @@ def grades ( config ):
 	gradeList = []
 	termMapping = {
 		u"Intern prøve" : "internal_test",
+		u"Årskarakter" : "year_grade",
 		u"1.standpunkt" : "first_term",
 		u"2.standpunkt" : "second_term",
 		u"3.standpunkt" : "third_term",

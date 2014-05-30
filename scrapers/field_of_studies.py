@@ -28,13 +28,21 @@ def field_of_studies ( config, startYear ):
 	idProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/studieretningSe.aspx\?sid=(?P<field_of_study_id>.*)&prevurl=studieretningElevTilbud.aspx%3fstartyear%3d(?P<start_year>.*)")
 	classProg = re.compile(r"(?P<name>.*) (?P<level>.*)$")
 
-	for type in soup.find("table", attrs={"class" : "forsideTabel"}).findAll("td"):
+	rows = []
+
+	for table in soup.findAll("table", attrs={"class" : "forsideTabel"}):
+		rows = rows + table.findAll("td")
+
+	for type in rows:
 		typeNameText = type.find("div", attrs={"class" : "forsideHead"}).text.strip().encode("utf-8")
 		typeGroups = typeProg.match(typeNameText)
 
 		for field in type.findAll("a"):
 			idGroups = idProg.match(field["href"])
-			classesList = field.find("i").text.replace("(", "").replace(")", "").split(", ")
+			if not field.find("i") is None:
+				classesList = field.find("i").text.replace("(", "").replace(")", "").split(", ")
+			else:
+				classesList = []
 
 			classes = []
 
@@ -46,12 +54,12 @@ def field_of_studies ( config, startYear ):
 				})
 
 			objectList.append({
-				"study_direction_name" : typeGroups.group("name") if "name" in typeGroups.groupdict() else "",
-				"gym_type" : typeGroups.group("gym_type") if "gym_type" in typeGroups.groupdict() else "",
+				"study_direction_name" : typeGroups.group("name") if not typeGroups is None and "name" in typeGroups.groupdict() else typeNameText,
+				"gym_type" : typeGroups.group("gym_type") if not typeGroups is None and "gym_type" in typeGroups.groupdict() else "HF" if "HF" in typeNameText else "STX" if "STX" in typeNameText else "HTX" if "HTX" in typeNameText else "HHX" if "HHX" in typeNameText else "student_course" if typeNameText == "Studenterkursus" else "other",
 				"start_year" : startYear,
+				"gym_type_short" : "HF" if "HF" in typeNameText else "STX" if "STX" in typeNameText else "HTX" if "HTX" in typeNameText else "HHX" if "HHX" in typeNameText else "student_course" if typeNameText == "Studenterkursus" else "other",
 				"field_of_study_id" : idGroups.group("field_of_study_id") if not idGroups is None and "field_of_study_id" in idGroups.groupdict() else "",
 				"school_id" : config["school_id"],
-				"branch_id" : config["branch_id"],
 				"name" : field.find("b").text.strip().encode("utf-8"),
 				"classes" : classes
 			})
