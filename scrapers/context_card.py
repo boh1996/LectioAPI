@@ -83,13 +83,14 @@ def user ( config, session = False ):
 
 		teams = []
 
-		for row in elements[1].findAll("a"):
-			teamGroups = teamProg.match(row["href"])
-			teams.append({
-				"name" : unicode(row.text),
-				"school_id" : teamGroups.group("school_id") if not teamGroups is None else "",
-				"team_element_id" : teamGroups.group("team_element_id") if not teamGroups is None else ""
-			})
+		if len(elements) > 1:
+			for row in elements[1].findAll("a"):
+				teamGroups = teamProg.match(row["href"])
+				teams.append({
+					"name" : unicode(row.text),
+					"school_id" : teamGroups.group("school_id") if not teamGroups is None else "",
+					"team_element_id" : teamGroups.group("team_element_id") if not teamGroups is None else ""
+				})
 
 		user["teams"] = teams
 	return {
