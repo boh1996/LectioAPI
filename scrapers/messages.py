@@ -133,7 +133,7 @@ def messages ( config, session = False ):
 		"__EVENTTARGET" : "__Page",
 		"__EVENTARGUMENT" : "TREECLICKED_%s" % ( str(config["page_id"]) ),
 		"__VIEWSTATEX" : viewStateX,
-		"s_m_Content_Content_ListGridSelectionTree_ExpandState" : "nnnnnnennnnnnnnnnnennenn",
+		#"s_m_Content_Content_ListGridSelectionTree_ExpandState" : "nnnnnnennnnnnnnnnnennenn",
 		"s_m_Content_Content_ListGridSelectionTree_SelectedNode" : "s_m_Content_Content_ListGridSelectionTreet8",
 		"s_m_Content_Content_ListGridSelectionTree_PopulateLog" : "",
 		"s$m$Content$Content$MarkChkDD" : "-1"
