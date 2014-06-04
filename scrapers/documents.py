@@ -15,6 +15,98 @@ import authenticate
 import os.path
 import context_card
 
+folderIdProg = re.compile(r"javascript:__doPostBack\('__Page','TREECLICKED_(?P<folder_id>.*)'\)")
+
+studentFolderProg = re.compile(r"S(?P<student_id>.*)_(?P<folder_name>.*)")
+studentSubFolderProg = re.compile(r"S(?P<student_id>.*)_FS(?P<subfolder_id>.*)_")
+teamFolderProg = re.compile(r"H(?P<team_id>.*)__")
+teamSubFolderProg = re.compile(r"H(?P<team_id>.*)_FH(?P<subfolder_id>.*)_")
+
+def match_folder ( folder_id ):
+	if studentSubFolderProg.match(folder_id):
+		groups = studentSubFolderProg.match(folder_id)
+		return {
+			"type" : "student_sub_folder",
+			"student_id" : groups.group("student_id").replace("_", ""),
+			"subfolder_id" : groups.group("subfolder_id")
+		}
+	elif studentFolderProg.match(folder_id):
+		groups = studentFolderProg.match(folder_id)
+		return {
+			"type" : "student_folder",
+			"folder_name" : groups.group("folder_name").replace("_", ""),
+			"student_id" : groups.group("student_id").replace("_", ""),
+		}
+	elif teamSubFolderProg.match(folder_id):
+		groups = teamSubFolderProg.match(folder_id)
+		return {
+			"type" : "team_sub_folder",
+			"team_id" : groups.group("team_id").replace("_", ""),
+			"subfolder_id" : groups.group("subfolder_id").replace("_", "")
+		}
+	elif teamFolderProg.match(folder_id):
+		groups = teamFolderProg.match(folder_id)
+		return {
+			"type" : "team_folder",
+			"team_id" : groups.group("team_id").replace("_", "")
+		}
+	else:
+		return {
+			"type" : "other"
+		}
+
+def find_folders ( container, parent = False ):
+	mappings = {
+		u"Nyeste" : u"newest",
+		u"Egne dokumenter" : u"own_documents",
+		u"Hold" : u"teams",
+		u"Indbyggede grupper" : u"build_in_groups",
+		u"Egne grupper" : u"own_groups"
+	}
+
+	tables = container.findAll("table", recursive=False)
+
+	folders = []
+
+	for table in tables:
+		elements = table.findAll("td")
+		nameText = ""
+		if "rel" in elements[len(elements)-1].find("a").attrs:
+			nameText = unicode(elements[len(elements)-1].find("a")["rel"]).replace("Mappenavn: ", "")
+		elif "title" in elements[len(elements)-1].find("a").attrs:
+			nameText = unicode(elements[len(elements)-1].find("a")["title"]).replace("Mappenavn: ", "")
+
+		if u"Autogenereret indhold" in nameText or nameText == u"":
+			nameText = unicode(elements[len(elements)-1].text)
+
+		nameText = nameText.replace("\n", "")
+
+		name = mappings[nameText] if nameText in mappings else nameText
+		idGroups = folderIdProg.match(elements[len(elements)-1].find("a")["href"])
+		folder_id = idGroups.group("folder_id") if not idGroups is None else ""
+		data = {
+			"name" : name,
+			"folder_id" : folder_id,
+			"folder" : match_folder(folder_id)
+		}
+
+		if name == u"Lektioner":
+			data["type"] = "lessons"
+		elif not name == nameText:
+			data["type"] = "build_in"
+		else:
+			data["type"] = "folder"
+
+		if not parent is False:
+			data["parent_id"] = parent
+
+		folders.append(data)
+
+		if not elements[len(elements)-3].find("a") is None:
+			folders = folders + find_folders(container.find("div", attrs={"id" : elements[len(elements)-3].find("a")["id"] + "Nodes"}), folder_id)
+
+	return folders
+
 def document ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/dokumentrediger.aspx?dokumentid=%s" % ( str(config["school_id"]), str(config["document_id"]) )
 
@@ -140,7 +232,12 @@ def folders ( config, session = False ):
 			"error" : "Data not found"
 		}
 
-	folders = []
+	folders = find_folders(soup.find("div", attrs={"id" : "s_m_Content_Content_FolderTreeView"}))
+
+	return {
+		"status" : "ok",
+		"folders" : folders
+	}
 
 def documents ( config, session = False ):
 	if session is False:

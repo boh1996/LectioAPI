@@ -17,6 +17,8 @@ import authenticate
 # https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=XF1453150703
 # Team Element
 # https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=HE5936223706
+# Field of Study - SR5203467258
+# https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=SR5203467258&prevurl=studieretningElevValg.aspx%3Felevid%3D4789793691&ignoreUnsupportedIdTypes=0
 
 def user ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/contextcard/contextcard.aspx?lectiocontextcard=%s" % ( str(config["school_id"]), str(config["context_card_id"]) )
