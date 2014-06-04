@@ -50,24 +50,44 @@ def document ( config, session = False ):
 			"error" : "Data not found"
 		}
 
+	offset = 0
+
 	elements = soup.find("div", attrs={"id" : "m_Content_Dokument_pa"}).findAll("td")
 
+	if len(elements) < 7:
+		offset = 1
+
 	creator = context_card.user({
-		"context_card_id" : elements[3].find("span")["lectiocontextcard"],
+		"context_card_id" : elements[3-offset].find("span")["lectiocontextcard"],
 		"school_id" : config["school_id"]
 	}, session)["user"]
 
-	changer = elements[4].find("span")["lectiocontextcard"]
-	elements[4].find("span").decompose()
-	dateText = elements[4].text.replace(" af ", "").strip()
+	changer = elements[4-offset].find("span")["lectiocontextcard"]
+	elements[4-offset].find("span").decompose()
+	dateText = elements[4-offset].text.replace(" af ", "").strip()
 	dateTimeProg = re.compile(r"(?P<day>.*)/(?P<month>.*)-(?P<year>.*) (?P<hour>.*):(?P<minute>.*)")
 	dateGroups = dateTimeProg.match(dateText)
 	date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(dateGroups.group("day")), functions.zeroPadding(dateGroups.group("month")), dateGroups.group("year"), dateGroups.group("hour"), dateGroups.group("minute")), "%d/%m-%Y %H:%M") if not dateGroups is None else ""
 
+	connectionRows = soup.find("table", attrs={"id" : "m_Content_AffiliationsGV"}).findAll("tr")
+	connectionRows.pop(0)
+
+	connections = []
+
+	for row in connectionRows:
+		rowElements = row.findAll("td")
+
+		connections.append({
+			"context_card_id" : rowElements[0]["lectiocontextcard"],
+			"type" : "team" if "H" in rowElements[0]["lectiocontextcard"] else "teacher" if "T" in rowElements[0]["lectiocontextcard"] else "student",
+			"name" : unicode(rowElements[0].find("span").text),
+			"can_edit" : True if "checked" in rowElements[1].find("input").attrs else False
+		})
+
 	document = {
 		"name" : unicode(elements[0].find("a").text).replace("\t", "").replace("\n", "").replace("\r", "").strip(),
 		"extension" : os.path.splitext(elements[0].find("a").text.replace("\t", "").replace("\n", "").replace("\r", "").strip())[1].replace(".", ""),
-		"size" : elements[2].text.replace(",", ".").replace("\t", "").replace("\n", "").replace("\r", "").strip(),
+		"size" : elements[2-offset].text.replace(",", ".").replace("\t", "").replace("\n", "").replace("\r", "").strip(),
 		"document_id" : str(config["document_id"]),
 		"creator" : creator,
 		"changer" : {
@@ -76,7 +96,8 @@ def document ( config, session = False ):
 			"date" : date
 		},
 		"comment" : soup.find("textarea", attrs={"id" : "m_Content_EditDocComments_tb"}).text.replace("\r\n",""),
-		"public" : True if "checked" in soup.find("input", attrs={"id" : "m_Content_EditDocIsPublic"}).attrs else False
+		"public" : True if "checked" in soup.find("input", attrs={"id" : "m_Content_EditDocIsPublic"}).attrs else False,
+		"connections" : connections
 	}
 
 	return {
