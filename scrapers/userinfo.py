@@ -8,11 +8,69 @@ import functions
 import requests
 import authenticate
 
-def userinfo(config):
-	session = authenticate.authenticate(config)
+def field_of_study ( config, session = False ):
+	url = "https://www.lectio.dk/lectio/%s/studieretningElevValg.aspx?elevid=%s" % ( str(config["school_id"]), str(config["student_id"]) )
+
+	if session == False:
+		session = authenticate.authenticate(config)
 
 	if session == False:
 		return {"status" : "error", "type" : "authenticate"}
+
+	cookies = {
+		"lecmobile" : "0",
+		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
+		"LastLoginUserName" : session["LastLoginUserName"],
+		"lectiogsc" : session["lectiogsc"],
+		"LectioTicket" : session["LectioTicket"]
+	}
+
+	# Insert User-agent headers and the cookie information
+	headers = {
+		"User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1665.2 Safari/537.36",
+		"Content-Type" : "application/x-www-form-urlencoded",
+		"Host" : "www.lectio.dk",
+		"Origin" : "https://www.lectio.dk",
+		"Cookie" : functions.implode(cookies, "{{index}}={{value}}", "; ")
+	}
+
+	response = proxy.session.get(url, headers=headers)
+
+	html = response.text
+
+	soup = Soup(html)
+
+	if soup.find("div", attrs={"id" : "s_m_Content_Content_id0_pa"}) is None:
+		return {
+			"status" : False,
+			"error" : "Data not found"
+		}
+
+	elements = soup.find("div", attrs={"id" : "s_m_Content_Content_id0_pa"}).findAll("td")
+
+	information = {
+		"student_type" : elements[0].find("span").text,
+		"student_start_term" : elements[1].find("span").text,
+		"field_of_study" : {
+			"name" : unicode(elements[2].find("span").text),
+			"context_card_id" : elements[2].find("span")["lectiocontextcard"],
+			"field_of_study_id" : elements[2].find("span")["lectiocontextcard"].replace("SR", "")
+		},
+		"student_id" : str(config["student_id"])
+	}
+
+	return {
+		"status" : "ok",
+		"information" : information
+	}
+
+def userinfo( config, session = False ):
+	if session == False:
+		session = authenticate.authenticate(config)
+
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
+
 	else:
 		url = urls.front_page_url.replace("{{SCHOOL_ID}}", str(config["school_id"]))
 
