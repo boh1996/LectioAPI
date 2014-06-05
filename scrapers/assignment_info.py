@@ -19,6 +19,9 @@ def assignment_info ( config, session = False ):
 	if session is False:
 		session = authenticate.authenticate(config)
 
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
+
 	# Insert the session information from the auth function
 	cookies = {
 		"lecmobile" : "0",

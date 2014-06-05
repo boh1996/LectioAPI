@@ -7,6 +7,8 @@ from database import *
 import error
 import sync
 import asignments as assignmentsApi
+import assignment_info
+import authenticate
 
 def importAssignments ( school_id, branch_id, username, password, student_id ):
 	try:
@@ -57,6 +59,8 @@ def importAssignments ( school_id, branch_id, username, password, student_id ):
 				status = sync.sync(db.assignments, unique, element)
 
 				if sync.check_action_event(status) == True:
+					# Import single assignment, fire event
+
 					for url in sync.find_listeners('assignment', unique):
 						sync.send_event(url, status["action"], element)
 

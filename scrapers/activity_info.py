@@ -12,7 +12,13 @@ import values
 import codecs
 import functions
 
-def activity_info(config, session, activity_id):
+def activity_info(config, activity_id, session = False ):
+    if session is False:
+        session = authenticate.authenticate(config)
+
+    if session == False:
+        return {"status" : "error", "type" : "authenticate"}
+
     url = urls.activity_info.replace("{{SCHOOL_ID}}", config.school_id).replace("{{ACTIVITY_ID}}", activity_id)
 
     # Insert the session information from the auth function

@@ -11,10 +11,14 @@ from time import mktime
 import functions
 import authenticate
 
-def exams ( config ):
+def exams ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/proevehold.aspx?type=elev&studentid=%s" % ( str(config["school_id"]), str(config["student_id"]))
 
-	session = authenticate.authenticate(config)
+	if session is False:
+		session = authenticate.authenticate(config)
+
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
 
 	# Insert the session information from the auth function
 	cookies = {

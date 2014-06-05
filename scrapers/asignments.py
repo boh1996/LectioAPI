@@ -8,8 +8,9 @@ import proxy
 import functions
 import authenticate
 
-def assignments( config ):
-	session = authenticate.authenticate(config)
+def assignments( config, session = False ):
+	if session == False:
+		session = authenticate.authenticate(config)
 
 	if session == False:
 		return {"status" : "error", "type" : "authenticate"}

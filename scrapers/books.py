@@ -12,8 +12,9 @@ import authenticate
 import calendar
 from datetime import *
 
-def books(config):
-    session = authenticate.authenticate(config)
+def books( config, session = False ):
+   if session is False:
+        session = authenticate.authenticate(config)
 
     if session == False:
         return {"status" : "error", "type" : "authenticate"}

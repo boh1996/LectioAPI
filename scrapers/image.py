@@ -8,10 +8,12 @@ import proxy
 import functions
 import authenticate
 
-def image ( config, picture_id ):
-	session = authenticate.authenticate(config)
+def image ( config, picture_id, session = False ):
+	if session is False:
+		session = authenticate.authenticate(config)
+
 	if session == False:
-		return { "status" : "error", "type" : "authenticate" }
+		return {"status" : "error", "type" : "authenticate"}
 	else:
 		url = "https://www.lectio.dk/lectio/%s/GetImage.aspx?pictureid=%s&fullsize=1" % ( str(config["school_id"]), str(picture_id) )
 

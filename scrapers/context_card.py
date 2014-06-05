@@ -18,13 +18,18 @@ import authenticate
 # Team Element
 # https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=HE5936223706
 # Field of Study - SR5203467258
-# https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=SR5203467258&prevurl=studieretningElevValg.aspx%3Felevid%3D4789793691&ignoreUnsupportedIdTypes=0
+# https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=SR5203467258
+# Team
+# https://www.lectio.dk/lectio/517/contextcard/contextcard.aspx?lectiocontextcard=H5936232700
 
 def user ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/contextcard/contextcard.aspx?lectiocontextcard=%s" % ( str(config["school_id"]), str(config["context_card_id"]) )
 
 	if session is False:
 		session = authenticate.authenticate(config)
+
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
 
 	# Insert the session information from the auth function
 	cookies = {

@@ -113,6 +113,9 @@ def document ( config, session = False ):
 	if session is False:
 		session = authenticate.authenticate(config)
 
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
+
 	cookies = {
 		"lecmobile" : "0",
 		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
@@ -201,6 +204,9 @@ def folders ( config, session = False ):
 	if session is False:
 		session = authenticate.authenticate(config)
 
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
+
 	cookies = {
 		"lecmobile" : "0",
 		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
@@ -242,6 +248,9 @@ def folders ( config, session = False ):
 def documents ( config, session = False ):
 	if session is False:
 		session = authenticate.authenticate(config)
+
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
 
 	cookies = {
 		"lecmobile" : "0",

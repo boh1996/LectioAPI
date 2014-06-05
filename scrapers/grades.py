@@ -15,10 +15,14 @@ import authenticate
 def cleanText ( text ):
 	return text.replace("\t", "").replace("\n", "").replace("\r", "").strip()
 
-def grades ( config ):
+def grades ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/grades/grade_report.aspx?elevid=%s" % ( str(config["school_id"]), str(config["student_id"]) )
 
-	session = authenticate.authenticate(config)
+	if session is False:
+		session = authenticate.authenticate(config)
+
+	if session == False:
+		return {"status" : "error", "type" : "authenticate"}
 	# Insert the session information from the auth function
 	cookies = {
 		"lecmobile" : "0",
