@@ -12,7 +12,9 @@ import functions
 from pytz import timezone
 
 def outgoing_censor ( config ):
-	url = "https://www.lectio.dk/lectio/%s/proevehold.aspx?type=udgcensur&outboundCensorID=%s"
+	url = "https://www.lectio.dk/lectio/%s/proevehold.aspx?type=udgcensur&outboundCensorID=%s" % ( str(config["school_id"]), str(config["outgoing_censor_id"]) )
+
+	cookies = {}
 
 	# Insert User-agent headers and the cookie information
 	headers = {
@@ -29,7 +31,7 @@ def outgoing_censor ( config ):
 
 	soup = Soup(html)
 
-	if soup.find("table", attrs={"id" : "s_m_Content_Content_SkemaNyMedNavigation_skema_skematabel"}) is None:
+	if soup.find("div", attrs={"id" : "m_Content_LectioDetailIslandProevehold_pa"}) is None:
 		return {
 			"status" : False,
 			"error" : "Data not found"
