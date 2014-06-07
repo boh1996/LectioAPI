@@ -67,12 +67,3 @@ def private_activity ( config, session = False ):
 		"status" : "ok",
 		"appointment" : appointment
 	}
-
-print private_activity({
-	"school_id" : 517,
-	"student_id" : 4789793691,
-	"username" : "boh1996",
-	"password" : "jwn53yut",
-	"branch_id" : "4733693427",
-	"activity_id" : "9286743058"
-})
