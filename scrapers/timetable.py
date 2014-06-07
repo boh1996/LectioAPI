@@ -77,14 +77,14 @@ def timetable( config, url, week, year, session = False ):
 				for element in row:
 
 					# The time module uses "0" as the first week of the year
-					if week == 1:
+					if int(week) == 1:
 						timeWeek = 0
 					else:
 						# Subtract one, because 0 is the first week
-						timeWeek = week-1
+						timeWeek = int(week)-1
 
 					dayOfWeek = index-1
-					date = time.strptime("%s %s %s" % (dayOfWeek,timeWeek, year),"%w %W %Y")
+					date = time.strptime("%s %s %s" % (str(dayOfWeek),str(timeWeek), str(year)),"%w %W %Y")
 					content = element.find("div", attrs={"class" : "s2skemabrikcontent"}).findAll("span")[1]
 					div = element.find("div", attrs={"class" : "s2skemabrikcontent"})
 
@@ -97,18 +97,18 @@ def timetable( config, url, week, year, session = False ):
 
 					if href == None:
 						generalInformation.append({
-							"message" : content.text,
-							"timestamp" : date
+							"message" : unicode(content.text),
+							"date" : datetime.fromtimestamp(mktime(date))
 						})
 					else:
 						# Compile the regular expression
 						prog = re.compile(r"\/lectio\/(?P<school_id>[0-9]*)\/aktivitet\/aktivitetinfo.aspx\?id=(?P<activity_id>[0-9]*)&(?P<prev_url>.*)")
 						activityGroups = prog.match(element["href"])
 						generalInformation.append({
-							"message" : content.text,
+							"message" : unicode(content.text),
 							"activity_id" : activityGroups.group("activity_id"),
 							"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
-							"timestamp" : date
+							"date" : datetime.fromtimestamp(mktime(date))
 						})
 
 	# Find all the day elements
@@ -125,11 +125,11 @@ def timetable( config, url, week, year, session = False ):
 		dayOfWeek = index-1
 
 		# The time module uses "0" as the first week of the year
-		if week == 1:
+		if int(week) == 1:
 			timeWeek = 0
 		else:
 			# Subtract one, because 0 is the first week
-			timeWeek = week-1
+			timeWeek = int(week)-1
 
 		# Find all the "a" tags, representing timetable elements
 		timetableElements = dayElement.findAll("a")
@@ -144,10 +144,13 @@ def timetable( config, url, week, year, session = False ):
 			expressions = [
 				{"type" : "private", "expression" : r"\/lectio\/(?P<school_id>[0-9]*)\/privat_aftale.aspx\?aftaleid=(?P<activity_id>[0-9]*)"},
 				{"type" : "school",  "expression" : r"\/lectio\/(?P<school_id>[0-9]*)\/aktivitet\/aktivitetinfo.aspx\?id=(?P<activity_id>[0-9]*)&(?P<prev_url>.*)"},
+				{"type" : "outgoing_censor", "expression" : r"\/lectio\/(?P<school_id>.*)\/proevehold.aspx\?type=udgcensur&outboundCensorID=(?P<outbound_censor_id>.*)&prevurl=(?P<prev_url>.*)"},
+				{"type" : "exam", "expression" : r"\/lectio\/(?P<school_id>.*)\/proevehold.aspx\?type=proevehold&ProeveholdId=(?P<test_team_id>.*)&prevurl=(?P<prev_url>.*)"}
 			]
 
 			# Loop over the expressions
 			groups = []
+			type = "other"
 			for expressionObject in expressions:
 				prog = re.compile(expressionObject["expression"])
 				if prog.match(timetableElement["href"]):
@@ -263,19 +266,51 @@ def timetable( config, url, week, year, session = False ):
 				pass
 
 			if sameDay(startTime, dayOfWeek, timeWeek, year):
-				# Add to the list
-				timeElements.append({
-					"text" : unicode(timetableElement.text),
-					"activity_id" : groups.group("activity_id"),
-					"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
-					"teachers" : teachers,
-					"teams" : teams,
-					"startTime" : startTime,
-					"endTime" : endTime,
-					"type" : type,
-					"location_text" : unicode(div.text),
-					"room_text" : unicode(roomText)
-				})
+				if type == "private":
+					timeElements.append({
+						"text" : unicode(timetableElement.text),
+						"activity_id" : groups.group("activity_id"),
+						#"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
+						"startTime" : startTime,
+						"endTime" : endTime,
+						"type" : type,
+						"school_id" : groups.group("school_id")
+					})
+				elif type == "outgoing_censor":
+					timeElements.append({
+						"text" : unicode(timetableElement.text),
+						"outbound_censor_id" : groups.group("outbound_censor_id"),
+						#"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
+						"startTime" : startTime,
+						"endTime" : endTime,
+						"type" : type,
+						"school_id" : groups.group("school_id")
+					})
+				elif type == "exam":
+					timeElements.append({
+						"text" : unicode(timetableElement.text),
+						"test_team_id" : groups.group("test_team_id"),
+						#"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
+						"startTime" : startTime,
+						"endTime" : endTime,
+						"type" : type,
+						"school_id" : groups.group("school_id")
+					})
+				elif type == "school":
+					# Add to the list
+					timeElements.append({
+						"text" : unicode(timetableElement.text),
+						"activity_id" : groups.group("activity_id"),
+						"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
+						"teachers" : teachers,
+						"teams" : teams,
+						"startTime" : startTime,
+						"endTime" : endTime,
+						"type" : type,
+						"location_text" : unicode(div.text),
+						"room_text" : unicode(roomText),
+						"school_id" : groups.group("school_id")
+					})
 
 	return {
 		"status" : "ok",
