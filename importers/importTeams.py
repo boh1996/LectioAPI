@@ -44,6 +44,8 @@ def importTeams ( school_id, branch_id ):
 				status = sync.sync(db.teams, unique, element)
 
 				if sync.check_action_event(status) == True:
+					# Launch TeamElements scraper
+
 					for url in sync.find_listeners('team', unique):
 						sync.send_event(url, status["action"], element)
 

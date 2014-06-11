@@ -7,5 +7,8 @@ import error
 import sync
 import timetable as timetableApi
 from url_creator import *
+import outgoing_censor
+import exam_team
+import activity_info
 
-def importPublicTimetable ( schools_id, branch_id, type, element_id ):
+def importPublicTimetable ( school_id, branch_id, type, element_id, number_of_weeks = 1 ):

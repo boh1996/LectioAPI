@@ -9,6 +9,7 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 
 	if existsing.count() is 0:
 		document["_created"] = datetime.datetime.now()
+		document["_updated"] = datetime.datetime.now()
 		try:
 			table.update(query, document, upsert=True)
 		except Exception, e:
@@ -19,6 +20,7 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 		}
 	else:
 		existsing = existsing[0]
+		difference = None
 		try:
 			for item in unset:
 				document.pop(item, None)
@@ -117,7 +119,12 @@ def same ( uniqueRows, element1, element2 ):
 		if not row in element2 and row in element1:
 			same = False
 
-		if row in element1 and row in element2 and not element1[row] == element2[row]:
-			same = False
+		if row in element1 and row in element2:
+			if type(element2[row]) == type(element1[row]):
+				if not element2[row] == element1[row]:
+					same = False
+			else:
+				if not str(element2[row]) == str(element1[row]):
+					same = False
 
 	return same

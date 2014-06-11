@@ -22,7 +22,9 @@ def timetable( config, url, week, year, session = False ):
 	if session == False:
 		cookies = {}
 	else:
-		session = authenticate.authenticate(config)
+		if session == True:
+			session = authenticate.authenticate(config)
+
 		# Insert the session information from the auth function
 		cookies = {
 			"lecmobile" : "0",
@@ -98,7 +100,12 @@ def timetable( config, url, week, year, session = False ):
 					if href == None:
 						generalInformation.append({
 							"message" : unicode(content.text),
-							"date" : datetime.fromtimestamp(mktime(date))
+							"date" : datetime.fromtimestamp(mktime(date)),
+							"school_id" : str(config["school_id"]),
+							"branch_id" : str(config["branch_id"]),
+							"term" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+							"week" : week,
+							"year" : year
 						})
 					else:
 						# Compile the regular expression
@@ -108,7 +115,12 @@ def timetable( config, url, week, year, session = False ):
 							"message" : unicode(content.text),
 							"activity_id" : activityGroups.group("activity_id"),
 							"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
-							"date" : datetime.fromtimestamp(mktime(date))
+							"date" : datetime.fromtimestamp(mktime(date)),
+							"school_id" : str(config["school_id"]),
+							"branch_id" : str(config["branch_id"]),
+							"term" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+							"week" : week,
+							"year" : year
 						})
 
 	# Find all the day elements
@@ -270,7 +282,6 @@ def timetable( config, url, week, year, session = False ):
 					timeElements.append({
 						"text" : unicode(timetableElement.text),
 						"activity_id" : groups.group("activity_id"),
-						#"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
 						"startTime" : startTime,
 						"endTime" : endTime,
 						"type" : type,
@@ -280,7 +291,6 @@ def timetable( config, url, week, year, session = False ):
 					timeElements.append({
 						"text" : unicode(timetableElement.text),
 						"outbound_censor_id" : groups.group("outbound_censor_id"),
-						#"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
 						"startTime" : startTime,
 						"endTime" : endTime,
 						"type" : type,
@@ -290,7 +300,6 @@ def timetable( config, url, week, year, session = False ):
 					timeElements.append({
 						"text" : unicode(timetableElement.text),
 						"test_team_id" : groups.group("test_team_id"),
-						#"status" : "changed" if "s2changed" in div["class"] else "cancelled" if "s2cancelled" in div["class"] else "normal",
 						"startTime" : startTime,
 						"endTime" : endTime,
 						"type" : type,

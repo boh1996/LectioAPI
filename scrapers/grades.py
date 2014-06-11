@@ -121,7 +121,7 @@ def grades ( config, session = False ):
 				"class_name" : classGroups.group("class_name") if not classGroups is None else "",
 				"team_name" : classGroups.group("team_name") if not classGroups is None else "",
 				"type" : "written" if grade_type == "skriftlig" else "oral",
-				"evaluation_type" : "internal_test" if unicode(evaluation_type) == u"Intern prøve" else "first_term" if evaluation_type == "1. standpunkt" else "second_term" if evaluation_type == "2. standpunkt" else "third_term" if evaluation_type == "3. standpunkt" else "firth_term" if evaluation_type == "4. standpunkt" else "fifth_term" if evaluation_type == "5. standpunkt" else "sixth_term",
+				"evaluation_type" : "internal_test" if unicode(evaluation_type) == u"Intern prøve" else "exam_or_year_test" if unicode(evaluation_type) == u"Eksamens-/årsprøvekarakter" else "first_term" if evaluation_type == "1. standpunkt" else "second_term" if evaluation_type == "2. standpunkt" else "third_term" if evaluation_type == "3. standpunkt" else "firth_term" if evaluation_type == "4. standpunkt" else "fifth_term" if evaluation_type == "5. standpunkt" else "sixth_term",
 				"grade" : elements[2].text,
 				"note" : cleanText(unicode(elements[4].text)),
 				"date" : date,
@@ -177,6 +177,7 @@ def grades ( config, session = False ):
 		u"4.standpunkt" : "forth_term",
 		u"5.standpunkt" : "fifth_term",
 		u"6.standpunkt" : "sixth_term",
+		u"Eksamens-/årsprøvekarakter" : "exam_or_year_test"
 	}
 	gradeListRows = soup.find("table", attrs={"id" : "s_m_Content_Content_karakterView_KarakterGV"}).findAll("tr")
 	headers = gradeListRows[0].findAll("th")
@@ -226,11 +227,15 @@ def grades ( config, session = False ):
 	diplomaRows.pop(0)
 
 	subjectProg = re.compile(r"(?P<subject_name>.*) (?P<subject_level>.*)")
+	subjectProgAlternative = re.compile(r"(?P<subject_name>.*) (?P<subject_level>.*) (?P<type>.*)\.")
 
 	for row in diplomaRows:
 		if row.find("span") is None:
 			elements = row.findAll("td")
-			subjectGroups = subjectProg.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
+			if subjectProgAlternative.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip()):
+				subjectGroups = subjectProgAlternative.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
+			else:
+				subjectGroups = subjectProg.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
 
 			year_weight = cleanText(elements[1].text).replace(",", ".")
 			year_grade = cleanText(elements[2].text)
@@ -238,6 +243,8 @@ def grades ( config, session = False ):
 			exam_weight = cleanText(elements[4].text).replace(",", ".")
 			exam_grade = cleanText(elements[5].text)
 			exam_ects = cleanText(elements[6].text)
+
+			evaluation_type = subjectGroups.group("type") if not subjectGroups is None and "type" in subjectGroups.groupdict() else None
 
 			diplomaLines.append({
 				"subject_full" : unicode(elements[0].text.replace("\t", "").replace("\n", "").replace("\r", "")),
@@ -249,7 +256,21 @@ def grades ( config, session = False ):
 				"exam_weight" : exam_weight if not exam_weight.strip() == "-" and not exam_weight == "??" else "waiting_for_exam" if exam_weight.strip() == "??" else "unkown",
 				"exam_grade" : exam_grade if not exam_grade.strip() == "-" and not exam_grade == "??" else "waiting_for_exam" if exam_grade.strip() == "??" else "unkown",
 				"exam_ects" : exam_ects if not exam_ects.strip() == "-" and not exam_ects == "??" else "waiting_for_exam" if exam_ects.strip() == "??" else "unkown",
+				"evaluation_type" : "oral" if evaluation_type == "mdt" else "written" if evaluation_type == "skr" else "combined"
 			})
+
+	avgElement = soup.find("span", attrs={"id" : "s_m_Content_Content_GradeAverageLabel"})
+	for element in avgElement.findAll("span"):
+		element.decompose()
+
+	avgTextProg = re.compile(ur"Eksamensresultat ekskl\. bonus:     (?P<without_bonus>.*) Eksamensresultat inkl\. evt\. bonus: (?P<with_bonus>.*)")
+	avgText = unicode(avgElement.text.strip().replace("\n", "").replace("\r", "").replace("\t", ""))
+	avgGroups = avgTextProg.match(avgText)
+
+	average = {
+		"without_bonus" : avgGroups.group("without_bonus").replace(",", ".") if not avgGroups is None else "",
+		"with_bonus" : avgGroups.group("with_bonus").replace(",", ".") if not avgGroups is None else ""
+	}
 
 	return {
 		"status" : "ok",
@@ -257,5 +278,6 @@ def grades ( config, session = False ):
 		"grades" : gradeList,
 		"grade_notes" : gradeNotes,
 		"protocol_lines" : protocolLines,
-		"diploma" : diplomaLines
+		"diploma" : diplomaLines,
+		"average" : average
 	}
