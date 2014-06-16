@@ -275,16 +275,6 @@ def folders ( config, session = False ):
 		"folders" : folders
 	}
 
-f = open("out.txt", "w")
-
-print >> f, folders({"school_id" : 517,
-	"student_id" : 4789793691,
-	"username" : "boh1996",
-	"password" : "jwn53yut",
-	"branch_id" : "4733693427",
-	"folder_id" : "H5936142166__",
-	"document_id" : "9274230873"})
-
 def documents ( config, session = False ):
 	if session is False:
 		session = authenticate.authenticate(config)

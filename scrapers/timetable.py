@@ -387,8 +387,3 @@ def timetable( config, url, week, year, session = False ):
 			"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
 		}
 	}
-
-timetable({
-	"school_id" : 517,
-	"branch_id" : "4733693427",
-}, "https://www.lectio.dk/lectio/517/SkemaNy.aspx?type=elev&elevid=4789793691&week=2220144", "22", "2014")
