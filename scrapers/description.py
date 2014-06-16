@@ -102,17 +102,16 @@ def description ( config, session = False ):
 				title = reachSpans[2]["title"] if "title" in reachSpans[2] else reachSpans[2].text
 				coversGroups = coversProg.match(title)
 				focusPoints = []
-				focusRows = elements[7].findAll("ul")
+				focusRows = elements[7].find("ul").findAll("li", recursive=False)
 				descriptionText = elements[1].find("span").text
 
 				if len(focusRows) > 0:
-					focusRows.pop(0)
-
 					for row in focusRows:
-						header = unicode(row.find_previous("li").text)
+						header = unicode(row.text)
 						focusPointElements = []
-						for focusElement in row.findAll("li"):
-							focusPointElements.append(unicode(focusElement.text))
+						if row.find_next().name == "ul":
+							for focusElement in row.find_next().findAll("li"):
+								focusPointElements.append(unicode(focusElement.text))
 
 						focusPoints.append({
 							"header" : header,
