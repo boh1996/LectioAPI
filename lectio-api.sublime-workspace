@@ -523,7 +523,7 @@
 			"file": "scrapers/grades.py",
 			"settings":
 			{
-				"buffer_size": 13444,
+				"buffer_size": 13235,
 				"line_ending": "Windows"
 			}
 		}
@@ -1020,15 +1020,15 @@
 					"file": "scrapers/grades.py",
 					"settings":
 					{
-						"buffer_size": 13444,
+						"buffer_size": 13235,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13024,
-								13024
+								13235,
+								13235
 							]
 						],
 						"settings":

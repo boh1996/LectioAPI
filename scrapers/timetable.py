@@ -63,9 +63,31 @@ def timetable( config, url, week, year, session = False ):
 	# Fetch all rows in the table
 	rows = soup.find("table", attrs={"id" : "s_m_Content_Content_SkemaNyMedNavigation_skema_skematabel"}).findAll("tr")
 
+	# Fetch module info, to make it possible to draw a complete timetable
+	moduleInfo = []
+	moduleInfoProg = re.compile(r"(?P<module_number>.*)\. (?P<start_time>.*) - (?P<end_time>.*)")
+
+	for row in soup.findAll("div", attrs={"class" : "s2module-info"}):
+		moduleInfoGroups = moduleInfoProg.match(row.text.strip().replace("modul", ""))
+		if not moduleInfoGroups is None:
+			start = moduleInfoGroups.group("start_time")
+			if len(start) < 5:
+				start = "0" + start
+
+			end = moduleInfoGroups.group("end_time")
+			if len(end) < 5:
+				end = "0" + end
+			moduleInfo.append({
+				"module" : moduleInfoGroups.group("module_number"),
+				"start" : start,
+				"end" : end
+			})
+
 	# Fetch the general information celss
 	generalInformationDays = rows[2].findAll("td")
 	generalInformation = []
+
+	holidayElements = []
 
 	# Loop through all the cells, and look for information
 	index = 0
@@ -125,7 +147,29 @@ def timetable( config, url, week, year, session = False ):
 
 	# Find all the day elements
 	timeElements = []
+
+
+	headers = []
+
+	headerRows = rows[1].findAll("td")
+	headerRows.pop(0)
+	headerProg = re.compile(ur"(?P<day_name>.*) \((?P<day>.*)\/(?P<month>.*)\)")
+
+	for row in headerRows:
+		headerGroups = headerProg.match(row.text)
+		headerYear = year
+
+		if not headerGroups is None:
+			if int(week) == 1 and int(headerGroups.group("month")) == 12:
+				headerYear = str(int(year) - 1)
+
+			headers.append({
+				"day" : headerGroups.group("day_name"),
+				"date" : datetime.strptime("%s-%s-%s %s" % (functions.zeroPadding(headerGroups.group("day")), functions.zeroPadding(headerGroups.group("month")), headerYear, "12:00"), "%d-%m-%Y %H:%M")
+			})
+
 	dayElements = rows[3].findAll("td")
+	dayElements.pop(0)
 
 	# Loop over the days
 	index = 0
@@ -145,6 +189,17 @@ def timetable( config, url, week, year, session = False ):
 
 		# Find all the "a" tags, representing timetable elements
 		timetableElements = dayElement.findAll("a")
+
+		moduleIndex = 1
+
+		for checkElement in dayElement.findAll(attrs={"class" : "s2module-bg"}):
+			if "s2time-off" in checkElement["class"]:
+				# Get time from module info elements
+				holidayElements.append({
+					"start" : datetime.strptime("%s-%s-%s %s" % (headers[index-1]["date"].strftime("%d"), headers[index-1]["date"].strftime("%m"), headers[index-1]["date"].strftime("%Y"), moduleInfo[moduleIndex-1]["start"]), "%d-%m-%Y %H:%M"),
+					"end" : datetime.strptime("%s-%s-%s %s" % (headers[index-1]["date"].strftime("%d"), headers[index-1]["date"].strftime("%m"), headers[index-1]["date"].strftime("%Y"), moduleInfo[moduleIndex-1]["end"]), "%d-%m-%Y %H:%M")
+				})
+			moduleIndex = moduleIndex + 1
 
 		# Loop over the timetable elements
 		for timetableElement in timetableElements:
@@ -325,8 +380,15 @@ def timetable( config, url, week, year, session = False ):
 		"status" : "ok",
 		"timetable" : timeElements,
 		"information" : generalInformation,
+		"module_info" : moduleInfo,
+		"headers" : headers,
 		"term" : {
 			"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
 			"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
 		}
 	}
+
+timetable({
+	"school_id" : 517,
+	"branch_id" : "4733693427",
+}, "https://www.lectio.dk/lectio/517/SkemaNy.aspx?type=elev&elevid=4789793691&week=2220144", "22", "2014")

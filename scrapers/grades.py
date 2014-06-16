@@ -11,6 +11,7 @@ from time import mktime
 import functions
 from pytz import timezone
 import authenticate
+import context_card
 
 def cleanText ( text ):
 	return text.replace("\t", "").replace("\n", "").replace("\r", "").strip()
@@ -141,6 +142,8 @@ def grades ( config, session = False ):
 			termGroups = termProg.match(cleanText(elements[0].text))
 			term = termGroups.group("term") if not termGroups is None else ""
 			xprsGroups = xprsProg.match(elements[3].find("span").text)
+			teamElement = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : elements[5].find("span")["lectiocontextcard"]}, session)["team"]
+			teamElement["team_element_context_card_id"] = "HE" + teamElement["team_element_id"]
 
 			protocolLines.append({
 				"grading" : "7-step" if cleanText(elements[8].text) == "7-trinsskala" else "13-step",
@@ -152,7 +155,8 @@ def grades ( config, session = False ):
 				"team" : {
 					"name" : unicode(elements[5].find("span").text),
 					"context_card_id" : elements[5].find("span")["lectiocontextcard"],
-					"team_id" : elements[5].find("span")["lectiocontextcard"].replace("H", "")
+					"team_id" : elements[5].find("span")["lectiocontextcard"].replace("H", ""),
+					"team_element" : teamElement
 				},
 				"xprs" : {
 					"full_name" : unicode(elements[3].find("span").text),
@@ -192,6 +196,9 @@ def grades ( config, session = False ):
 			teamGroups = teamNameProg.match(cleanText(elements[0].text))
 			teamElementGroups = teamElementIdProg.match(elements[0].find("a")["href"])
 			elements.pop(0)
+			className = teamGroups.group("class_name") if not teamGroups is None else ""
+			subject = teamGroups.group("subject_name") if not teamGroups is None else ""
+			teamName = className + " " + subject
 
 			gradeElements = []
 			index = 0
@@ -212,8 +219,9 @@ def grades ( config, session = False ):
 			gradeList.append({
 				"evaluation_type" : "oral" if evaluation_type == "mundtlig" else "written" if evaluation_type == "skriftlig" else "combined",
 				"team" : {
-					"class_name" : teamGroups.group("class_name") if not teamGroups is None else "",
-					"subject_abbrevation" : teamGroups.group("subject_name") if not teamGroups is None else "",
+					"class_name" : className,
+					"name" : teamName,
+					"subject_abbrevation" : subject,
 					"team_element_id" : teamElementGroups.group("team_element_id") if not teamElementGroups is None else "",
 					"school_id" : teamElementGroups.group("school_id") if not teamElementGroups is None else ""
 				},
@@ -279,5 +287,15 @@ def grades ( config, session = False ):
 		"grade_notes" : gradeNotes,
 		"protocol_lines" : protocolLines,
 		"diploma" : diplomaLines,
-		"average" : average
+		"average" : average,
+		"term" : {
+			"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+			"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+		}
 	}
+
+print grades({"school_id" : 517,
+	"student_id" : 4789793691,
+	"username" : "boh1996",
+	"password" : "jwn53yut",
+	"branch_id" : "4733693427",})

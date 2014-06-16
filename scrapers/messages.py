@@ -12,6 +12,7 @@ import values
 import codecs
 import functions
 import authenticate
+import context_card
 
 def messages_headers ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/beskeder2.aspx?type=liste&elevid=%s" % ( str(config["school_id"]), str(config["student_id"]) )
@@ -86,6 +87,8 @@ def messages_headers ( config, session = False ):
 			}
 
 			if typeName == "team":
+				team = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : "H" + data["message_page_id"]} ,session)
+				data["team"] = team["team"]
 				teams.append(data)
 			elif typeName == "own_groups":
 				own_groups.append(data)

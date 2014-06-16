@@ -20,6 +20,9 @@ def authenticate ( config ):
         "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     }
 
+    if soup.find(id="aspnetForm") is None:
+        return False
+
     # Insert validation information
     eventValidationTest = soup.find(id="aspnetForm").find(id="__EVENTVALIDATION")["value"]
 

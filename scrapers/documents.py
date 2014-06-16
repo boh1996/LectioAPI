@@ -15,14 +15,17 @@ import authenticate
 import os.path
 import context_card
 
+teamCache = {}
+
 folderIdProg = re.compile(r"javascript:__doPostBack\('__Page','TREECLICKED_(?P<folder_id>.*)'\)")
 
 studentFolderProg = re.compile(r"S(?P<student_id>.*)_(?P<folder_name>.*)")
 studentSubFolderProg = re.compile(r"S(?P<student_id>.*)_FS(?P<subfolder_id>.*)_")
 teamFolderProg = re.compile(r"H(?P<team_id>.*)__")
 teamSubFolderProg = re.compile(r"H(?P<team_id>.*)_FH(?P<subfolder_id>.*)_")
+topType = "folder"
 
-def match_folder ( folder_id ):
+def match_folder ( folder_id, session, config, type ):
 	if studentSubFolderProg.match(folder_id):
 		groups = studentSubFolderProg.match(folder_id)
 		return {
@@ -39,23 +42,41 @@ def match_folder ( folder_id ):
 		}
 	elif teamSubFolderProg.match(folder_id):
 		groups = teamSubFolderProg.match(folder_id)
-		return {
+		data = {
 			"type" : "team_sub_folder",
 			"team_id" : groups.group("team_id").replace("_", ""),
 			"subfolder_id" : groups.group("subfolder_id").replace("_", "")
 		}
+		if type == "folder":
+			if not groups.group("team_id").replace("_", "") in teamCache:
+				team = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : "H" + groups.group("team_id").replace("_", "")}, session)
+				teamCache[groups.group("team_id").replace("_", "")] = team
+			else:
+				team = teamCache[groups.group("team_id").replace("_", "")]
+
+			data["team"] = team["team"]
+		return data
 	elif teamFolderProg.match(folder_id):
 		groups = teamFolderProg.match(folder_id)
-		return {
+		data = {
 			"type" : "team_folder",
 			"team_id" : groups.group("team_id").replace("_", "")
 		}
+		if type == "folder":
+			if not groups.group("team_id").replace("_", "") in teamCache:
+				team = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : "H" + groups.group("team_id").replace("_", "")}, session)
+				teamCache[groups.group("team_id").replace("_", "")] = team
+			else:
+				team = teamCache[groups.group("team_id").replace("_", "")]
+			data["team"] = team["team"]
+		return data
 	else:
 		return {
 			"type" : "other"
 		}
 
-def find_folders ( container, parent = False ):
+def find_folders ( container, parent = False, session = False, config = None ):
+	global topType
 	mappings = {
 		u"Nyeste" : u"newest",
 		u"Egne dokumenter" : u"own_documents",
@@ -79,7 +100,7 @@ def find_folders ( container, parent = False ):
 		if u"Autogenereret indhold" in nameText or nameText == u"":
 			nameText = unicode(elements[len(elements)-1].text)
 
-		nameText = nameText.replace("\n", "")
+		nameText = unicode(nameText.replace("\n", ""))
 
 		name = mappings[nameText] if nameText in mappings else nameText
 		idGroups = folderIdProg.match(elements[len(elements)-1].find("a")["href"])
@@ -87,23 +108,32 @@ def find_folders ( container, parent = False ):
 		data = {
 			"name" : name,
 			"folder_id" : folder_id,
-			"folder" : match_folder(folder_id)
+			"type" : "folder"
 		}
 
 		if name == u"Lektioner":
 			data["type"] = "lessons"
 		elif not name == nameText:
 			data["type"] = "build_in"
+			if not nameText == u"Hold":
+				topType = "build_in"
+			else:
+				topType = "user"
 		else:
 			data["type"] = "folder"
+
+		if topType == "build_in":
+			data["type"] = topType
 
 		if not parent is False:
 			data["parent_id"] = parent
 
+		data["folder"] = match_folder(folder_id, session, config, data["type"])
+
 		folders.append(data)
 
 		if not elements[len(elements)-3].find("a") is None:
-			folders = folders + find_folders(container.find("div", attrs={"id" : elements[len(elements)-3].find("a")["id"] + "Nodes"}), folder_id)
+			folders = folders + find_folders(container.find("div", attrs={"id" : elements[len(elements)-3].find("a")["id"] + "Nodes"}), folder_id, session, config)
 
 	return folders
 
@@ -238,12 +268,22 @@ def folders ( config, session = False ):
 			"error" : "Data not found"
 		}
 
-	folders = find_folders(soup.find("div", attrs={"id" : "s_m_Content_Content_FolderTreeView"}))
+	folders = find_folders(soup.find("div", attrs={"id" : "s_m_Content_Content_FolderTreeView"}), False, session, config)
 
 	return {
 		"status" : "ok",
 		"folders" : folders
 	}
+
+f = open("out.txt", "w")
+
+print >> f, folders({"school_id" : 517,
+	"student_id" : 4789793691,
+	"username" : "boh1996",
+	"password" : "jwn53yut",
+	"branch_id" : "4733693427",
+	"folder_id" : "H5936142166__",
+	"document_id" : "9274230873"})
 
 def documents ( config, session = False ):
 	if session is False:
