@@ -143,6 +143,8 @@ def userinfo( config, session = False ):
 		# Student name
 		name = re.sub(r'"Eleven (\w+), (\w+) - Forside"',r'\2',soup.find("div", attrs={"id" : "s_m_HeaderContent_MainTitle"}).text)
 
+		# s_m_Content_Content_BookReservationInfo_ctl00_DashBoardItem2
+
 		# Info
 		informations = []
 		schoolTable = soup.find("table", attrs={"id" : "s_m_Content_Content_importantInfo"})

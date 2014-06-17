@@ -75,7 +75,7 @@ def mapRows(headers, rows, seperator = ":"):
 
     for index, header in enumerate(headers):
         headerNumber = 1
-        headerName = unicode(header.text.replace(seperator, "").strip().replace(" ", "").replace(u"æ","ae").replace(u"å", "aa").replace(u"ø", "oe"))
+        headerName = unicode(unicode(header.text).replace(seperator, "").strip().replace(" ", "").replace(u"æ","ae").replace(u"å", "aa").replace(u"ø", "oe"))
         if not headerName in headerNumbers:
                 headerNumbers[headerName] = headerNumber
         else:
