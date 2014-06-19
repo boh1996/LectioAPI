@@ -26,7 +26,33 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 				document.pop(item, None)
 				existsing.pop(item, None)
 
-			difference = set(document.iteritems())-set(existsing.iteritems())
+			existingRows = []
+
+			for row in document:
+				if row in existsing:
+					existingRows.append(existsing[row])
+
+			for row in existsing:
+				if not row in document:
+					document[row] = existsing[row]
+
+			existingItems = []
+			documentItems = []
+
+			for row in document:
+				row = document[row]
+				if type(row) == list:
+					row = " ".join(row)
+
+				documentItems.append(row)
+
+			for row in existingRows:
+				if type(row) == list:
+					row = " ".join(row)
+
+				existingItems.append(row)
+
+			difference = set(documentItems)-set(existingItems)
 
 			if len(difference) == 0:
 				return {

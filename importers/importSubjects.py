@@ -16,8 +16,8 @@ def importSubjects ( school_id, branch_id ):
 		})
 
 		if objectList is None:
-				error.log(__file__, False, "Unknown Object")
-				return False
+			error.log(__file__, False, "Unknown Object")
+			return False
 
 		if not "status" in objectList:
 			error.log(__file__, False, "Unknown Object")

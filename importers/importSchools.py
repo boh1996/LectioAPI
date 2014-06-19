@@ -27,6 +27,9 @@ def importSchools ():
 				})
 
 				if sync.check_action_event(status) == True:
+					# Launch School_info Scraper
+					# Launch Addres scraper
+
 					for url in sync.find_listeners('school', {
 						"school_id" : school["school_id"],
 						"branch_id" : school["branch_id"]

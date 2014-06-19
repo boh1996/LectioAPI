@@ -79,7 +79,7 @@ def class_members ( config, session = False ):
 				data["teams"] = elements[5 + pictureOffset].text.split(", ")
 				teachers.append(data)
 			else:
-				data["fild_of_study"] = {
+				data["field_of_study"] = {
 					"name" : unicode(elements[4 + pictureOffset].find("span").text),
 					"context_card_id" : elements[4 + pictureOffset].find("span")["lectiocontextcard"],
 					"field_of_study_id" : elements[4 + pictureOffset].find("span")["lectiocontextcard"].replace("SR", "")

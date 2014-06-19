@@ -75,14 +75,14 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             studentList.append({
                 "context_card_id" : student["lectiocontextcard"],
                 "student_id" : urlGroups.group("student_id") if not urlGroups is None and "student_id" in urlGroups.groupdict() else "",
-                "name" : studentInformation.group("name") if not groups is None and "name" in groups else "",
+                "name" : studentInformation.group("name").encode("utf8") if not groups is None and "name" in groups else "",
                 "class_name" : studentClass,
                 "class_student_id" : studentInformation.group("class_student_id") if not groups is None and "class_student_id" in groups else "",
                 "class_description" : studentInformation.group("class_description") if not groups is None and "class_description"in groups else "",
-                "status" : studentInformation.group("status") if not groups is None and "status" in groups else "",
+                "status" : studentInformation.group("status").encode("utf8") if not groups is None and "status" in groups else "active",
                 "school_id" : config["school_id"],
                 "branch_id" : config["branch_id"],
-                "type" : urlGroups.group("type_name") if not urlGroups is None and "type_name" in groups else ""
+                "type" : urlGroups.group("type_name").encode("utf8") if not urlGroups is None and "type_name" in groups else ""
             })
 
     return {

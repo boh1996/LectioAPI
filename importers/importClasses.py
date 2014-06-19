@@ -8,12 +8,12 @@ import error
 import sync
 import classes as classesApi
 
-def importClasses ( school_id, branch_id ):
+def importClasses ( school_id, branch_id, term = False ):
 	try:
 		classList = classesApi.classes({
 			"school_id" : school_id,
 			"branch_id" : branch_id
-		})
+		}, term)
 
 		db = database.db
 
@@ -30,17 +30,33 @@ def importClasses ( school_id, branch_id ):
 				unique = {
 					"school_id" : classObject["school_id"],
 					"branch_id" : classObject["branch_id"],
-					"class_id" : classObject["class_id"],
-					"term" : classList["term"]["value"]
+					"class_id" : classObject["class_id"]
 				}
+
+				names = []
+				names.append({
+					"term" : str(classList["term"]["value"]),
+					"name" : unicode(str(classObject["name"]).decode("utf8"))
+				})
+
+				existsing = db.classes.find(unique).limit(1)
+
+				if existsing.count() > 0:
+					existsing = existsing[0]
+
+					if "names" in existsing:
+						if "names" in existsing:
+							for row in existsing["names"]:
+								if not row["term"] == classList["term"]["value"]:
+									names.append(row)
 				element = {
-					"name" : classObject["name"],
+					"names" : names,
 					"school_id" : classObject["school_id"],
 					"branch_id" : classObject["branch_id"],
 					"class_id" : classObject["class_id"],
-					"term" : classList["term"]["value"],
 					"type" : classObject["type"]
 				}
+
 				status = sync.sync(db.classes, unique, element)
 
 				if sync.check_action_event(status) == True:
@@ -53,15 +69,8 @@ def importClasses ( school_id, branch_id ):
 					for url in sync.find_general_listeners('class_general'):
 						sync.send_event(url, status["action"], element)
 
-			deleted = sync.find_deleted(db.classes, {"school_id" : school_id, "branch_id" : branch_id, "term" : classList["term"]["value"]}, ["class_id"], classList["classes"])
-
-			for element in deleted:
-				for url in sync.find_listeners('class', {"class_id" : element["class_id"]}):
-					sync.send_event(url, 'deleted', element)
-
-				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-					sync.send_event(url, "class_deleted", element)
-
+					# Launch class_members scraper
+					# Launch class teams
 
 		else:
 			if "error" in classList:
@@ -69,4 +78,7 @@ def importClasses ( school_id, branch_id ):
 			else:
 				error.log(__file__, False, "Unknown Error")
 	except Exception, e:
+		print str(e)
 		error.log(__file__, False, str(e))
+
+importClasses(517, 4733693427)

@@ -72,7 +72,8 @@ def importPrivateTimetable ( school_id, branch_id, student_id, username, passwor
 
 					unique = {
 						"activity_id" : element["activity_id"],
-						"school_id" : element["school_id"]
+						"school_id" : element["school_id"],
+						"type" : "private"
 					}
 
 					element = {
@@ -87,7 +88,8 @@ def importPrivateTimetable ( school_id, branch_id, student_id, username, passwor
 						"event_type" : element["type"],
 						"teams" : teams,
 						"location_text" : element["location_text"],
-						"room_text" : element["room_text"]
+						"room_text" : element["room_text"],
+						"type" : "private"
 					}
 
 					status = sync.sync(db.events, unique, element)
