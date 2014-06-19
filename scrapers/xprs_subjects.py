@@ -76,9 +76,10 @@ def xprs_subjects ( start, end, increase , school_id, checkLevels = False, level
 
 # Caution, 403 Ahead
 subjects = []
-subjects = subjects + xprs_subjects(7000, 7019,1, 517, True, ["01", "02"])
+#subjects = subjects + xprs_subjects(7000, 7019,1, 517, True, ["01", "02"])
 #subjects = subjects + xprs_subjects(1453150702, 1453150867,1, 517, False)
-subjects = subjects + xprs_subjects(6043, 6048,1, 517, True, ["01"])
+subjects = subjects + xprs_subjects(1453150702, 1453150706,1, 517, False)
+#subjects = subjects + xprs_subjects(6043, 6048,1, 517, True, ["01"])
 
 f = open("log.txt", "w")
 

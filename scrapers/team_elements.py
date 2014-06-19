@@ -10,7 +10,7 @@ import functions
 
 def team_elements ( config ):
 	teamElementList = []
-	url = urls.team_elements.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{TEAM_ID}}", str(config["team_id"]))
+	url = urls.team_elements.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{TEAM_ID}}", str(config["subject_id"]))
 
 	response = proxy.session.get(url)
 

@@ -215,8 +215,8 @@ def userinfo( config, session = False ):
 
 		return {
 			"status" : "ok",
-			"lectio_user_id" : lectio_user_id.replace("/lectio/%s/SkemaNy.aspx?type=elev&elevid=" % (str(config["school_id"])), ""),
-			"lectio_picture_id" : picture_id.replace("/lectio/%s/GetImage.aspx?pictureid=" % (str(config["school_id"])), ""),
+			"student_id" : lectio_user_id.replace("/lectio/%s/SkemaNy.aspx?type=elev&elevid=" % (str(config["school_id"])), ""),
+			"picture_id" : picture_id.replace("/lectio/%s/GetImage.aspx?pictureid=" % (str(config["school_id"])), ""),
 			"teams" : teams,
 			"buildInGroups" : buildInGroups,
 			"ownGroups" : ownGroups,

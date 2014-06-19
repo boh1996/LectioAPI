@@ -8,12 +8,12 @@ import error
 import sync
 import team_elements as teamElementsApi
 
-def importTeamElements ( school_id, branch_id, team_id ):
+def importTeamElements ( school_id, branch_id, subject_id ):
 	try:
 		objectList = teamElementsApi.team_elements({
 			"school_id" : school_id,
 			"branch_id" : branch_id,
-			"team_id" : team_id
+			"subject_id" : subject_id
 		})
 
 		if objectList is None:
@@ -36,7 +36,8 @@ def importTeamElements ( school_id, branch_id, team_id ):
 					"school_id" : row["school_id"],
 					"branch_id" : row["branch_id"],
 					"term" : objectList["term"]["value"],
-					"name" : row["name"]
+					"name" : row["name"],
+					"subject_id" : subject_id
 				}
 
 				status = sync.sync(db.team_elements, unique, element)

@@ -202,12 +202,18 @@ def document ( config, session = False ):
 	for row in connectionRows:
 		rowElements = row.findAll("td")
 
-		connections.append({
+		data = {
 			"context_card_id" : rowElements[0]["lectiocontextcard"],
 			"type" : "team" if "H" in rowElements[0]["lectiocontextcard"] else "teacher" if "T" in rowElements[0]["lectiocontextcard"] else "student",
 			"name" : unicode(rowElements[0].find("span").text),
 			"can_edit" : True if "checked" in rowElements[1].find("input").attrs else False
-		})
+		}
+
+		if rowElements[2].find("select"):
+			folder_id = rowElements[2].find("select").select('option[selected="selected"]')[0]["value"]
+			data["folder_id"] = folder_id
+
+		connections.append(data)
 
 	document = {
 		"name" : unicode(elements[0].find("a").text).replace("\t", "").replace("\n", "").replace("\r", "").strip(),
@@ -222,7 +228,11 @@ def document ( config, session = False ):
 		},
 		"comment" : soup.find("textarea", attrs={"id" : "m_Content_EditDocComments_tb"}).text.replace("\r\n",""),
 		"public" : True if "checked" in soup.find("input", attrs={"id" : "m_Content_EditDocIsPublic"}).attrs else False,
-		"connections" : connections
+		"connections" : connections,
+		"term" : {
+			"value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+			"years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+		}
 	}
 
 	return {
