@@ -96,7 +96,8 @@ def books( config, session = False ):
                     "lending_reg_date" : str(mktime(datetime.strptime(columns[2].text.replace("\n","").strip(), "%d-%m-%Y").utctimetuple()))[:-2],
                     "delivery_reg_date" : delivery_reg_date,
                     "delivery_date" : str(mktime(datetime.strptime(columns[4].text.replace("\n","").strip(), "%d-%m-%Y").utctimetuple()))[:-2],
-                    "price" : columns[5].text.replace("\n", "").replace("\t", "").replace(",", ".").strip()
+                    "price" : columns[5].text.replace("\n", "").replace("\t", "").replace(",", ".").strip(),
+                    "team_name" : teamText
                 })
 
         return {

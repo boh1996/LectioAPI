@@ -143,10 +143,11 @@ def assignment_info ( config, session = False ):
 			})
 
 	for row in rowMap["Hold"].findAll("span"):
-		teamGroups = teamProg.match(row.text)
+		#teamGroups = teamProg.match(row.text)
 		teams.append({
-			"class_name" : unicode(teamGroups.group("class_name")) if not teamGroups is None else "",
-			"subject_name" : unicode(teamGroups.group("subject_name")) if not teamGroups is None else "",
+			#"class_name" : unicode(teamGroups.group("class_name")) if not teamGroups is None else "",
+			#"subject_name" : unicode(teamGroups.group("subject_name")) if not teamGroups is None else "",
+			"team_element_name" : row.text,
 			"team_element_id" : rowMap["Hold"].find("span")["lectiocontextcard"].replace("HE", ""),
 			"context_card_id" : rowMap["Hold"].find("span")["lectiocontextcard"]
 		})

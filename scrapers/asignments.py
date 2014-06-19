@@ -99,10 +99,10 @@ def assignments( config, session = False ):
 				object["title"] = ""
 			try:
 				object["context_card_id"] = cells[1].find("span")["lectiocontextcard"]
-				object["team_id"] = cells[1].find("span")["lectiocontextcard"].replace("HE", "")
+				object["team_element_id"] = cells[1].find("span")["lectiocontextcard"].replace("HE", "")
 			except BaseException:
 				object["context_card_id"] = ""
-				object["team_id"] = ""
+				object["team_element_id"] = ""
 			try:
 				prog = re.compile(r"\/lectio\/(?P<school_id>.*)\/ElevAflevering.aspx\?elevid=(?P<student_id>.*)&exerciseid=(?P<exercise_id>.*)&(?P<the_other>.*)")
 				urlGroups = prog.match(cells[2].find("a")["href"])
