@@ -5,12 +5,12 @@ from datetime import datetime
 from database import *
 import error
 import sync
-import teams as teamsApi
+import subjects as subjectApi
 
-def importTeams ( school_id, branch_id ):
+def importSubjects ( school_id, branch_id ):
 	try:
 
-		objectList = teamsApi.teams({
+		objectList = subjectApi.subjects({
 			"school_id" : school_id,
 			"branch_id" : branch_id
 		})
@@ -24,14 +24,14 @@ def importTeams ( school_id, branch_id ):
 			return False
 
 		if objectList["status"] == "ok":
-			for row in objectList["teams"]:
+			for row in objectList["subjects"]:
 				unique = {
-					"team_id" : row["team_id"],
+					"subject_id" : row["subject_id"],
 					"term" : objectList["term"]["value"]
 				}
 
 				element = {
-					"team_id" : row["team_id"],
+					"subject_id" : row["subject_id"],
 					"school_id" : row["school_id"],
 					"branch_id" : row["branch_id"],
 					"term" : objectList["term"]["value"],
@@ -41,28 +41,28 @@ def importTeams ( school_id, branch_id ):
 					"type" : row["type"]
 				}
 
-				status = sync.sync(db.teams, unique, element)
+				status = sync.sync(db.subjects, unique, element)
 
 				if sync.check_action_event(status) == True:
 					# Launch TeamElements scraper
 
-					for url in sync.find_listeners('team', unique):
+					for url in sync.find_listeners('subject', unique):
 						sync.send_event(url, status["action"], element)
 
 					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-						sync.send_event(url, "team", element)
+						sync.send_event(url, "subject", element)
 
-					for url in sync.find_general_listeners('team_general'):
+					for url in sync.find_general_listeners('subject_general'):
 						sync.send_event(url, status["action"], element)
 
-			deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"]}, ["team_id"], objectList["teams"])
+			deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"]}, ["subject_id"], objectList["subjects"])
 
-			for element in deleted:
-				for url in sync.find_listeners('team', {"team_id" : element["team_id"]}):
+			for element in deleted:subject
+				for url in sync.find_listeners('subject', {"subject_id" : element["subject_id"]}):
 					sync.send_event(url, 'deleted', element)
 
 				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-					sync.send_event(url, "team_deleted", element)
+					sync.send_event(url, "subject_deleted", element)
 
 
 			return True

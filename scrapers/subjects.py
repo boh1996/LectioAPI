@@ -8,7 +8,7 @@ import proxy
 from datetime import *
 import functions
 
-def teams ( config ):
+def subjects ( config ):
 	teamsList = []
 	url = urls.teams.replace("{{SCHOOL_ID}}", str(config["school_id"]))
 
@@ -26,7 +26,7 @@ def teams ( config ):
 
 	rows = soup.find("table", attrs={"id" : "m_Content_contenttbl"}).findAll("a")
 
-	idProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/FindSkema.aspx\?type=(?P<type_name>.*)&fag=(?P<team_id>.*)&(?P<the_rest>.*)")
+	idProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/FindSkema.aspx\?type=(?P<type_name>.*)&fag=(?P<subject_id>.*)&(?P<the_rest>.*)")
 
 	for initial, name in functions.grouped(rows, 2):
 		groups = idProg.match(initial["href"])
@@ -36,13 +36,13 @@ def teams ( config ):
 			"branch_id" : config["branch_id"],
 			"initial" : unicode(initial.text),
 			"name" : unicode(name.text),
-			"team_id" : groups.group("team_id") if "team_id" in groups.groupdict() else "",
+			"subject_id" : groups.group("subject_id") if "subject_id" in groups.groupdict() else "",
 			"type" : groups.group("type_name") if "type_name" in groups.groupdict() else ""
 		})
 
 	return {
 		"status" : "ok",
-		"teams" : teamsList,
+		"subjects" : teamsList,
 		"term" : {
             "value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
             "years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text

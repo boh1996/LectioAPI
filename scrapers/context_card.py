@@ -65,16 +65,23 @@ def xprs_subject ( config, session = False ):
 
 	tables = soup.findAll("table")
 
-	codeProg = re.compile(r"(?P<code>.*) (?P<name>.*)")
+	codeProg = re.compile(r"(?P<code>[.^\S]*) (?P<name>.*)")
 	codeGroups = codeProg.match(tables[1].findAll("td")[1].text)
+
+	level = "Unkmown"
+
+	if not codeGroups is None:
+		level = "A" if "A" in codeGroups.group("code") else "B" if "B" in codeGroups.group("code") else "C"
 
 	return {
 		"status" : "ok",
 		"xprs_subject" : {
 			"name" : soup.find(attrs={"id" : "ctl00_Content_cctitle"}).text.replace("XPRS-fag - ", ""),
-			"code" : codeGroups.group("code") if not codeGroups is None else "",
+			"code" : codeGroups.group("code").replace("A", "").replace("B", "").replace("C", "") if not codeGroups is None else "",
 			"subject_sub_type" : "none" if tables[1].findAll("td")[3].text == "Ingen underfag" else tables[1].findAll("td")[3].text,
-			"context_card_id" : str(config["context_card_id"])
+			"context_card_id" : str(config["context_card_id"]),
+			"level" : level,
+			"code_full" : codeGroups.group("code") if not codeGroups is None else ""
 		}
 	}
 

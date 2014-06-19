@@ -1,0 +1,1 @@
+#https://www.lectio.dk/lectio/517/studieplan.aspx?klasseid=3972114081&displaytype=ganttkalender&ganttdimension=hold
