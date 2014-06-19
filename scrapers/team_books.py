@@ -44,8 +44,33 @@ def team_books ( config, session = False ):
 
 	soup = Soup(html)
 
-	if soup.find("table", attrs={"id" : "s_m_Content_Content_karakterView_KarakterGV"}) is None:
+	if soup.find("div", attrs={"id" : "m_Content_ebooks_island_pa"}) is None:
 		return {
 			"status" : False,
 			"error" : "Data not found"
 		}
+
+	books = []
+
+	for row in soup.find(attrs={"id" : "m_Content_ebooks_island_pa"}).find("table").findAll("tr")[1:]:
+		elements = row.findAll("td")
+		books.append({
+			"team_id" : str(config["team_id"]),
+			"type" : "ebook",
+			"title" : unicode(elements[0].text.replace("\r\n", "").replace("\t", "")),
+			"read" : unicode(elements[1].text.replace("\r\n", "").replace("\t", ""))
+		})
+
+	for row in soup.find(attrs={"id" : "m_Content_reservationsStudentGV"}).findAll("tr")[1:]:
+		elements = row.findAll("td")
+
+		books.append({
+			"type" : "book",
+			"team_id" : str(config["team_id"]),
+			"title" : unicode(elements[0].text.replace("\r\n", "").replace("\t", ""))
+		})
+
+	return {
+		"status" : "ok",
+		'books' : books
+	}

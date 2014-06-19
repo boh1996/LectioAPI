@@ -32,38 +32,44 @@ def importSubjects ( school_id, branch_id ):
 
 				element = {
 					"subject_id" : row["subject_id"],
-					"school_id" : row["school_id"],
-					"branch_id" : row["branch_id"],
-					"term" : objectList["term"]["value"],
 					"type" : row["type"],
 					"initial" : row["initial"],
-					"name" : row["name"],
-					"type" : row["type"]
+					"name" : row["name"]
 				}
 
 				status = sync.sync(db.subjects, unique, element)
 
 				if sync.check_action_event(status) == True:
-					# Launch TeamElements scraper
 
 					for url in sync.find_listeners('subject', unique):
 						sync.send_event(url, status["action"], element)
 
-					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-						sync.send_event(url, "subject", element)
-
 					for url in sync.find_general_listeners('subject_general'):
 						sync.send_event(url, status["action"], element)
 
+				unique = {
+					"school_id" : row["school_id"],
+					"branch_id" : row["branch_id"],
+					"term" : objectList["term"]["value"],
+					"subject_id" : row["subject_id"],
+				}
+
+				status = sync.sync(db.school_subjects, unique, unique)
+
+				if sync.check_action_event(status) == True:
+					# Launch TeamElements scraper
+
+					for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
+						sync.send_event(url, "subject", unique)
+
 			deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"]}, ["subject_id"], objectList["subjects"])
 
-			for element in deleted:subject
+			for element in deleted:
 				for url in sync.find_listeners('subject', {"subject_id" : element["subject_id"]}):
 					sync.send_event(url, 'deleted', element)
 
 				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
 					sync.send_event(url, "subject_deleted", element)
-
 
 			return True
 		else:
