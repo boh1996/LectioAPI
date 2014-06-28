@@ -151,6 +151,7 @@ def electives ( config, session = False ):
 				hours = 0
 				typeName = "standard_subject"
 				index = 0
+				chosen = False
 
 				for element in row.findAll("td"):
 					if "class" in element.attrs:
@@ -158,8 +159,10 @@ def electives ( config, session = False ):
 							hours = element.text
 						else:
 							if not element.find("span") is None:
-								if "programsubject" in element["class"] and not "1_term" in terms:
-									terms.append("1_term")
+								if "chosensubject" in element["class"]:
+									chosen = True
+								'''if "programsubject" in element["class"] and not "1_term" in terms:
+									terms.append("1_term")'''
 								if type == "student" and "notchosensubject" in element["class"]:
 									typeName = "not_chosen_subject"
 								if len(semesters) > 0 and index in semesters and unicode(semesters[index]) in semester_translations:
@@ -186,7 +189,8 @@ def electives ( config, session = False ):
 					"terms" : terms,
 					"hours" : hours,
 					"type" : typeName.encode("utf8"),
-					"group_text" : group_text.encode("utf8")
+					"group_text" : group_text.encode("utf8"),
+					"chosen" : chosen
 				})
 
 	informationElements = tables[0].findAll("td")

@@ -3,6 +3,18 @@ import datetime
 import error
 db = database.db
 
+def flatten ( l ):
+	out = []
+	if isinstance(l, (list, tuple)):
+		for item in l:
+			out.extend(flatten(item))
+	elif isinstance(l, (dict)):
+		for dictkey in l.keys():
+			out.extend(flatten(l[dictkey]))
+	elif isinstance(l, (str, int, unicode)):
+		out.append(l)
+	return out
+
 # Inserts the data if it doesn't exits, skips if a match exists and updates if it exists but in an older version
 def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 	existsing = table.find(query).limit(1)
@@ -11,20 +23,26 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 		document["_created"] = datetime.datetime.now()
 		document["_updated"] = datetime.datetime.now()
 		try:
-			table.update(query, document, upsert=True)
+			_id = table.insert(document, manipulate=True)
 		except Exception, e:
 			error.log(__file__, False, str(e))
 		return {
 			"status" : True,
-			"action" : "created"
+			"action" : "created",
+			"_id" : _id
 		}
 	else:
 		existsing = existsing[0]
 		difference = None
+		unsettedRows = {}
+		_id = None
 		try:
 			for item in unset:
-				document.pop(item, None)
-				existsing.pop(item, None)
+				if item in existsing:
+					unsettedRows[item] = existsing[item]
+					existsing.pop(item, None)
+				if item in document:
+					document.pop(item, None)
 
 			existingRows = []
 
@@ -40,15 +58,13 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 			documentItems = []
 
 			for row in document:
-				row = document[row]
-				if type(row) == list:
-					row = " ".join(row)
+				row = " ".join(flatten(document[row]))
 
 				documentItems.append(row)
 
 			for row in existingRows:
-				if type(row) == list:
-					row = " ".join(row)
+
+				row = " ".join(flatten(row))
 
 				existingItems.append(row)
 
@@ -57,19 +73,36 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 			if len(difference) == 0:
 				return {
 					"status" : True,
-					"action" : "existsing"
+					"action" : "existsing",
+					"_id" : unsettedRows["_id"]
 				}
 		except Exception, e:
 			error.log(__file__, False, str(e))
+
+		for item in unsettedRows:
+			if item in unsettedRows and not unsettedRows[item] == None:
+				document[item] = unsettedRows[item]
+
+		# Assign updated Time
 		document["_updated"] = datetime.datetime.now()
+
+		# If no created field, create it
+		if not "_created" in document:
+			document["_created"] = datetime.datetime.now()
+
+		# Update Table
 		try:
 			table.update(query, document, upsert=True)
+
+			_id = unsettedRows["_id"]
 		except Exception, e:
 			error.log(__file__, False, str(e))
+
 		return {
 			"status" : True,
 			"action" : "updated",
-			"difference" : difference
+			"difference" : difference,
+			"_id" : _id
 		}
 
 # Checks if to fire an event based on the status of

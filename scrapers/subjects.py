@@ -37,7 +37,7 @@ def subjects ( config ):
 			"initial" : unicode(initial.text),
 			"name" : unicode(name.text),
 			"subject_id" : groups.group("subject_id") if "subject_id" in groups.groupdict() else "",
-			"type" : groups.group("type_name") if "type_name" in groups.groupdict() else ""
+			"type" : "team" if groups.group("type_name") and "type_name" in groups.groupdict() else ""
 		})
 
 	return {

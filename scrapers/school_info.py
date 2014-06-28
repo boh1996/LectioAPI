@@ -60,5 +60,3 @@ def school_info ( config ):
 		"status" : "ok",
 		"information" : information
 	}
-
-print school_info({"school_id" : 517})

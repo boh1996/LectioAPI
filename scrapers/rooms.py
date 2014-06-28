@@ -51,7 +51,7 @@ def rooms(config):
             "room_id" : idGroups.group("room_id") if "room_id" in idGroups.groupdict() else "",
             "school_id" : config["school_id"],
             "branch_id" : config["branch_id"],
-            "type" : idGroups.group("type_name") if "type_name" in idGroups.groupdict() else ""
+            "type" : "room" if idGroups.group("type_name") == "lokale" and "type_name" in idGroups.groupdict() else ""
         })
 
     return {

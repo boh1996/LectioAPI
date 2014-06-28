@@ -81,6 +81,14 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 		},
 	}
 
+	yearTranslations = {
+		u"1. år" : "first_year",
+		u"2. år" : "second_year",
+		u"3. år" : "third_year",
+		u"4. år" : "fourth_year",
+		u"5. år" : "fifth_year",
+	}
+
 	termSemesters = {
 		"1gG" : ["1. semester"],
 		"1g2" : ["2. semester"],
@@ -90,15 +98,39 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 	}
 
 	subjectTypes = {}
-	group_text = "standard"
+	group_text = ""
+	electiveGroupId = "none"
 
 	rows = soup.find("table", attrs={"id" : "studieTabel"}).findAll("tr")
 	semesters = []
+	yearsList = []
+	semestersList = []
+	semestersFound = []
+	electiveGroups = []
+
+	electiveGroupTranslations = {}
+
+	groupId = 0
+	for row in soup.find("table", attrs={"id" : "studieTabel"}).findAll("tr", attrs={"class" : "valggruppe"}):
+		groupId = groupId + 1
+		electiveGroups.append({
+			"group_id" : groupId,
+			"text" : row.find("td").text
+		})
+		electiveGroupTranslations[unicode(row.find("td").text)] = groupId
 
 	if len(rows[3].findAll("td")) > 1:
+		for row in rows[2].findAll("td"):
+			if not row.text == "Timer":
+				yearsList.append(yearTranslations[unicode(row.text)])
+
 		for row in rows[3].findAll("td"):
 			semesters.append(row.text)
 	else:
+		for row in rows[1].findAll("td"):
+			if not row.text == "Timer":
+				yearsList.append(yearTranslations[unicode(row.text)])
+
 		for row in rows[2].findAll("td"):
 			semesters.append(row.text)
 
@@ -112,6 +144,8 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 				}
 		elif "class" in row.attrs and "valggruppe" in row.attrs["class"]:
 			group_text = row.findAll("td")[0].text
+			if unicode(group_text) in electiveGroupTranslations:
+				electiveGroupId = electiveGroupTranslations[unicode(group_text)]
 		elif not subjectType is None:
 			if not "class" in row.findAll("td")[0].attrs or not "bundTekst" in row.findAll("td")[0].attrs["class"]:
 				name = ""
@@ -127,17 +161,24 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 							hours = element.text
 						else:
 							if not element.find("span") is None:
-								if "programsubject" in element["class"] and not "1_term" in terms:
-									terms.append("1_term")
+								'''if "programsubject" in element["class"] and not "1_term" in terms:
+									terms.append("1_term")'''
 								if type == "student" and "notchosensubject" in element["class"]:
 									typeName = "not_chosen_subject"
 								if len(semesters) > index and unicode(semesters[index]) in semester_translations:
 									terms.append(semester_translations[unicode(semesters[index])])
+									if not unicode(semesters[index]) in semestersFound:
+										semestersList.append(semester_translations[unicode(semesters[index])])
+										semestersFound.append(unicode(semesters[index]))
 								else:
 									termName = " ".join(element["class"]).replace("programsubject", "").replace("notchosensubject", "").strip()
 									if termName in termSemesters:
 										for item in termSemesters[termName]:
 											terms.append(semester_translations[unicode(item)])
+
+											if not unicode(item) in semestersFound:
+												semestersList.append(semester_translations[unicode(item)])
+												semestersFound.append(unicode(item))
 
 								if name == "" and not element.find("span") is None:
 									nameGroups = nameProg.match(element.find("span").text)
@@ -155,12 +196,16 @@ def field_of_study ( config, field_of_study_id, type = "public" ):
 					"terms" : terms,
 					"hours" : hours,
 					"type" : typeName.encode("utf8"),
-					"group_text" : group_text.encode("utf8")
+					"group_text" : group_text.encode("utf8"),
+					"subject_group_id" : electiveGroupId
 				})
 
 	return {
 		"status" : "ok",
-		"objectList" : objectList,
+		"semesters" : semestersList,
+		"years" : yearsList,
+		"subjects" : objectList,
 		"subject_types" : subjectTypes,
+		"elective_groups" : electiveGroups,
 		"presentation" : soup.find("td", attrs={"id" : "m_Content_StudieretningPresentationCtrl1_footertd"}).text.encode("utf-8") if len(soup.find("td", attrs={"id" : "m_Content_StudieretningPresentationCtrl1_footertd"}).text) > 1 else soup.find(attrs={"id" : "m_Content_StudieretningPresentationCtrl1_footerwebsitelinkTR"}).text
 	}

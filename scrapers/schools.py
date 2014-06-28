@@ -25,12 +25,13 @@ def schools():
     school_tags = soup.find(id="schoolsdiv").find_all(attrs={"class":"buttonHeader"})
 
     for school in school_tags:
-        name = unicode(school.find("a").text).replace("X - ", "").replace(" - ","").replace("Z - ", "")
+        name = unicode(school.find("a").text).replace("X - ", "").replace("Z - ", "")
         ids = re.search('/lectio/([0-9]*)/default.aspx\?lecafdeling=([0-9]*)', school.find("a")["href"])
         schoolList.append({
             "name" : unicode(name),
-            "school_id" : ids.group(1),
-            "branch_id" : ids.group(2)
+            "full_name" : unicode(school.find("a").text),
+            "school_id" : str(ids.group(1)),
+            "branch_id" : str(ids.group(2))
         })
 
     return {

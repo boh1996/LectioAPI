@@ -49,19 +49,20 @@ def field_of_studies ( config, startYear ):
 			for classText in classesList:
 				classGroups = classProg.match(classText)
 				classes.append({
-					"name" : classGroups.group("name") if not classGroups is None else "",
-					"level" : classGroups.group("level") if not classGroups is None else ""
+					"name" : classGroups.group("name").strip().encode("utf-8") if not classGroups is None else "",
+					"level" : classGroups.group("level").strip().encode("utf-8") if not classGroups is None else ""
 				})
 
 			objectList.append({
-				"study_direction_name" : typeGroups.group("name") if not typeGroups is None and "name" in typeGroups.groupdict() else typeNameText,
-				"gym_type" : typeGroups.group("gym_type") if not typeGroups is None and "gym_type" in typeGroups.groupdict() else "HF" if "HF" in typeNameText else "STX" if "STX" in typeNameText else "HTX" if "HTX" in typeNameText else "HHX" if "HHX" in typeNameText else "student_course" if typeNameText == "Studenterkursus" else "other",
+				"study_direction_name" : typeGroups.group("name").strip().encode("utf-8") if not typeGroups is None and "name" in typeGroups.groupdict() else typeNameText.strip().encode("utf-8"),
+				"gym_type" : typeGroups.group("gym_type") if not typeGroups is None and "gym_type" in typeGroups.groupdict() else "HF" if "HF" in typeNameText else "STX" if "STX" in typeNameText else "HTX" if "HTX" in typeNameText else "HHX" if "HHX" in typeNameText else "Studenterkursus" if typeNameText == "Studenterkursus" else typeNameText.strip().encode("utf-8"),
 				"start_year" : startYear,
-				"gym_type_short" : "HF" if "HF" in typeNameText else "STX" if "STX" in typeNameText else "HTX" if "HTX" in typeNameText else "HHX" if "HHX" in typeNameText else "student_course" if typeNameText == "Studenterkursus" else "other",
+				"gym_type_short" : "HF" if "HF" in typeNameText else "STX" if "STX" in typeNameText else "HTX" if "HTX" in typeNameText else "HHX" if "HHX" in typeNameText else "Studenterkursus" if typeNameText == "Studenterkursus" else typeNameText.strip().encode("utf-8"),
 				"field_of_study_id" : idGroups.group("field_of_study_id") if not idGroups is None and "field_of_study_id" in idGroups.groupdict() else "",
 				"school_id" : config["school_id"],
 				"name" : field.find("b").text.strip().encode("utf-8"),
-				"classes" : classes
+				"classes" : classes,
+				"context_card_id" : "SR" + idGroups.group("field_of_study_id") if not idGroups is None and "field_of_study_id" in idGroups.groupdict() else ""
 			})
 
 	return {

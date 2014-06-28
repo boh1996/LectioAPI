@@ -37,7 +37,8 @@ def groups ( config ):
 			"name" : unicode(row.text),
 			"group_id" : idGroups.group("group_id") if "group_id" in idGroups.groupdict() else "",
 			"type" : idGroups.group("type_name") if "type_name" in idGroups.groupdict() else "",
-			"group_type" : "build_in"
+			"group_type" : "build_in",
+			"context_card_id" : "HE" + idGroups.group("group_id") if "group_id" in idGroups.groupdict() else ""
 		})
 
 	ownGroupRows = soup.find("table", attrs={"id" : "m_Content_contenttbl2"}).findAll("a")
@@ -51,7 +52,8 @@ def groups ( config ):
 			"name" : unicode(row.text),
 			"group_id" : idGroups.group("group_id") if "group_id" in idGroups.groupdict() else "",
 			"type" : idGroups.group("type_name") if "type_name" in idGroups.groupdict() else "",
-			"group_type" : "own_group"
+			"group_type" : "own_group",
+			"context_card_id" : "HE" + idGroups.group("group_id") if "group_id" in idGroups.groupdict() else ""
 		})
 
 	return {

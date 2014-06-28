@@ -69,7 +69,7 @@ def skills ( config ):
 
 	return {
 		"status" : "ok",
-		"skils" : skilsList.
+		"skills" : skilsList,
 		"term" : {
 			"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
 			"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text

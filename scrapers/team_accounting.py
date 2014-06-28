@@ -8,8 +8,8 @@ import proxy
 from datetime import *
 import functions
 
-def team_accounting ( config, team_id ):
-	url = "https://www.lectio.dk/lectio/%s/subnav/modulregnskab.aspx?holdelementid=%s" % ( str(config["school_id"]), str(team_id) )
+def team_accounting ( config ):
+	url = "https://www.lectio.dk/lectio/%s/subnav/modulregnskab.aspx?holdelementid=%s" % ( str(config["school_id"]), str(config["team_element_id"]) )
 
 	response = proxy.session.get(url)
 
@@ -92,7 +92,6 @@ def team_accounting ( config, team_id ):
 
 	return {
 		"status" : "ok",
-		"total" : total["total"],
-		"without_teacher" : total["without_teacher"],
+		"total"  : total,
 		"teachers" : teachers
 	}

@@ -42,7 +42,7 @@ def importTeachers ( school_id, branch_id ):
 
 				element = {
 					"name" : unicode(str(teacher["name"]).decode("utf8")),
-					"initial" : unicode(teacher["initial"].decode("utf8")),
+					"abbrevation" : unicode(teacher["initial"].decode("utf8")),
 					"context_cards" : contextCards,
 					"teacher_id" : str(teacher["teacher_id"]),
 					"school_id" : str(teacher["school_id"]),

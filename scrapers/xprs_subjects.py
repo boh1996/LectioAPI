@@ -52,6 +52,8 @@ def xprs_subjects ( start, end, increase , school_id, checkLevels = False, level
 
 			if not soup.find("span", attrs={"id" : "ctl00_Content_cctitle"}) is None:
 
+				notices = []
+
 				tables = soup.findAll("table")
 
 				codeGroups = codeProg.match(tables[1].findAll("td")[1].text)
@@ -67,10 +69,9 @@ def xprs_subjects ( start, end, increase , school_id, checkLevels = False, level
 					"subject_sub_type" : "none" if tables[1].findAll("td")[3].text == "Ingen underfag" else "differs" if tables[1].findAll("td")[3].text == "Variable underfag" else tables[1].findAll("td")[3].text,
 					"context_card_id" : "XF" + str(code),
 					"level" : level,
-					"code_full" : codeGroups.group("code") if not codeGroups is None else ""
+					"code_full" : codeGroups.group("code") if not codeGroups is None else "",
+					"notices" : tables[1].findAll("td")[5].text.split("\n")
 				})
-			else:
-				print "Not FOUND"
 
 	return subjects
 

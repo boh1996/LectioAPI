@@ -31,15 +31,15 @@ def importAssignments ( school_id, branch_id, username, password, student_id ):
 		if objectList["status"] == "ok":
 			for row in objectList["list"]:
 				unique = {
-					"exercise_id" : row["exercise_id"],
+					"exercise_id" : str(row["exercise_id"]),
 					"student_id" : student_id
 				}
 
 				element = {
-					"exercise_id" : row["exercise_id"],
-					"school_id" : school_id,
-					"branch_id" : branch_id,
-					"student_id" : student_id,
+					"exercise_id" : str(row["exercise_id"]),
+					"school_id" : str(school_id),
+					"branch_id" : str(branch_id),
+					"student_id" : str(student_id),
 					"week" : row["week"],
 					"group" : row["group"],
 					"title" : row["title"],
@@ -53,7 +53,7 @@ def importAssignments ( school_id, branch_id, username, password, student_id ):
 					"note" : row["note"],
 					"grade" : row["grade"],
 					"student_note" : row["student_note"],
-					"team_id" : row["team_id"]
+					"team_id" : str(row["team_id"])
 				}
 
 				status = sync.sync(db.assignments, unique, element)

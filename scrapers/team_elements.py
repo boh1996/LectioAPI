@@ -12,7 +12,7 @@ def team_elements ( config ):
 	teamElementList = []
 	url = urls.team_elements.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{TEAM_ID}}", str(config["subject_id"]))
 
-	response = proxy.session.get(url)
+	response = proxy.session.post(url, data={"__EVENTTARGET" : "m$Content$AktuelAndAfdelingCB$ShowOnlyAktulleCB"})
 
 	html = response.text
 
@@ -35,7 +35,8 @@ def team_elements ( config ):
 			"name" : unicode(row.text),
 			"team_element_id" : groups.group("team_element_id") if "team_element_id" in groups.groupdict() else "",
 			"school_id" : config["school_id"],
-			"branch_id" : config["branch_id"]
+			"branch_id" : config["branch_id"],
+			"context_card_id" : "HE" + groups.group("team_element_id") if "team_element_id" in groups.groupdict() else ""
 		})
 
 	return {

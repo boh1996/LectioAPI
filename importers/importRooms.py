@@ -26,15 +26,15 @@ def importRooms ( school_id, branch_id ):
 		if objectList["status"] == "ok":
 			for row in objectList["rooms"]:
 				unique = {
-					"room_id" : row["room_id"]
+					"room_id" : str(row["room_id"])
 				}
 
 				element = {
-					"room_id" : row["room_id"],
+					"room_id" : str(row["room_id"]),
 					"name" : row["name"],
-					"number" : row["number"],
-					"school_id" : row["school_id"],
-					"branch_id" : row["branch_id"],
+					"alternative_name" : row["number"],
+					"school_id" : str(row["school_id"]),
+					"branch_id" : str(row["branch_id"]),
 					"type" : row["type"]
 				}
 

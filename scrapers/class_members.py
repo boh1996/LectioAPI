@@ -17,7 +17,9 @@ def class_members ( config, session = False ):
 		url = "https://www.lectio.dk/lectio/%s/subnav/members.aspx?klasseid=%s&showteachers=1&showstudents=1&reporttype=std" % ( str(config["school_id"]), str(config["class_id"]) )
 		cookies = {}
 	else:
-		session = authenticate.authenticate(config)
+		if session == True:
+			session = authenticate.authenticate(config)
+
 		url = "https://www.lectio.dk/lectio/%s/subnav/members.aspx?klasseid=%s&showteachers=1&showstudents=1" % ( str(config["school_id"]), str(config["class_id"]) )
 		# Insert the session information from the auth function
 		cookies = {
@@ -64,23 +66,23 @@ def class_members ( config, session = False ):
 			personType = "teacher" if unicode(elements[0 + pictureOffset].text) == u"Lærer" else "student"
 			data = {
 				"type" : personType,
-				"first_name" : unicode(elements[2 + pictureOffset].find("a").text),
-				"person_text_id" : elements[1 + pictureOffset].find("span").text,
-				"last_name" : unicode(elements[3 + pictureOffset].find("span").text),
-				"full_name" : unicode(elements[2 + pictureOffset].find("a").text) + " " + unicode(elements[3 + pictureOffset].find("span").text),
+				"first_name" : unicode(elements[2 + pictureOffset].find("a").text).encode("utf8"),
+				"person_text_id" : elements[1 + pictureOffset].find("span").text.encode("utf8"),
+				"last_name" : elements[3 + pictureOffset].find("span").text.strip().encode("utf8"),
+				"full_name" : unicode(unicode(elements[2 + pictureOffset].find("a").text) + " " + unicode(elements[3 + pictureOffset].find("span").text)).encode("utf8"),
 				"person_id" : elements[1 + pictureOffset]["lectiocontextcard"].replace("T", "") if personType == "teacher" else elements[1 + pictureOffset]["lectiocontextcard"].replace("S", ""),
 				"context_card_id" : elements[1 + pictureOffset]["lectiocontextcard"]
 			}
 			if pictureOffset == 1:
 				pictureGroups = pictureProg.match(elements[0].find("img")["src"])
-				data ["picture_id"] = pictureGroups.group("picture_id") if not pictureGroups is None else ""
+				data["picture_id"] = pictureGroups.group("picture_id") if not pictureGroups is None else ""
 
 			if personType == "teacher":
 				data["teams"] = elements[5 + pictureOffset].text.split(", ")
 				teachers.append(data)
 			else:
 				data["field_of_study"] = {
-					"name" : unicode(elements[4 + pictureOffset].find("span").text),
+					"name" : unicode(elements[4 + pictureOffset].find("span").text).encode("utf8"),
 					"context_card_id" : elements[4 + pictureOffset].find("span")["lectiocontextcard"],
 					"field_of_study_id" : elements[4 + pictureOffset].find("span")["lectiocontextcard"].replace("SR", "")
 				}

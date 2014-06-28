@@ -16,7 +16,7 @@ import context_card
 def cleanText ( text ):
 	return text.replace("\t", "").replace("\n", "").replace("\r", "").strip()
 
-def grades ( config, session = False ):
+def grades ( config, term, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/grades/grade_report.aspx?elevid=%s" % ( str(config["school_id"]), str(config["student_id"]) )
 
 	if session is False:
@@ -42,7 +42,7 @@ def grades ( config, session = False ):
 		"Cookie" : functions.implode(cookies, "{{index}}={{value}}", "; ")
 	}
 
-	response = proxy.session.get(url, headers=headers)
+	response = proxy.session.post(url, headers=headers, data={"s$m$ChooseTerm$term" : term})
 
 	html = response.text
 
@@ -52,6 +52,11 @@ def grades ( config, session = False ):
 		return {
 			"status" : False,
 			"error" : "Data not found"
+		}
+
+	if not soup.find("table", attrs={"id" : "s_m_Content_Content_karakterView_KarakterGV"}).find(attrs={"class" : "noRecord"}) is None:
+		return {
+			"status" : "no_rows",
 		}
 
 	comments = []
@@ -225,7 +230,11 @@ def grades ( config, session = False ):
 					"team_element_id" : teamElementGroups.group("team_element_id") if not teamElementGroups is None else "",
 					"school_id" : teamElementGroups.group("school_id") if not teamElementGroups is None else ""
 				},
-				"grades" : gradeElements
+				"grades" : gradeElements,
+				"term" : {
+					"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+					"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+				}
 			})
 
 
@@ -298,4 +307,4 @@ print grades({"school_id" : 517,
 	"student_id" : 4789793691,
 	"username" : "boh1996",
 	"password" : "jwn53yut",
-	"branch_id" : "4733693427",})
+	"branch_id" : "4733693427"}, "2012")

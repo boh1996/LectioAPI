@@ -27,22 +27,35 @@ def importTeamElements ( school_id, branch_id, subject_id ):
 		if objectList["status"] == "ok":
 			for row in objectList["team_elements"]:
 				unique = {
-					"team_element_id" : row["team_element_id"],
+					"team_element_id" : str(row["team_element_id"]),
 					"term" : objectList["term"]["value"]
 				}
 
+				contextCards = []
+				contextCards.append(row["context_card_id"])
+				existsing = db.team_elements.find(unique).limit(1)
+
+				if existsing.count() > 0:
+					existsing = existsing[0]
+					if "context_cards" in existsing:
+						for card in existsing["context_cards"]:
+							if not card in contextCards:
+								contextCards.append(card)
+
 				element = {
-					"team_element_id" : row["team_element_id"],
-					"school_id" : row["school_id"],
-					"branch_id" : row["branch_id"],
+					"team_element_id" : str(row["team_element_id"]),
+					"school_id" : str(row["school_id"]),
+					"branch_id" : str(row["branch_id"]),
 					"term" : objectList["term"]["value"],
 					"name" : row["name"],
-					"subject_id" : subject_id
+					"subject_id" : str(subject_id),
+					"type" : "team",
+					"context_cards" : contextCards
 				}
 
 				status = sync.sync(db.team_elements, unique, element)
 
-				if sync.check_action_event(status) == True:
+				'''if sync.check_action_event(status) == True:
 					for url in sync.find_listeners('team_element', unique):
 						sync.send_event(url, status["action"], element)
 
@@ -50,16 +63,16 @@ def importTeamElements ( school_id, branch_id, subject_id ):
 						sync.send_event(url, "team_element", element)
 
 					for url in sync.find_general_listeners('team_element_general'):
-						sync.send_event(url, status["action"], element)
+						sync.send_event(url, status["action"], element)'''
 
-			deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"]}, ["team_element_id"], objectList["team_elements"])
+			#deleted = sync.find_deleted(db.rooms, {"school_id" : school_id, "branch_id" : branch_id, "term" : objectList["term"]["value"], "type" : "team"}, ["team_element_id"], objectList["team_elements"])
 
-			for element in deleted:
+			'''for element in deleted:
 				for url in sync.find_listeners('team_element', {"team_element_id" : element["team_element_id"]}):
 					sync.send_event(url, 'deleted', element)
 
 				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-					sync.send_event(url, "team_element_deleted", element)
+					sync.send_event(url, "team_element_deleted", element)'''
 
 
 			return True

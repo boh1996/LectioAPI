@@ -43,10 +43,11 @@ def classes( config, term = False ):
     for classElement in classListObjects:
         prog = re.compile(r"\/lectio\/(?P<school_id>[0-9]*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&klasseid=(?P<class_id>[0-9]*)")
         groups = prog.match(classElement["href"])
+        type = groups.group("type_name").encode("utf8") if not groups is None else ""
         classList.append({
             "name" : classElement.text.encode("utf8"),
             "class_id" : groups.group("class_id").encode("utf8") if not groups is None else "",
-            "type" : groups.group("type_name").encode("utf8") if not groups is None else "",
+            "type" : "base_class" if type == "stamklasse" else type,
             "school_id" : str(config["school_id"]),
             "branch_id" : str(config["branch_id"])
         })

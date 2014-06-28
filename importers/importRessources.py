@@ -25,21 +25,20 @@ def importRessources ( school_id, branch_id ):
 		if objectList["status"] == "ok":
 			for row in objectList["ressources"]:
 				unique = {
-					"ressource_id" : row["ressource_id"]
+					"ressource_id" : str(row["ressource_id"])
 				}
 
 				element = {
-					"ressource_id" : row["ressource_id"],
-					"school_id" : row["school_id"],
-					"branch_id" : row["branch_id"],
+					"ressource_id" : str(row["ressource_id"]),
+					"school_id" : str(row["school_id"]),
+					"branch_id" : str(row["branch_id"]),
 					"title" : row["title"],
-					"name" : row["name"],
-					"type" : row["type"]
+					"name" : row["name"]
 				}
 
 				status = sync.sync(db.ressources, unique, element)
 
-				if sync.check_action_event(status) == True:
+				'''if sync.check_action_event(status) == True:
 					for url in sync.find_listeners('ressource', unique):
 						sync.send_event(url, status["action"], element)
 
@@ -47,16 +46,16 @@ def importRessources ( school_id, branch_id ):
 						sync.send_event(url, "ressource", element)
 
 					for url in sync.find_general_listeners('ressource_general'):
-						sync.send_event(url, status["action"], element)
+						sync.send_event(url, status["action"], element)'''
 
 			deleted = sync.find_deleted(db.ressources, {"school_id" : school_id, "branch_id" : branch_id}, ["ressource_id"], objectList["ressources"])
 
-			for element in deleted:
+			'''for element in deleted:
 				for url in sync.find_listeners('ressource', {"ressource_id" : element["ressource_id"]}):
 					sync.send_event(url, 'deleted', element)
 
 				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-					sync.send_event(url, "ressource_deleted", element)
+					sync.send_event(url, "ressource_deleted", element)'''
 
 
 			return True
