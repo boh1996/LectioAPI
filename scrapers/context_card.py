@@ -226,20 +226,23 @@ def field_of_study ( config, session = False ):
 def team ( config, session = False ):
 	url = "https://www.lectio.dk/lectio/%s/contextcard/contextcard.aspx?lectiocontextcard=%s" % ( str(config["school_id"]), str(config["context_card_id"]) )
 
-	if session is False:
-		session = authenticate.authenticate(config)
+	cookies = {}
 
-	if session == False:
-		return {"status" : "error", "type" : "authenticate"}
+	if not session is False:
+		if session == True:
+			session = authenticate.authenticate(config)
 
-	# Insert the session information from the auth function
-	cookies = {
-		"lecmobile" : "0",
-		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
-		"LastLoginUserName" : session["LastLoginUserName"],
-		"lectiogsc" : session["lectiogsc"],
-		"LectioTicket" : session["LectioTicket"]
-	}
+		if session == False:
+			return {"status" : "error", "type" : "authenticate"}
+
+		# Insert the session information from the auth function
+		cookies = {
+			"lecmobile" : "0",
+			"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
+			"LastLoginUserName" : session["LastLoginUserName"],
+			"lectiogsc" : session["lectiogsc"],
+			"LectioTicket" : session["LectioTicket"]
+		}
 
 	# Insert User-agent headers and the cookie information
 	headers = {
@@ -267,11 +270,11 @@ def team ( config, session = False ):
 	if type == "group":
 		return group(config, session)
 
-	name = unicode(soup.find(attrs={"id" : "ctl00_Content_cctitle"}).text.replace("Hold - ", ""))
+	name = str(soup.find(attrs={"id" : "ctl00_Content_cctitle"}).text.replace("Hold - ", "").strip().encode("utf8"))
 	tables = soup.findAll("table")
 	subject = unicode(tables[1].findAll("td")[1].text)
 	teamElementProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy\.aspx\?type=holdelement&holdelementid=(?P<team_element_id>.*)")
-	classProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy\.aspx\?type=stamklasse&klasseid=(?P<class_id>.*)")
+	classProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy\.aspx\?type=(?P<type>.*)&klasseid=(?P<class_id>.*)")
 	active = False
 	teamElementGroups = None
 	classGroups = None
@@ -279,8 +282,16 @@ def team ( config, session = False ):
 		active = True
 		teamElementGroups = teamElementProg.match(soup.find(attrs={"id" : "ctl00_Content_linksrep_ctl00_somelink"})["href"])
 
-	if not soup.find(attrs={"id" : "ctl00_Content_otherlinksrep_ctl00_somelink"}) is None:
-		classGroups = classProg.match(soup.find(attrs={"id" : "ctl00_Content_otherlinksrep_ctl00_somelink"})["href"])
+	classes = []
+
+	if len(soup.findAll("ul")) > 1:
+		for row in soup.findAll("ul")[1].findAll("a"):
+			classGroups = classProg.match(row["href"])
+			classes.append({
+				"name" : row.text.encode("utf8"),
+				"class_id" : str(classGroups.group("class_id") if not classGroups is None else ""),
+				"type" : "base_class" if  classGroups.group("type") == "stamklasse" and not classGroups is None else ""
+			})
 
 	team = {
 		"name" : name,
@@ -289,7 +300,7 @@ def team ( config, session = False ):
 		"school_id" : str(config["school_id"]),
 		"team_element_id" : teamElementGroups.group("team_element_id") if not teamElementGroups is None else "",
 		"context_card_id" : str(config["context_card_id"]),
-		"class_id" : classGroups.group("class_id") if not classGroups is None else "",
+		"classes" : classes,
 		"type" : type
 	}
 
@@ -348,18 +359,18 @@ def group ( config, session = False ):
 	teamElementProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy\.aspx\?type=holdelement&holdelementid=(?P<team_element_id>.*)")
 	classProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy\.aspx\?type=(?P<type>.*)&klasseid=(?P<class_id>.*)")
 	if not soup.find(attrs={"id" : "ctl00_Content_linksrep_ctl00_somelink"}) is None:
-		active = True
 		teamElementGroups = teamElementProg.match(soup.find(attrs={"id" : "ctl00_Content_linksrep_ctl00_somelink"})["href"])
 
 	classes = []
 
-	for row in soup.findAll("ul")[1].findAll("a"):
-		classGroups = classProg.match(row["href"])
-		classes.append({
-			"name" : row.text.encode("utf8"),
-			"class_id" : classGroups.group("class_id") if not classGroups is None else "",
-			"type" : "base_class" if  classGroups.group("type") == "stamklasse" and not classGroups is None else ""
-		})
+	if len(soup.findAll("ul")) > 1:
+		for row in soup.findAll("ul")[1].findAll("a"):
+			classGroups = classProg.match(row["href"])
+			classes.append({
+				"name" : row.text.encode("utf8"),
+				"class_id" : classGroups.group("class_id") if not classGroups is None else "",
+				"type" : "base_class" if  classGroups.group("type") == "stamklasse" and not classGroups is None else ""
+			})
 
 
 	team = {

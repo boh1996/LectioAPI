@@ -6,15 +6,17 @@ from pymongo import MongoClient
 from database import *
 import error
 import sync
-import materials as materialsApi
+import team_books as teamBooksApi
 
-def importMaterials ( school_id, branch_id, team_element_id ):
+def importTeamBooks ( school_id, branch_id, team_id, session = False, username = False, password = False ):
 	try:
-		objectList = materialsApi.materials({
+		objectList = teamBooksApi.team_books({
 			"school_id" : school_id,
 			"branch_id" : branch_id,
-			"team_element_id" : team_element_id
-		})
+			"team_id" : team_id,
+			"username" : username,
+			"password" : password
+		}, session)
 
 		if objectList is None:
 				error.log(__file__, False, "Unknown Object")
@@ -25,20 +27,35 @@ def importMaterials ( school_id, branch_id, team_element_id ):
 			return False
 
 		if objectList["status"] == "ok":
+			for row in objectList["books"]:
+				unique = {
+					"title" : row["title"],
+					"type" : row["type"]
+				}
+
+				element = {
+					"title" : row["title"],
+					"type" : row["type"]
+				}
+
+				status = sync.sync(db.books, unique, element)
+				row["_id"] = status["_id"]
+				del(row["team_id"])
+
 			unique = {
 				"school_id" : str(school_id),
 				"branch_id" : str(branch_id),
-				"team_element_id" : str(team_element_id)
+				"team_id" : str(team_id)
 			}
 
 			element = {
 				"school_id" : str(school_id),
 				"branch_id" : str(branch_id),
-				"team_element_id" : str(team_element_id),
-				"materials" : objectList["materials"]
+				"team_id" : str(team_id),
+				"books" : objectList["books"]
 			}
 
-			status = sync.sync(db.team_elements, unique, element)
+			status = sync.sync(db.teams, unique, element)
 
 			return True
 		else:

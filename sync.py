@@ -12,6 +12,8 @@ def flatten ( l ):
 		for dictkey in l.keys():
 			out.extend(flatten(l[dictkey]))
 	elif isinstance(l, (str, int, unicode)):
+		if isinstance(l, int):
+			l = str(l)
 		out.append(l)
 	return out
 
