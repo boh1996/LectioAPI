@@ -68,6 +68,9 @@ def importTeamElementInfo ( school_id, branch_id, team_element_id ):
 						current = current[0]
 						classes.append(current["_id"])
 
+				if len(classes) == 1:
+					team_type = "class_team"
+
 			element = {
 				"school_id" : str(school_id),
 				"branch_id" : str(branch_id),
