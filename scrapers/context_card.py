@@ -14,6 +14,13 @@ import functions
 import authenticate
 
 '''
+Group:
+G5936111251
+H5936111251
+HE5936111268
+'''
+
+'''
 Cards:
 HE : Team Element
 SR : Field of study
@@ -22,6 +29,7 @@ U : User
 T: Teacher
 H : Team
 XF : XPRS Subject
+G : Group - Not Working
 '''
 
 def xprs_subject ( config, session = False ):
@@ -136,12 +144,14 @@ def user ( config, session = False ):
 	pictureGroups = pictureProg.match(soup.find("img", attrs={"id" : "ctl00_Content_ImageCtrlthumbimage"})["src"])
 
 	user = {
-		"picture_id" : pictureGroups.group("picture_id") if not pictureGroups is None else "",
 		"school_id" : pictureGroups.group("school_id") if not pictureGroups is None else "",
 		"context_card_id" : soup.find("img", attrs={"id" : "ctl00_Content_ImageCtrlthumbimage"})["lectiocontextcard"],
 		"name" : nameGroups.group("name") if not nameGroups is None else "",
 		"type" : userType,
 	}
+
+	if not soup.find("img", attrs={"id" : "ctl00_Content_ImageCtrlthumbimage"})["src"] == "/lectio/img/defaultfoto_small.jpg":
+		user["picture_id"] = pictureGroups.group("picture_id") if not pictureGroups is None else ""
 
 	elements = soup.findAll("table")[1].findAll("td")
 

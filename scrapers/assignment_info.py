@@ -121,7 +121,7 @@ def assignment_info ( config, session = False ):
 			"context_card_id" : studentDataElements[0].find("img")["lectiocontextcard"],
 			"student_id" : studentDataElements[0].find("img")["lectiocontextcard"].replace("S", ""),
 		},
-		"status" : "delivered" if status.strip() == "Afleveret" else "missing",
+		"status" : "handed" if status.strip() == "Afleveret" else "missing",
 		"waiting_for" : "student" if functions.cleanText(studentDataElements[2].text) == "Elev" else "teacher" if unicode(functions.cleanText(studentDataElements[2].text)) == u"Lærer" else "none",
 		"leave" : functions.cleanText(statusGroups.group("leave")) if not statusGroups is None else 0,
 		"finished" : True if soup.find("input", attrs={"id" : "m_Content_StudentGV_ctl02_CompletedCB"}).has_attr("checked") and soup.find("input", attrs={"id" : "m_Content_StudentGV_ctl02_CompletedCB"})["checked"] == "checked" else False,
