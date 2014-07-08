@@ -8,15 +8,13 @@ import error
 import sync
 import team_info as teamInfoApi
 
-def importTeamInfo ( school_id, branch_id, team_element_id, session = False, username = False, password = False ):
+def importTeamInfo ( school_id, branch_id, team_element_id):
 	try:
 		objectList = teamInfoApi.team_info({
 			"school_id" : school_id,
 			"branch_id" : branch_id,
 			"team_element_id" : team_element_id,
-			"username" : username,
-			"password" : password
-		}, session)
+		})
 
 		if objectList is None:
 				error.log(__file__, False, "Unknown Object")
@@ -49,10 +47,21 @@ def importTeamInfo ( school_id, branch_id, team_element_id, session = False, use
 				"branch_id" : str(branch_id)
 			}
 
+			contextCards = elementObject["context_cards"]
+			existsing = db.teams.find(unique).limit(1)
+
+			if existsing.count() > 0:
+				existsing = existsing[0]
+				if "context_cards" in existsing:
+					for card in existsing["context_cards"]:
+						if not card in contextCards:
+							contextCards.append(card)
+
 			element = {
 				"team_id" : str(elementObject["team_id"]),
 				"school_id" : str(school_id),
-				"branch_id" : str(branch_id)
+				"branch_id" : str(branch_id),
+				"context_cards" : contextCards
 			}
 
 			team_elements = []

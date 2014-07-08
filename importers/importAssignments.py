@@ -6,19 +6,18 @@ from pymongo import MongoClient
 from database import *
 import error
 import sync
-import asignments as assignmentsApi
-import assignment_info
+import asignments as assignmentsfoApi
 import authenticate
 
-def importAssignments ( school_id, branch_id, username, password, student_id ):
+def importAssignment ( school_id, branch_id, student_id, exercise_id, session = False, username = False, password = False ):
 	try:
-		objectList = assignmentsApi.assignments({
+		objectList = assignmentsfoApi.assignments({
 			"school_id" : school_id,
 			"branch_id" : branch_id,
 			"student_id" : student_id,
 			"username" : username,
-			"password" : password
-		})
+			"password" : password,
+		}, session)
 
 		if objectList is None:
 				error.log(__file__, False, "Unknown Object")
@@ -29,53 +28,32 @@ def importAssignments ( school_id, branch_id, username, password, student_id ):
 			return False
 
 		if objectList["status"] == "ok":
-			row = objectList["information"]
-
-			unique = {
-				"exercise_id" : str(row["exercise_id"]),
-				"student_id" : student_id
-			}
-
-			# Uploads
-			uploads = []
-			members = []
-			documents = []
-			availableStudents = []
-			teachers = []
-
-			element = {
-				"exercise_id" : str(exercise_id),
-				"school_id" : str(school_id),
-				"branch_id" : str(branch_id),
-				"student_id" : str(student_id),
-				"team_element_name" : row["team"]["team_element_name"],
-				"student_note" : row["student"]["student_note"],
-				"grade_note" : row["student"]["grade_note"]
-				"status" : row["student"]["status"],
-				"grade" : row["student"]["grade"],
-				"leave" : row["student"]["leave"],
-				"finished" : row["student"]["finished"],
-				"waiting_for" : row["student"]["waiting_for"],
-				"uploads" : uploads,
-				"members" : members,
-				"documents" : documents,
-				"group" : {
-					"available_students" : availableStudents
+			for row in objectList["list"]:
+				unique = {
+					"exercise_id" : str(row["exercise_id"]),
+					"student_id" : student_id
 				}
-				"title" : row["title"],
-				"date" : row["date"],
-				"hours" : row["student_time"],
-				"grading_scale" : row["grading_scale"],
-				"note" : row["note"],
-				"in_instruction_detail" : str(row["in_instruction_detail"]),
-				"teachers" : teachers,
-				"team_element_id" : str(row["team"]["team_element_id"]),
-				"group_assignment" : str(row["group_assignment"])
-			}
 
-			status = sync.sync(db.assignments, unique, element)
+				element = {
+					"exercise_id" : str(row["exercise_id"]),
+					"school_id" : str(school_id),
+					"branch_id" : str(branch_id),
+					"student_id" : str(student_id),
+					"week" : row["week"],
+					"team_element_name" : row["group"],
+					"title" : row["title"],
+					"date" : row["date"],
+					"hours" : row["hours"],
+					"status" : row["status"],
+					"leave" : row["leave"],
+					"waiting_for" : row["waiting_for"],
+					"note" : row["note"],
+					"grade" : row["grade"],
+					"student_note" : row["student_note"],
+					"team_element_id" : str(row["team_element_id"])
+				}
 
-			deleted = sync.find_deleted(db.assignments, {"student_id" : student_id}, ["exercise_id"], objectList["list"])
+				status = sync.sync(db.assignments, unique, element)
 
 			return True
 		else:

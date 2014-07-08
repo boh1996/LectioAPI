@@ -73,7 +73,7 @@ def assignment_info ( config, session = False ):
 	teachers = []
 	teams = []
 	documents = []
-	uploads = []
+	comments = []
 
 	uploadRows = soup.find("table", attrs={"id" : "m_Content_RecipientGV"}).findAll("tr")
 	uploadRows.pop(0)
@@ -88,24 +88,24 @@ def assignment_info ( config, session = False ):
 		if not elements[3].find("a") is None:
 			uploadGroups = uploadProg.match(elements[3].find("a")["href"])
 			entry_id = uploadGroups.group("entry_id")
-			upload_type = uploadGroups.group("type")
+			upload_type = "student_assignment" if uploadGroups.group("type") == "elevopgave" else "other"
 
 
 		uploadDate = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(dateTimeGroups.group("day")), functions.zeroPadding(dateTimeGroups.group("month")), dateTimeGroups.group("year"), dateTimeGroups.group("hour"), dateTimeGroups.group("minute")), "%d/%m-%Y %H:%M")
 
-		uploads.append({
+		comments.append({
 			"file" : {
-				"name" : unicode(elements[3].find("a").text) if not elements[3].find("a") is None else "",
+				"name" : elements[3].find("a").text.encode("utf8") if not elements[3].find("a") is None else "",
 				"entry_id" : entry_id,
 				"type" : upload_type
 			},
-			"comment" : unicode(functions.cleanText(elements[2].text)),
+			"comment" : functions.cleanText(elements[2].text).encode("utf8"),
 			"uploader" : {
-				"name" : unicode(elements[1].find("span")["title"]) if context_card_id[0] == "T" else unicode(elements[1].find("span").text),
+				"name" : elements[1].find("span")["title"].encode("utf8") if context_card_id[0] == "T" else elements[1].find("span").text.encode("utf8"),
 				"type" : "teacher" if context_card_id[0] == "T" else "student",
 				"person_id" : context_card_id.replace("T", "") if context_card_id[0] == "T" else context_card_id.replace("S", ""),
 				"context_card_id" : context_card_id,
-				"abbrevation" : unicode(elements[1].find("span").text) if context_card_id[0] == "T" else ""
+				"abbrevation" : elements[1].find("span").text.encode("utf8") if context_card_id[0] == "T" else ""
 			},
 			"date" : uploadDate
 		})
@@ -114,7 +114,7 @@ def assignment_info ( config, session = False ):
 
 	statusProg = re.compile(r"(?P<status>.*)\/ (.*): (?P<leave>.*)%")
 	studentDataElements = soup.find("table", attrs={"id" : "m_Content_StudentGV"}).findAll("tr")[1].findAll("td")
-	statusGroups = statusProg.match(unicode(functions.cleanText(studentDataElements[3].text)))
+	statusGroups = statusProg.match(functions.cleanText(studentDataElements[3].text).encode("utf8"))
 	status = functions.cleanText(statusGroups.group("status")) if not statusGroups is None else ""
 	studentData = {
 		"student" : {
@@ -125,20 +125,21 @@ def assignment_info ( config, session = False ):
 		"waiting_for" : "student" if functions.cleanText(studentDataElements[2].text) == "Elev" else "teacher" if unicode(functions.cleanText(studentDataElements[2].text)) == u"Lærer" else "none",
 		"leave" : functions.cleanText(statusGroups.group("leave")) if not statusGroups is None else 0,
 		"finished" : True if soup.find("input", attrs={"id" : "m_Content_StudentGV_ctl02_CompletedCB"}).has_attr("checked") and soup.find("input", attrs={"id" : "m_Content_StudentGV_ctl02_CompletedCB"})["checked"] == "checked" else False,
-		"grade" : unicode(functions.cleanText(studentDataElements[5].text)),
-		"grade_note" : unicode(functions.cleanText(studentDataElements[6].text)),
-		"student_note" : unicode(functions.cleanText(studentDataElements[7].text))
+		"grade" : functions.cleanText(studentDataElements[5].text).encode("utf8"),
+		"grade_note" : functions.cleanText(studentDataElements[6].text).encode("utf8"),
+		"student_note" : functions.cleanText(studentDataElements[7].text).encode("utf8")
 	}
 
 	if u"Opgavebeskrivelse" in rowMap:
 		for row in rowMap[u"Opgavebeskrivelse"].findAll("a"):
 			fileNameGroups = documentProg.match(functions.cleanText(row.text.strip()))
 			fileIdGroups = documentIdProg.match(row["href"])
+			documentType = fileIdGroups.group("type") if not fileIdGroups is None else "",
 			documents.append({
 				"name" : fileNameGroups.group("name") if not fileNameGroups is None else "",
 				"exercise_file_id" : fileIdGroups.group("exercise_file_id") if not fileIdGroups is None else "",
 				"uploaded_date_string" : fileNameGroups.group("upload_date") if not fileNameGroups is None else "",
-				"type" : fileIdGroups.group("type") if not fileIdGroups is None else "",
+				"type" : "exercise_description" if documentType == "opgavedef" else "other",
 				"school_id" : fileIdGroups.group("school_id") if not fileIdGroups is None else ""
 			})
 
@@ -156,9 +157,9 @@ def assignment_info ( config, session = False ):
 		teacherGroups = teacherProg.match(row.text)
 		teachers.append({
 			"teacher_id" : row["lectiocontextcard"].replace("T", ""),
-			"name" : unicode(teacherGroups.group("name")) if not teacherGroups is None else "",
+			"name" : teacherGroups.group("name").encode("utf8") if not teacherGroups is None else "",
 			"context_card_id" : row["lectiocontextcard"],
-			"abbrevation" : unicode(teacherGroups.group("abbrevation")) if not teacherGroups is None else ""
+			"abbrevation" : teacherGroups.group("abbrevation").encode("utf8") if not teacherGroups is None else ""
 		})
 
 	if soup.find("div", attrs={"id" : "m_Content_groupIsland_pa"}):
@@ -189,24 +190,24 @@ def assignment_info ( config, session = False ):
 		for row in soup.find("select", attrs={"id" : "m_Content_groupStudentAddDD"}).findAll("option"):
 			progGroups = availableStudentProg.match(row.text)
 			availableStudents.append({
-				"name" : unicode(progGroups.group("name")),
+				"name" : str(progGroups.group("name")).decode("utf8"),
 				"student_id" : row["value"],
 				"student_class_code" : progGroups.group("code"),
 			})
 
 	infomation = {
 		"documents" : documents,
-		"title" : unicode(rowMap[r"Opgavetitel"].find("span").text),
+		"title" : rowMap[r"Opgavetitel"].find("span").text.encode("utf8"),
 		"group_assignment" : group_assignment,
 		"members" : members,
-		"note" : unicode(rowMap[u"Opgavenote"].text),
+		"note" : rowMap[u"Opgavenote"].text.encode("utf8"),
 		"team" : teams,
 		"grading_scale" : "7-step" if rowMap[u"Karakterskala"].text == "7-trinsskala" else "13-step",
 		"teachers" : teachers,
 		"student_time" : rowMap[u"Elevtid"].text.replace(",", ".").replace("timer", ""),
 		"date" : date,
 		"in_instruction_detail" : True if rowMap[u"Iundervisningsbeskrivelse"].text == "Ja" else False,
-		"uploads" : uploads,
+		"comments" : comments,
 		"group" : {
 			"available_students" : availableStudents
 		},

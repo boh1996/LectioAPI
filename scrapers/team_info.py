@@ -13,21 +13,11 @@ from pytz import timezone
 import authenticate
 import context_card
 
-def team_info ( config, session = False ):
+def team_info ( config ):
 	url = "https://www.lectio.dk/lectio/%s/aktivitet/AktivitetLinks.aspx?holdelementid=%s" % ( str(config["school_id"]), str(config["team_element_id"]) )
 
-	if session is False:
-		session = authenticate.authenticate(config)
-
-	if session == False:
-		return {"status" : "error", "type" : "authenticate"}
 	# Insert the session information from the auth function
 	cookies = {
-		"lecmobile" : "0",
-		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
-		"LastLoginUserName" : session["LastLoginUserName"],
-		"lectiogsc" : session["lectiogsc"],
-		"LectioTicket" : session["LectioTicket"]
 	}
 
 	# Insert User-agent headers and the cookie information
@@ -56,15 +46,13 @@ def team_info ( config, session = False ):
 	nameProg = re.compile(ur"(?P<type>[.^\S]*) (?P<name>.*) - (.*)")
 	nameGroups = nameProg.match(soup.find(attrs={"id" : "s_m_HeaderContent_MainTitle"}).text)
 	contextCards = []
-	contextCards.append(soup.find(attrs={"id" : "s_m_HeaderContent_MainTitle"})["lectiocontextcard"])
 	teamType = "team" if "Holdet" in soup.find(attrs={"id" : "s_m_HeaderContent_MainTitle"}).text else "group"
 	links = soup.find(attrs={"id" : "s_m_HeaderContent_subnavigator_generic_tr"}).findAll("a")
-	teamIdProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/BD\/HoldReservations.aspx\?HoldID=(?P<team_id>.*)&prevurl=(?P<prev_url>.*)")
+	teamIdProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/DokumentOversigt.aspx\?holdid=(?P<team_id>.*)&holdelementid=(?P<team_element_id>.*)")
 	if teamType == "team":
-		teamIdGroups = teamIdProg.match(links[8]["href"])
+		teamIdGroups = teamIdProg.match(soup.find(text="Dokumenter").parent["href"])
 	else:
-		teamIdGroups = teamIdProg.match(links[6]["href"])
-	teamObject = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : soup.find(attrs={"id" : "s_m_HeaderContent_MainTitle"})["lectiocontextcard"]}, session)
+		teamIdGroups = teamIdProg.match(soup.find(text="Dokumenter").parent["href"])
 
 	if not teamIdGroups is None:
 		contextCards.append("H" + teamIdGroups.group("team_id"))
@@ -75,7 +63,6 @@ def team_info ( config, session = False ):
 		"type" : teamType,
 		"name" : nameGroups.group("name") if not nameGroups is None else "",
 		"team_id" : teamIdGroups.group("team_id") if not teamIdGroups is None else "",
-		"team" : teamObject["team"] if "team" in teamObject else "",
 		"name_text" : soup.find(attrs={"id" : "s_m_HeaderContent_MainTitle"}).text
 	}
 
