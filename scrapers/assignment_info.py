@@ -139,7 +139,7 @@ def assignment_info ( config, session = False ):
 				"name" : fileNameGroups.group("name") if not fileNameGroups is None else "",
 				"exercise_file_id" : fileIdGroups.group("exercise_file_id") if not fileIdGroups is None else "",
 				"uploaded_date_string" : fileNameGroups.group("upload_date") if not fileNameGroups is None else "",
-				"type" : "exercise_description" if documentType == "opgavedef" else "other",
+				"type" : "exercise_description",
 				"school_id" : fileIdGroups.group("school_id") if not fileIdGroups is None else ""
 			})
 
@@ -178,8 +178,13 @@ def assignment_info ( config, session = False ):
 				"student_class_code" : memberGroups.group("code") if not memberGroups is None else ""
 			})
 	else:
+		memberProg = re.compile(r"Eleven (?P<name>.*) \((?P<code>.*)\) - Opgaveaflevering")
+		memberGroups = memberProg.match(soup.find(attrs={"id" : "m_HeaderContent_pageHeader"}).find("div").text)
 		members.append({
-			"student_id" : config["student_id"]
+			"student_id" : config["student_id"],
+			"context_card_id" : soup.find(attrs={"id" : "m_HeaderContent_pageHeader"}).find("div")["lectiocontextcard"],
+			"student_class_code" : memberGroups.group("code") if not memberGroups is None else "",
+			"name" : memberGroups.group("name") if not memberGroups is None else "",
 		})
 
 	availableStudents = []

@@ -45,8 +45,7 @@ def importAssignmentInfo ( school_id, branch_id, student_id, exercise_id, sessio
 
 				if len(comment["file"]["entry_id"]) > 1:
 					unique = {
-						"entry_id" : str(comment["file"]["entry_id"]),
-						"type" : comment["file"]["type"]
+						"entry_id" : str(comment["file"]["entry_id"])
 					}
 
 					element = {
@@ -105,8 +104,7 @@ def importAssignmentInfo ( school_id, branch_id, student_id, exercise_id, sessio
 
 			for document in row["documents"]:
 				unique = {
-					"exercise_file_id" : str(document["exercise_file_id"]),
-					"type" : document["type"]
+					"exercise_file_id" : str(document["exercise_file_id"])
 				}
 
 				element = {
