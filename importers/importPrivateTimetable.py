@@ -59,42 +59,60 @@ def importPrivateTimetable ( school_id, branch_id, student_id, username, passwor
 			return
 
 		if data["status"] == "ok":
+			unique = {
+				"school_id" : str(school_id),
+				"branch_id" : str(branch_id)
+			}
+
+			element = {
+				"school_id" : str(school_id),
+				"branch_id" : str(branch_id),
+				"module_info" : data["module_info"]
+			}
+
+			status = sync.sync(db.schools, unique, element)
+
 			for element in data["timetable"]:
 				teachers = []
 				teams = []
 
 				if element["type"] == "school":
 					for row in element["teachers"]:
-						teachers.append(row["teacher_id"])
+						status = sync.sync(db.persons, {"teacher_id" : row["teacher_id"]}, {"teacher_id" : row["teacher_id"]})
+
+						teachers.append(status["_id"])
 
 					for row in element["teams"]:
-						teams.append(row["team_id"])
+						status = sync.sync(db.team_elements, {"team_element_id" : row["team_id"]}, {"team_element_id" : row["team_id"]})
+
+						teams.append(status["_id"])
 
 					unique = {
 						"activity_id" : element["activity_id"],
-						"school_id" : element["school_id"],
-						"type" : "private"
+						#"type" : "private"
 					}
 
 					element = {
 						"teachers" : teachers,
-						"activity_id" : element["activity_id"],
-						"school_id" : element["school_id"],
-						"branch_id" : branch_id,
+						"activity_id" : str(element["activity_id"]),
+						"school_id" : str(element["school_id"]),
+						"branch_id" : str(branch_id),
 						"text" : element["text"],
 						"status" : element["status"],
 						"start" : element["startTime"],
 						"end" : element["endTime"],
 						"event_type" : element["type"],
-						"teams" : teams,
+						"team_elements" : teams,
 						"location_text" : element["location_text"],
 						"room_text" : element["room_text"],
-						"type" : "private"
+						#"type" : "private"
 					}
 
 					status = sync.sync(db.events, unique, element)
 
-					if sync.check_action_event(status) == True:
+					# Launch Activity Info Scraper
+
+					'''if sync.check_action_event(status) == True:
 						# Launch Activity Info Sraper
 
 						for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id, "activity_id" : element["activity_id"]}):
@@ -102,7 +120,7 @@ def importPrivateTimetable ( school_id, branch_id, student_id, username, passwor
 
 						# Teachers
 						# Teams
-						# Students
+						# Students'''
 				elif element["type"] == "exam":
 					# Launch Exam Scraper
 					print "Exam"

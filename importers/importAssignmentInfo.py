@@ -195,7 +195,7 @@ def importAssignmentInfo ( school_id, branch_id, student_id, exercise_id, sessio
 
 				contextCards = []
 				contextCards.append(team_element["context_card_id"])
-				existsing = db.persons.find(unique).limit(1)
+				existsing = db.team_elements.find(unique).limit(1)
 
 				if existsing.count() > 0:
 					existsing = existsing[0]

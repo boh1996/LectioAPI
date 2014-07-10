@@ -46,7 +46,6 @@ def importTeamElements ( school_id, branch_id, subject_id ):
 					"team_element_id" : str(row["team_element_id"]),
 					"school_id" : str(row["school_id"]),
 					"branch_id" : str(row["branch_id"]),
-					"term" : objectList["term"]["value"],
 					"subject_id" : str(subject_id),
 					"type" : "team",
 					"context_cards" : contextCards,

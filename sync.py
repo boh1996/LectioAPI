@@ -1,10 +1,12 @@
 import database
-import datetime
+from datetime import *
 import error
+from bson.objectid import ObjectId
 db = database.db
 
 def flatten ( l ):
 	out = []
+
 	if isinstance(l, (list, tuple)):
 		for item in l:
 			out.extend(flatten(item))
@@ -15,6 +17,12 @@ def flatten ( l ):
 		if isinstance(l, int):
 			l = str(l)
 		out.append(l)
+	elif isinstance(l, datetime):
+		out.append(l.isoformat(' '))
+	elif isinstance(l, ObjectId):
+		out.append(str(l))
+	else:
+		out.append(l)
 	return out
 
 # Inserts the data if it doesn't exits, skips if a match exists and updates if it exists but in an older version
@@ -22,8 +30,8 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 	existsing = table.find(query).limit(1)
 
 	if existsing.count() is 0:
-		document["_created"] = datetime.datetime.now()
-		document["_updated"] = datetime.datetime.now()
+		document["_created"] = datetime.now()
+		document["_updated"] = datetime.now()
 		try:
 			_id = table.insert(document, manipulate=True)
 		except Exception, e:
@@ -52,10 +60,6 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 				if row in existsing:
 					existingRows.append(existsing[row])
 
-			for row in existsing:
-				if not row in document:
-					document[row] = existsing[row]
-
 			existingItems = []
 			documentItems = []
 
@@ -72,7 +76,11 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 
 			difference = set(documentItems)-set(existingItems)
 
-			if len(difference) == 0:
+			for row in existsing:
+				if not row in document:
+					document[row] = existsing[row]
+
+			if len(difference) == 0 or difference == None:
 				return {
 					"status" : True,
 					"action" : "existsing",
@@ -86,11 +94,11 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 				document[item] = unsettedRows[item]
 
 		# Assign updated Time
-		document["_updated"] = datetime.datetime.now()
+		document["_updated"] = datetime.now()
 
 		# If no created field, create it
 		if not "_created" in document:
-			document["_created"] = datetime.datetime.now()
+			document["_created"] = datetime.now()
 
 		# Update Table
 		try:

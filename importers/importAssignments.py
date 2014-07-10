@@ -29,6 +29,34 @@ def importAssignment ( school_id, branch_id, student_id, exercise_id, session = 
 
 		if objectList["status"] == "ok":
 			for row in objectList["list"]:
+
+				team_elements = []
+
+				unique = {
+					"team_element_id" : row["team_element_id"]
+				}
+
+				contextCards = []
+				contextCards.append(row["context_card_id"])
+				existsing = db.team_elements.find(unique).limit(1)
+
+				if existsing.count() > 0:
+					existsing = existsing[0]
+					if "context_cards" in existsing:
+						for card in existsing["context_cards"]:
+							if not card in contextCards:
+								contextCards.append(card)
+
+				element = {
+					"team_element_id" : row["team_element_id"],
+					"name" : row["group"],
+					"context_cards" : contextCards
+				}
+
+				status = sync.sync(db.team_elements, unique, element)
+
+				team_elements.append(status["_id"])
+
 				unique = {
 					"exercise_id" : str(row["exercise_id"]),
 					"student_id" : student_id
@@ -40,7 +68,6 @@ def importAssignment ( school_id, branch_id, student_id, exercise_id, session = 
 					"branch_id" : str(branch_id),
 					"student_id" : str(student_id),
 					"week" : row["week"],
-					"team_element_name" : row["group"],
 					"title" : row["title"],
 					"date" : row["date"],
 					"hours" : row["hours"],
@@ -50,7 +77,7 @@ def importAssignment ( school_id, branch_id, student_id, exercise_id, session = 
 					"note" : row["note"],
 					"grade" : row["grade"],
 					"student_note" : row["student_note"],
-					"team_element_id" : str(row["team_element_id"])
+					"team_elements" : team_elements
 				}
 
 				status = sync.sync(db.assignments, unique, element)

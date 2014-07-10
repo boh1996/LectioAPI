@@ -90,11 +90,11 @@ def assignments( config, session = False ):
 			except BaseException:
 				object["week"] = ""
 			try:
-				object["group"] = unicode(cells[1].find("span").text)
+				object["group"] = cells[1].find("span").text.encode("utf8")
 			except BaseException:
 				object["group"] = ""
 			try:
-				object["title"] = unicode(cells[2].find("a").text)
+				object["title"] = cells[2].find("a").text.encode("utf8")
 			except BaseException:
 				object["title"] = ""
 			try:
@@ -136,15 +136,15 @@ def assignments( config, session = False ):
 			except BaseException:
 				object["waiting_for"] = ""
 			try:
-				object["note"] = unicode(cells[8].text)
+				object["note"] = cells[8].text.encode("utf8")
 			except BaseException:
 				object["note"] = ""
 			try:
-				object["grade"] = unicode(cells[9].text)
+				object["grade"] = cells[9].text.encode("utf8")
 			except BaseException:
 				object["grade"] = ""
 			try:
-				object["student_note"] = unicode(cells[10].text)
+				object["student_note"] = cells[10].text.encode("utf8")
 			except BaseException:
 				object["student_note"] = ""
 

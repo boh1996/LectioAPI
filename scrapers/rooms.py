@@ -56,5 +56,9 @@ def rooms(config):
 
     return {
         "status" : "ok",
-        "rooms" : roomsList
+        "rooms" : roomsList,
+        "term" : {
+            "value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+            "years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+        }
     }

@@ -67,7 +67,17 @@ def description ( config, session = False ):
 		teachers.append(unicode(row.text))
 
 	subjectGroups = subjectProg.match(informationElements[5].text.replace("\n", ""))
-	terms = informationElements[1].text.replace("\n", "").split(" - ")
+	terms = []
+
+	termProg = re.compile(r"(?P<value>.*)\/(?P<end>.*)")
+
+	for x in informationElements[1].text.replace("\n", "").split(" - "):
+		termGroups = termProg.match(x)
+
+		terms.append({
+			"value" : termGroups.group("value") if not termGroups is None else "",
+			"years_string" : x
+		})
 
 	information = {
 		"teachers" : teachers,
@@ -75,10 +85,10 @@ def description ( config, session = False ):
 		"teams" : teams,
 		"team_name" : teamGroups.group("team") if not teamGroups is None else "",
 		"subject" : {
-			"name" : unicode(subjectGroups.group("subject")) if not subjectGroups is None else unicode(informationElements[5].text),
+			"name" : subjectGroups.group("subject").encode("utf8") if not subjectGroups is None else informationElements[5].text.encode("utf8"),
 			"level" : subjectGroups.group("level") if not subjectGroups is None else ""
 		},
-		"institution" : unicode(informationElements[3].text.replace("\n", "")),
+		"institution" : informationElements[3].text.replace("\n", "").encode("utf8"),
 	}
 
 	tables.pop(0)
@@ -102,7 +112,9 @@ def description ( config, session = False ):
 				title = reachSpans[2]["title"] if "title" in reachSpans[2] else reachSpans[2].text
 				coversGroups = coversProg.match(title)
 				focusPoints = []
-				focusRows = elements[7].find("ul").findAll("li", recursive=False)
+				focusRows = []
+				if not elements[7].find("ul") is None:
+					focusRows = elements[7].find("ul").findAll("li", recursive=False)
 				descriptionText = elements[1].find("span").text
 
 				if len(focusRows) > 0:
@@ -169,7 +181,6 @@ def description ( config, session = False ):
 
 				phases.append({
 					"reach" : {
-						"estimate" : "unknown" if reachSpans[0].text == "Ikke angivet" else reachSpans[0].text.replace(",", ".").replace(" moduler", "").strip(),
 						"covers" : {
 							"length" : "unknown" if reachSpans[1].text == "Ikke angivet" else reachSpans[1].text.replace(" moduler", ""),
 							"type" : "modules"
@@ -180,15 +191,20 @@ def description ( config, session = False ):
 							"term" : "20" + coversGroups.group("term") if not coversGroups is None else soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
 						}
 					},
+					"estimate" : {
+						"type" : "modules",
+						"length" : "unknown" if reachSpans[0].text == "Ikke angivet" else reachSpans[0].text.replace(",", ".").replace(" moduler", "").strip(),
+					},
 					"methods" : work_methods,
-					"name" : unicode(elements[1].find("a").text),
+					"name" : elements[1].find("a").text.encode("utf8"),
 					"phase_id" : phaseIdGroups.group("phase_id") if not phaseIdGroups is None else "",
 					"focus_points" : focusPoints,
 					"readings" : readings,
 					"links" : links,
 					"documents" : documents,
 					"written" : written,
-					"description" : descriptionText
+					"description" : descriptionText,
+					"title" : elements[1].find("a").text.encode("utf8")
 				})
 
 	return {

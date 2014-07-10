@@ -28,12 +28,26 @@ def importRessources ( school_id, branch_id ):
 					"ressource_id" : str(row["ressource_id"])
 				}
 
+				terms = []
+
+				existsing = db.persons.find(unique).limit(1)
+
+				if existsing.count() > 0:
+					existsing = existsing[0]
+
+					if "terms" in existsing:
+						terms = existsing["terms"]
+
+				if not objectList["term"]["value"] in terms:
+					terms.append(objectList["term"]["value"])
+
 				element = {
 					"ressource_id" : str(row["ressource_id"]),
 					"school_id" : str(row["school_id"]),
 					"branch_id" : str(row["branch_id"]),
 					"title" : row["title"],
-					"name" : row["name"]
+					"name" : row["name"],
+					"terms" : terms
 				}
 
 				status = sync.sync(db.ressources, unique, element)

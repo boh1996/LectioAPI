@@ -103,13 +103,19 @@ def phase ( config, session = False ):
 			"text" : unicode(functions.cleanText(row.text))
 		})
 
+	termProg = re.compile(r"(?P<value>.*)\/(?P<end>.*)")
+
 	for row in rows["Hold"].findAll("span"):
 		teamGroups = teamProg.match(row.text)
+		termGroups = termProg.match(teamGroups.group("term") if not teamGroups is None else "")
 		teams.append({
 			"context_card_id" : row["lectiocontextcard"],
 			"team_element_id" : row["lectiocontextcard"].replace("HE", ""),
 			"name" : teamGroups.group("team") if not teamGroups is None else "",
-			"term" : teamGroups.group("term") if not teamGroups is None else ""
+			"term" : {
+				"years_string" : teamGroups.group("term") if not teamGroups is None else "",
+				"value" : termGroups.group("value") if not termGroups is None else ""
+			}
 		})
 
 	if not rows["Saerligefokuspunkter"].find("ul") is None:
@@ -121,7 +127,7 @@ def phase ( config, session = False ):
 				focusPointElements = []
 				if row.find_next().name == "ul":
 					for focusElement in row.find_next().findAll("li"):
-						focusPointElements.append(unicode(focusElement.text))
+						focusPointElements.append(focusElement.text.encode("utf8"))
 
 				focusPoints.append({
 					"header" : header,
@@ -134,8 +140,8 @@ def phase ( config, session = False ):
 	estimate = rows["Estimat"].text.strip().replace("\r\n", "").replace("\t", "").replace(" moduler", "").replace(",", ".")
 
 	information = {
-		"title" : unicode(rows["Titel"].text.strip().replace("\r\n", "").replace("\t", "")),
-		"note" : unicode(rows["Note"].text.strip().replace("\r\n", "").replace("\t", "")),
+		"title" : rows["Titel"].text.strip().replace("\r\n", "").replace("\t", "").encode("utf8"),
+		"note" : rows["Note"].text.strip().replace("\r\n", "").replace("\t", "").encode("utf8"),
 		"estimate" : {
 			"type" : "modules",
 			"length" : "none" if estimate == "ingen" else estimate

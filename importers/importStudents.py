@@ -53,12 +53,20 @@ def importStudents ( school_id, branch_id ):
 				contextCards.append(student["context_card_id"])
 				existsing = db.persons.find(unique).limit(1)
 
+				terms = []
+
 				if existsing.count() > 0:
 					existsing = existsing[0]
 					if "context_cards" in existsing:
 						for row in existsing["context_cards"]:
 							if not row in contextCards:
 								contextCards.append(row)
+
+					if "terms" in existsing:
+						terms = existsing["terms"]
+
+				if not studentsList["term"]["value"] in terms:
+					terms.append(studentsList["term"]["value"])
 
 				# Student element
 				element = {
@@ -68,7 +76,8 @@ def importStudents ( school_id, branch_id ):
 					"status" : unicode(str(student["status"]).decode("utf8")),
 					"school_id" : str(student["school_id"]),
 					"branch_id" : str(student["branch_id"]),
-					"type" : "student"
+					"type" : "student",
+					"terms" : terms
 				}
 
 				'''# Link student with a class
@@ -90,7 +99,7 @@ def importStudents ( school_id, branch_id ):
 				status = sync.sync(db.persons, unique, element)
 				#sync.sync(db.class_students, uniqueClassStudent, classStudentElement)
 
-				if sync.check_action_event(status) == True:
+				'''if sync.check_action_event(status) == True:
 					for url in sync.find_listeners('student', unique):
 						sync.send_event(url, status["action"], element)
 
@@ -98,16 +107,16 @@ def importStudents ( school_id, branch_id ):
 						sync.send_event(url, "student", element)
 
 					for url in sync.find_general_listeners('student_general'):
-						sync.send_event(url, status["action"], element)
+						sync.send_event(url, status["action"], element)'''
 
-			deleted = sync.find_deleted(db.persons, {"school_id" : school_id, "branch_id" : branch_id, "type" : "student"}, ["student_id"], studentsList["students"])
+			'''deleted = sync.find_deleted(db.persons, {"school_id" : school_id, "branch_id" : branch_id, "type" : "student"}, ["student_id"], studentsList["students"])
 
 			for element in deleted:
 				for url in sync.find_listeners('student', {"student_id" : element["student_id"]}):
 					sync.send_event(url, 'deleted', element)
 
 				for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-					sync.send_event(url, "student_deleted", element)
+					sync.send_event(url, "student_deleted", element)'''
 
 			return True
 		else:

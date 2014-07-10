@@ -57,5 +57,9 @@ def teachers(config):
     # Return status and the list
     return {
         "status" : "ok",
-        "teachers" : teachersList
+        "teachers" : teachersList,
+        "term" : {
+            "value" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+            "years_string" : soup.find("select", attrs={"id" : "m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+        }
     }
