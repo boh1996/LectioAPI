@@ -179,10 +179,10 @@ def importPrivateTimetable ( school_id, branch_id, student_id, username, passwor
 						sync.send_event(url, "information", element)
 
 			# Information Elements removed
-			deleted = sync.find_deleted(db.information, {"school_id" : school_id, "branch_id" : branch_id, "term" : data["term"]["value"]}, ["message", "date", "week", "term", "school_id", "branch_id"], data["information"])
+			'''deleted = sync.find_deleted(db.information, {"school_id" : school_id, "branch_id" : branch_id, "term" : data["term"]["value"]}, ["message", "date", "week", "term", "school_id", "branch_id"], data["information"])
 
 			for url in sync.find_listeners('school', {"school" : school_id, "branch_id" : branch_id}):
-				sync.send_event(url, "information_deleted", element)
+				sync.send_event(url, "information_deleted", element)'''
 		else:
 			if "error" in data:
 				error.log(__file__, False, data["error"])
