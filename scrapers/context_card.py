@@ -32,22 +32,11 @@ XF : XPRS Subject
 G : Group - Not Working
 '''
 
-def xprs_subject ( config, session = False ):
+def xprs_subject ( config ):
 	url = "https://www.lectio.dk/lectio/%s/contextcard/contextcard.aspx?lectiocontextcard=%s" % ( str(config["school_id"]), str(config["context_card_id"]) )
-
-	if session is False:
-		session = authenticate.authenticate(config)
-
-	if session == False:
-		return {"status" : "error", "type" : "authenticate"}
 
 	# Insert the session information from the auth function
 	cookies = {
-		"lecmobile" : "0",
-		"ASP.NET_SessionId" : session["ASP.NET_SessionId"],
-		"LastLoginUserName" : session["LastLoginUserName"],
-		"lectiogsc" : session["lectiogsc"],
-		"LectioTicket" : session["LectioTicket"]
 	}
 
 	# Insert User-agent headers and the cookie information
@@ -86,11 +75,13 @@ def xprs_subject ( config, session = False ):
 		"xprs_subject" : {
 			"name" : soup.find(attrs={"id" : "ctl00_Content_cctitle"}).text.replace("XPRS-fag - ", ""),
 			"code" : codeGroups.group("code").replace("A", "").replace("B", "").replace("C", "") if not codeGroups is None else "",
-			"subject_sub_type" : "none" if tables[1].findAll("td")[3].text == "Ingen underfag" else tables[1].findAll("td")[3].text,
+			"subject_sub_type" : "none" if tables[1].findAll("td")[3].text == "Ingen underfag" else "differs" if tables[1].findAll("td")[3].text == "Variable underfag" else tables[1].findAll("td")[3].text,
 			"context_card_id" : str(config["context_card_id"]),
 			"level" : level,
+			"xprs_subject_id" : str(config["context_card_id"]).replace("XF", ""),
 			"code_full" : codeGroups.group("code") if not codeGroups is None else "",
-			"notices" : tables[1].findAll("td")[5].text.split("\n")
+			"notices" : tables[1].findAll("td")[5].text.split("\n"),
+			"code_full_name" : tables[1].findAll("td")[1].text
 		}
 	}
 
