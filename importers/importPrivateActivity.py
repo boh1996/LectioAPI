@@ -53,7 +53,7 @@ def importPrivateActivity ( school_id, branch_id, student_id, activity_id, sessi
 		else:
 			if "error" in objectList:
 				error.log(__file__, False, objectList["error"])
-				db.remove({"activity_id" : str("activity_id")})
+				db.events.remove({"activity_id" : str("activity_id")})
 				return False
 			elif "type" in objectList:
 				error.log(__file__, False, objectList["type"])

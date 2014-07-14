@@ -4,12 +4,92 @@
 		"selected_items":
 		[
 			[
-				"do",
-				"documents"
+				"sub",
+				"subjects"
+			],
+			[
+				"xprs",
+				"xprs_subject_id"
+			],
+			[
+				"stud",
+				"student_id"
+			],
+			[
+				"ins",
+				"isinstance"
 			],
 			[
 				"doc",
-				"document"
+				"documentItems"
+			],
+			[
+				"exist",
+				"existingItems"
+			],
+			[
+				"st",
+				"students"
+			],
+			[
+				"cl",
+				"classes"
+			],
+			[
+				"u",
+				"updated"
+			],
+			[
+				"sch",
+				"schools"
+			],
+			[
+				"sc",
+				"school_id"
+			],
+			[
+				"multiDay",
+				"multiDayGroups"
+			],
+			[
+				"alt",
+				"alternativeDateProg"
+			],
+			[
+				"term",
+				"termValue"
+			],
+			[
+				"date",
+				"dateGroups"
+			],
+			[
+				"mod",
+				"modules"
+			],
+			[
+				"tea",
+				"team_elements"
+			],
+			[
+				"team_",
+				"team_element_id"
+			],
+			[
+				"team",
+				"team_element_id"
+			],
+			[
+				"ex",
+				"existsing"
+			],
+			[
+				"ph",
+				"phase_id"
+			],
+			[
+				"do",
+				"documents"
 			],
 			[
 				"contex",
@@ -64,10 +144,6 @@
 				"survey_id"
 			],
 			[
-				"stud",
-				"student_surveys"
-			],
-			[
 				"sect",
 				"sections"
 			],
@@ -108,10 +184,6 @@
 				"context_cards"
 			],
 			[
-				"tea",
-				"teacherGroups"
-			],
-			[
 				"teac",
 				"teacherGroups"
 			],
@@ -136,28 +208,12 @@
 				"teamNameGroups"
 			],
 			[
-				"team",
-				"team_element"
-			],
-			[
 				"context_",
 				"context_card_id"
 			],
 			[
-				"st",
-				"student"
-			],
-			[
-				"ex",
-				"exercise_id"
-			],
-			[
 				"pa",
 				"password"
-			],
-			[
-				"team_",
-				"team_type"
 			],
 			[
 				"clas_",
@@ -226,10 +282,6 @@
 			[
 				"cla",
 				"class_id"
-			],
-			[
-				"sch",
-				"school_id"
 			],
 			[
 				"set",
@@ -348,10 +400,6 @@
 				"focusPoints"
 			],
 			[
-				"ph",
-				"phases"
-			],
-			[
 				"wri",
 				"written"
 			],
@@ -370,10 +418,6 @@
 			[
 				"ho",
 				"holidayElements"
-			],
-			[
-				"mod",
-				"moduleIndex"
 			],
 			[
 				"moduleIn",
@@ -444,10 +488,6 @@
 				"tables"
 			],
 			[
-				"sub",
-				"subjectGroups"
-			],
-			[
 				"in",
 				"informationElements"
 			],
@@ -474,46 +514,6 @@
 			[
 				"fi",
 				"field_of_study_id"
-			],
-			[
-				"teamE",
-				"teamElementGroups"
-			],
-			[
-				"avg",
-				"avgTextProg"
-			],
-			[
-				"with",
-				"with_bonus"
-			],
-			[
-				"avG",
-				"avgGroups"
-			],
-			[
-				"subjectPr",
-				"subjectProgAlternative"
-			],
-			[
-				"sc",
-				"schools"
-			],
-			[
-				"impor",
-				"importers"
-			],
-			[
-				"te",
-				"teams"
-			],
-			[
-				"we",
-				"week"
-			],
-			[
-				"uni",
-				"unique"
 			]
 		]
 	},
@@ -524,6 +524,14 @@
 			"settings":
 			{
 				"buffer_size": 545,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "importers/importExamTeam.py",
+			"settings":
+			{
+				"buffer_size": 1888,
 				"line_ending": "Windows"
 			}
 		}
@@ -592,25 +600,48 @@
 	},
 	"file_history":
 	[
+		"/R/LectioAPI/importers/importPrivateActivity.py",
+		"/R/LectioAPI/importers/importSubjects.py",
+		"/R/LectioAPI/scrapers/subject_list.py",
+		"/R/LectioAPI/importers/importSubjectList.py",
+		"/R/LectioAPI/importers/importXPRSSubjects.py",
+		"/R/LectioAPI/importers/importXPRSSubject.py",
+		"/R/LectioAPI/scrapers/context_card.py",
+		"/R/LectioAPI/importers/importExamTeam.py",
+		"/R/LectioAPI/importers/importPrivateTimetable.py",
+		"/R/LectioAPI/scrapers/timetable.py",
+		"/R/LectioAPI/sync.py",
+		"/R/LectioAPI/importers/importActivityInfo.py",
+		"/R/LectioAPI/scrapers/activity_info.py",
+		"/R/LectioAPI/scrapers/values.py",
+		"/R/LectioAPI/importers/importStudents.py",
+		"/R/LectioAPI/importers/importTeachers.py",
+		"/R/LectioAPI/importers/importRooms.py",
+		"/R/LectioAPI/scrapers/ressources.py",
+		"/R/LectioAPI/importers/importRessources.py",
+		"/R/LectioAPI/scrapers/rooms.py",
+		"/R/LectioAPI/importers/importTeamElements.py",
+		"/R/LectioAPI/scrapers/teachers.py",
+		"/R/LectioAPI/scrapers/students.py",
+		"/R/LectioAPI/importers/importEducationDescription.py",
+		"/R/LectioAPI/importers/importPhase.py",
+		"/R/LectioAPI/scrapers/description.py",
 		"/R/LectioAPI/importers/importAssignmentInfo.py",
-		"/R/LectioAPI/importers/ImportClassMembers.py",
-		"/R/LectioAPI/scrapers/asignments.py",
+		"/R/LectioAPI/importers/importAssignments.py",
 		"/R/LectioAPI/scrapers/assignment_info.py",
+		"/R/LectioAPI/scrapers/asignments.py",
+		"/R/LectioAPI/importers/cel.py",
+		"/R/LectioAPI/importers/ImportClassMembers.py",
 		"/R/LectioAPI/scrapers/message_file.py",
 		"/R/LectioAPI/scrapers/exercise_file.py",
 		"/R/LectioAPI/importers/log.txt",
-		"/R/LectioAPI/importers/importAssignments.py",
 		"/R/LectioAPI/scrapers/team_info.py",
 		"/R/LectioAPI/importers/importTeamInfo.py",
 		"/R/LectioAPI/scrapers/log.text",
 		"/R/LectioAPI/scrapers/surveys.py",
-		"/R/LectioAPI/scrapers/description.py",
-		"/R/LectioAPI/scrapers/context_card.py",
 		"/R/LectioAPI/scrapers/documents.py",
-		"/R/LectioAPI/scrapers/timetable.py",
 		"/R/LectioAPI/scrapers/grades.py",
 		"/R/LectioAPI/scrapers/school_objects.py",
-		"/R/LectioAPI/scrapers/students.py",
 		"/R/LectioAPI/scrapers/skills.py",
 		"/R/LectioAPI/importers/tasks.py",
 		"/R/LectioAPI/scrapers/document_chooser.py",
@@ -622,27 +653,18 @@
 		"/R/LectioAPI/importers/importTeamElementInfo.py",
 		"/R/LectioAPI/importers/importMaterials.py",
 		"/R/LectioAPI/importers/importTeamBooks.py",
-		"/R/LectioAPI/importers/importTeamElements.py",
-		"/R/LectioAPI/sync.py",
 		"/R/LectioAPI/importers/importGroupMembers.py",
 		"/R/LectioAPI/scrapers/team_elements.py",
 		"/R/LectioAPI/scrapers/class_teams.py",
 		"/R/LectioAPI/scrapers/class_members.py",
 		"/R/LectioAPI/importers/importTeamAccounting.py",
-		"/R/LectioAPI/importers/importTeachers.py",
 		"/R/LectioAPI/importers/importSkills.py",
 		"/R/LectioAPI/importers/importWorkMethods.py",
 		"/R/LectioAPI/importers/importGroups.py",
-		"/R/LectioAPI/importers/importSubjects.py",
-		"/R/LectioAPI/importers/importStudents.py",
 		"/R/LectioAPI/importers/importFieldOfStudies.py",
 		"/R/LectioAPI/importers/importFieldOfStudyPresentation.py",
-		"/R/LectioAPI/importers/importRessources.py",
-		"/R/LectioAPI/importers/importRooms.py",
 		"/R/LectioAPI/importers/importSchoolInfo.py",
 		"/R/LectioAPI/importers/importSchools.py",
-		"/R/LectioAPI/scrapers/rooms.py",
-		"/R/LectioAPI/scrapers/activity_info.py",
 		"/R/LectioAPI/scrapers/subjects.py",
 		"/R/LectioAPI/scrapers/groups.py",
 		"/R/LectioAPI/scrapers/grade_sheet.py",
@@ -653,8 +675,6 @@
 		"/R/LectioAPI/scrapers/authenticate.py",
 		"/R/LectioAPI/importers/importClasses.py",
 		"/R/LectioAPI/scrapers/classes.py",
-		"/R/LectioAPI/scrapers/teachers.py",
-		"/R/LectioAPI/importers/importPrivateTimetable.py",
 		"/R/LectioAPI/scrapers/messages.py",
 		"/R/LectioAPI/scrapers/books.py",
 		"/R/LectioAPI/scrapers/team_books.py",
@@ -670,7 +690,6 @@
 		"/R/LectioAPI/scrapers/teams.py",
 		"/R/LectioAPI/scrapers/work_methods.py",
 		"/R/LectioAPI/scrapers/out.txt",
-		"/R/LectioAPI/importers/cel.py",
 		"/R/LectioAPI/importers/test.py",
 		"/R/LectioAPI/database.py",
 		"/R/LectioAPI/importers/importPublicTimetable.py",
@@ -695,10 +714,8 @@
 		"/C/Users/Bo/Desktop/test.html",
 		"/C/Users/Bo/Downloads/chart9.flr",
 		"/R/LectioAPI/scrapers/urls.py",
-		"/R/LectioAPI/scrapers/ressources.py",
 		"/R/LectioAPI/scrapers/proxy.py",
 		"/R/LectioAPI/scrapers/test.py",
-		"/R/LectioAPI/scrapers/values.py",
 		"/C/Users/Bo/AppData/Local/Temp/scp01021/home/boh1996/lectio-api/importers/importRessources.py",
 		"/R/LectioAPI/scrapers/tasks.py",
 		"/R/LectioAPI/error.py",
@@ -710,16 +727,7 @@
 		"/C/Users/Bo/AppData/Local/Temp/scp36853/home/boh1996/lan/database.py",
 		"/C/Users/Bo/AppData/Local/Temp/scp37239/home/boh1996/lan/config.py",
 		"/R/LectioAPI/scrapers/config.sample.py",
-		"/C/Users/Bo/AppData/Local/Temp/scp37937/home/boh1996/lectio-api/scrapers/database.py",
-		"/C/Users/Bo/AppData/Local/Temp/scp36251/home/boh1996/lan/__main__.py",
-		"/C/Users/Bo/AppData/Local/Temp/scp33069/home/boh1996/lectio-api/database.py",
-		"/C/Users/Bo/AppData/Local/Temp/scp32542/home/boh1996/lectio-api/config.py",
-		"/R/LectioAPI/run.py",
-		"/R/ComputerInfo/.htaccess",
-		"/R/facebook-message-backup/static/index.html",
-		"/R/facebook-message-backup/static/templates/status.html",
-		"/R/facebook-message-backup/static/js/app/routes.js",
-		"/R/facebook-message-backup/static/js/app/config.js"
+		"/C/Users/Bo/AppData/Local/Temp/scp37937/home/boh1996/lectio-api/scrapers/database.py"
 	],
 	"find":
 	{
@@ -749,6 +757,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"516",
+			"canceled",
+			"\"]),\n",
+			"print",
+			"existsing",
+			"row",
+			"ressource_id",
+			"teacher_id",
+			"student_id",
+			"teacher_id",
+			"updated",
+			"multiDayGroups",
+			"dateGroups",
+			"modules",
+			"created",
 			"student",
 			"member",
 			"row",
@@ -861,22 +884,7 @@
 			"cat",
 			"<th><?= $this->lang->line(\"user_count\"); ?></th>",
 			"words",
-			"word",
-			"words",
-			"\"",
-			":focus",
-			"50",
-			"script",
-			"()),\n",
-			"error",
-			"scrapers",
-			"errors",
-			"thead",
-			"error",
-			"errors",
-			"local_tweets_blocked",
-			"tweets_blocked",
-			"thead"
+			"word"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1012,7 +1020,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1027,8 +1035,8 @@
 						"selection":
 						[
 							[
-								146,
-								147
+								545,
+								545
 							]
 						],
 						"settings":
@@ -1101,6 +1109,7 @@
 							[
 							],
 							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
 							"sublimelinter": true,
 							"sublimelinter_delay": 2,
 							"sublimelinter_disable":
@@ -1123,10 +1132,130 @@
 								"Ruby on Rails": "ruby"
 							},
 							"sublimelinter_wrap_find": true,
+							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "importers/importExamTeam.py",
+					"settings":
+					{
+						"buffer_size": 1888,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1152,
+								1152
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"incomplete_sync": null,
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"remote_loading": false,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "none",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 126.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

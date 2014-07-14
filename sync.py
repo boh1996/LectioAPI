@@ -21,6 +21,8 @@ def flatten ( l ):
 		out.append(l.isoformat(' '))
 	elif isinstance(l, ObjectId):
 		out.append(str(l))
+	elif l is None:
+		out.append("")
 	else:
 		out.append(l)
 	return out
