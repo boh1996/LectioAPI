@@ -18,7 +18,7 @@ teachers = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=laere
 student_classes = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=stamklasse&lecafdeling={{BRANCH_ID}}"
 rooms = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=lokale&lecafdeling={{BRANCH_ID}}" # Test Missing
 ressources = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=ressource&lecafdeling={{BRANCH_ID}}" # Test Missing
-student_teams = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold"
+student_teams = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&lecafdeling={{BRANCH_ID}}"
 version_info = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/VersionInfo.aspx"
 version_info_old = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/versioninfoold.aspx"
 context_card = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/contextcard/contextcard.aspx?lectiocontextcard={{CONTEXT_CARD_ID}}"
@@ -26,15 +26,15 @@ activity_info = "https://www.lectio.dk//lectio/{{SCHOOL_ID}}/aktivitet/aktivitet
 leave_team = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/fravaer_elevhold.aspx?holdelementid={{TEAM_ID}}&elevid={{STUDENT_ID}}"
 assignment_info = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/ElevAflevering.aspx?elevid={{STUDENT_ID}}&exerciseid={{ASSIGNMENT_ID}}"
 team_link = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/aktivitet/AktivitetLinks.aspx?holdelementid={{TEAM_ID}}"
-field_of_study_offers = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieretningElevTilbud.aspx?startyear={{YEAR}}"
+field_of_study_offers = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieretningElevTilbud.aspx?startyear={{YEAR}}&lecafdeling={{BRANCH_ID}}"
 field_of_study_presentaion = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieretningSe.aspx?sid={{FIELD_OF_STUDY_ID}}"
 class_members = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/subnav/members.aspx?klasseid={{CLASS_ID}}8&showstudents=1"
 class_timetable = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/SkemaNy.aspx?type=stamklasse&klasseid={{CLASS_ID}}"
 module_account = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/subnav/modulregnskab.aspx?holdelementid={{TEAM_ID}}"
 education_description = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieplan/hold_undervisningsbeskrivelse.aspx?holdelementid={{TEAM_ID}}"
-groups = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag={{SUBJECT_ID}}"
-groups_list = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag=1361688526" # Done
+groups = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag={{SUBJECT_ID}}&lecafdeling={{BRANCH_ID}}"
+groups_list = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag=1361688526&lecafdeling={{BRANCH_ID}}" # Done
 teams = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold" # Done
-team_elements = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag={{TEAM_ID}}" # Done
+team_elements = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/FindSkema.aspx?type=hold&fag={{TEAM_ID}}&lecafdeling={{BRANCH_ID}}" # Done
 change_password = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/skift_password.aspx"
 field_of_study = "https://www.lectio.dk/lectio/{{SCHOOL_ID}}/studieretningSe.aspx?sid={{FIELD_OF_STUDY_ID}}"

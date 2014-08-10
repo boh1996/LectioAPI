@@ -11,32 +11,50 @@ import urllib
 def classes( config, term = False ):
     url = urls.student_classes.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
-    '''if term == False:
-        term = str(datetime.strftime(datetime.now(), "%Y"))'''
-
     classList = []
 
-    # Sorting settings
-    settings = {
-        "m$ChooseTerm$term" : term,
-    }
-
-     # Insert User-agent headers and the cookie information
-    headers = {
-        "User-Agent" : "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1665.2 Safari/537.36",
-        "Content-Type" : "application/x-www-form-urlencoded",
-        "Host" : "www.lectio.dk",
-        "Origin" : "https://www.lectio.dk"
-    }
-
-    if not term == False:
-        response = proxy.session.post(url, data=settings, headers=headers)
-    else:
-        response = proxy.session.get(url, headers=headers)
+    response = proxy.session.get(url)
 
     html = response.text
 
     soup = Soup(html)
+
+    if not term == False:
+        term = "&m%24ChooseTerm%24term=" + term
+    else:
+        term = ""
+
+    firstViewState = urllib.urlencode({"__VIEWSTATEX" : soup.find(id="__VIEWSTATEX")["value"]})
+
+    eventValidationText = soup.find(id="aspnetForm").find(id="__EVENTVALIDATION")["value"]
+
+    eventValidation = urllib.urlencode({"__EVENTVALIDATION" : eventValidationText})
+
+    response = proxy.session.post(url, data="__EVENTTARGET=" + "m%24Content%24AktuelAndAfdelingCB%24ShowOnlyAktulleCB"+ firstViewState + "&" + eventValidation + term)
+
+    html = response.text
+
+    soup = Soup(html)
+
+    if soup.find(attrs={"id" : "m_Content_AktuelAndAfdelingCB_ShowOnlyCurrentShoolAfdelingCB"}):
+
+        firstViewState = urllib.urlencode({"__VIEWSTATEX" : soup.find(id="__VIEWSTATEX")["value"]})
+
+        eventValidationText = soup.find(id="aspnetForm").find(id="__EVENTVALIDATION")["value"]
+
+        eventValidation = urllib.urlencode({"__EVENTVALIDATION" : eventValidationText})
+
+        response = proxy.session.post(url, data="__EVENTTARGET=" + "m%24Content%24AktuelAndAfdelingCB%24ShowOnlyCurrentShoolAfdelingCB" + "&m%24Content%24AktuelAndAfdelingCB%24ShowOnlyCurrentShoolAfdelingCB=on&" + firstViewState + term + "&" + eventValidation )
+
+        html = response.text
+
+        soup = Soup(html)
+
+    if soup.find(attrs={"id" : "m_Content_contenttbl"}) is None:
+        return {
+            "status" : False,
+            "error" : "Data not found"
+        }
 
     classListObjects = soup.find("table", attrs={"id" : "m_Content_contenttbl"}).findAll("a")
 

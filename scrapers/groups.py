@@ -10,7 +10,7 @@ import functions
 
 def groups ( config ):
 	groupsList = []
-	url = urls.groups_list.replace("{{SCHOOL_ID}}", str(config["school_id"]))
+	url = urls.groups_list.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
 	response = proxy.session.get(url)
 

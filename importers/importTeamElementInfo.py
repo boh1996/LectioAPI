@@ -99,3 +99,5 @@ def importTeamElementInfo ( school_id, branch_id, team_element_id ):
 	except Exception, e:
 		error.log(__file__, False, str(e))
 		return False
+
+importTeamElementInfo(43, 5822508886, 7031752763)

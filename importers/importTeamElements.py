@@ -28,7 +28,6 @@ def importTeamElements ( school_id, branch_id, subject_id ):
 			for row in objectList["team_elements"]:
 				unique = {
 					"team_element_id" : str(row["team_element_id"]),
-					"term" : objectList["term"]["value"]
 				}
 
 				contextCards = []

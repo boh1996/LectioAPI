@@ -9,7 +9,7 @@ from datetime import *
 import functions
 
 def field_of_studies ( config, startYear ):
-	url = "https://www.lectio.dk/lectio/%s/studieretningElevTilbud.aspx?startyear=%s" % ( str(config["school_id"]), str(startYear) )
+	url = "https://www.lectio.dk/lectio/%s/studieretningElevTilbud.aspx?startyear=%s" % ( str(config["school_id"]), str(startYear) ).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 	objectList = []
 
 	response = proxy.session.get(url)

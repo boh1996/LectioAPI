@@ -10,7 +10,7 @@ import functions
 
 def subjects ( config ):
 	teamsList = []
-	url = urls.teams.replace("{{SCHOOL_ID}}", str(config["school_id"]))
+	url = urls.teams.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{BRANCH_ID}}", str(config["branch_id"]))
 
 	response = proxy.session.get(url)
 

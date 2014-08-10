@@ -95,4 +95,4 @@ def importTeachers ( school_id, branch_id ):
 		error.log(__file__, False, str(e))
 		return False
 
-importTeachers(517, 4733693427)
+importTeachers(43, 5822508886)

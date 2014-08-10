@@ -139,7 +139,8 @@ def importExamTeam ( school_id, branch_id, test_team_id ):
 			data = {
 				"alternative_name" : x["alternative_name"],
 				"room_name" : x["room_name"],
-				"exam_room_type" : x["exam_room_type"]
+				"exam_room_type" : x["exam_room_type"],
+				"room_type" : x["room_type"]
 			}
 
 			existing = db.rooms.find({"name" : x["room_name"], "alternative_name" : x["alternative_name"]})

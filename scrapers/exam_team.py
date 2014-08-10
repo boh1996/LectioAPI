@@ -66,7 +66,8 @@ def exam_team ( config ):
 		rooms.append({
 			"room_name" : roomNameGroups.group("room_name") if not roomNameGroups is None else "",
 			"alternative_name" : roomNameGroups.group("alternative_name") if not roomNameGroups is None and "alternative_name" in roomNameGroups.groupdict() else "",
-			"exam_room_type" : "preparation" if room_type == "Forberedelse" else "examination"
+			"exam_room_type" : "preparation" if room_type == "Forberedelse" else "preparation_2" if room_type == "Forberedelse 2" else "examination",
+			"room_type" : room_type
 		})
 
 	students = []
@@ -269,7 +270,7 @@ def exam_team ( config ):
 		test_type_code = testTypeCodeGroups.group("code")
 
 	xprs_code = xprsGroups.group("code") if not xprsGroups is None else ""
-	xprs_level = "A" if "A" in xprs_code else "B" if "B" in xprs_code else "C" if "C" in xprs_code else "D" if "D" in xprs_code else "E" if "E" in xprs_code else "F" if "F" in xprs_code else ""
+	xprs_level = "A" if "A" in xprs_code else "B" if "B" in xprs_code else "C" if "C" in xprs_code else "D" if "D" in xprs_code else "E" if "E" in xprs_code else "F" if "F" in xprs_code else "-"
 
 	information = {
 		"test_team_name" : informationElements[1].text,
@@ -285,12 +286,12 @@ def exam_team ( config ):
 			"full_name" : unicode(informationElements[7].text),
 			"code_full" : xprs_code,
 			"code" : xprs_code.replace(xprs_level, ""),
-			"type" : "written" if xprs_type == "SKR" else "combined" if xprs_type == "SAM" else "oral" if xprs_type == "MDT" else "other",
+			"type" : "written" if xprs_type == "SKR" else "combined" if xprs_type == "SAM" else "oral" if xprs_type == "MDT" else xprs_type,
 			"subject" : xprsGroups.group("subject_name") if not xprsGroups is None else "",
 			"xprs_type" : xprs_type,
 			"level" : xprs_level
 		},
-		"test_type" : "written" if test_type == "Skriftlig eksamen" else "oral" if test_type == "Mundtlig eksamen" else "combined" if test_type == "Samlet vurdering" else "other",
+		"test_type" : "written" if test_type == "Skriftlig eksamen" else "oral" if test_type == "Mundtlig eksamen" else "combined" if test_type == "Samlet vurdering" else test_type,
 		"number_of_students" : informationElements[19].text,
 		"test_type_long_code" : test_type,
 		"note" : informationElements[17].text if len(informationElements[17].text) > 1 else "",

@@ -8,8 +8,42 @@ import re
 import proxy
 from datetime import *
 
-def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Z", "Æ", "Ø", "Å", "?"]):
+def students(config, term = False, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Z", "Æ", "Ø", "Å", "?"]):
     studentList = []
+
+    if not term == False:
+        term = "&m%24ChooseTerm%24term=" + term
+    else:
+        term = ""
+
+    url = urls.students.replace("{{SCHOOL_ID}}", str(config["school_id"])).replace("{{FIRST_LETTER}}", "A").replace("{{BRANCH_ID}}", str(config["branch_id"]))
+
+    response = proxy.session.get(url)
+
+    html = response.text
+
+    soup = Soup(html)
+
+    firstViewState = urllib.urlencode({"__VIEWSTATEX" : soup.find(id="__VIEWSTATEX")["value"]})
+
+    eventValidationText = soup.find(id="aspnetForm").find(id="__EVENTVALIDATION")["value"]
+
+    eventValidation = urllib.urlencode({"__EVENTVALIDATION" : eventValidationText})
+
+    response = proxy.session.post(url, data="__EVENTTARGET=" + "m%24Content%24AktuelAndAfdelingCB%24ShowOnlyAktulleCB&m%24Content%24AktuelAndAfdelingCB%24ShowOnlyCurrentShoolAfdelingCB=on&"+ firstViewState + "&" + eventValidation)
+
+    html = response.text
+
+    soup = Soup(html)
+
+    if not soup.find(id="__VIEWSTATEX") is None:
+        firstViewState = urllib.urlencode({"__VIEWSTATEX" : soup.find(id="__VIEWSTATEX")["value"]})
+    else:
+        response = proxy.session.post(url, data="__EVENTTARGET=" + "m%24Content%24AktuelAndAfdelingCB%24ShowOnlyAktulleCB&"+ firstViewState + "&" + eventValidation)
+
+        html = response.text
+
+        soup = Soup(html)
 
     # Loop through all the letters
     for letter in letters:
@@ -28,7 +62,13 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
             "Origin" : "https://www.lectio.dk"
         }
 
-        response = proxy.session.get(url)
+        if not soup.find(id="__VIEWSTATEX") is None:
+            response = proxy.session.post(url, data=firstViewState + term)
+        else:
+            if len(term) > 1:
+                response = proxy.session.post(url, data=term.replace("&", ""))
+            else:
+                response = proxy.session.get(url)
 
         html = response.text
 
@@ -85,6 +125,8 @@ def students(config, letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"
                 "branch_id" : config["branch_id"],
                 "type" : urlGroups.group("type_name").encode("utf8") if not urlGroups is None and "type_name" in groups else ""
             })
+
+    print len(studentList)
 
     return {
         "status" : "ok",
