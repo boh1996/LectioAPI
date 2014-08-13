@@ -93,6 +93,12 @@ def timetable( config, url, week, year, session = False ):
 	index = 0
 	for tdRow in generalInformationDays:
 		index = index+1
+
+		dayOfWeek = index-1
+
+		if dayOfWeek == 7:
+			dayOfWeek = 0
+
 		if index > 1:
 			row = tdRow.findAll("a")
 
@@ -107,7 +113,6 @@ def timetable( config, url, week, year, session = False ):
 						# Subtract one, because 0 is the first week
 						timeWeek = int(week)-1
 
-					dayOfWeek = index-1
 					date = time.strptime("%s %s %s" % (str(dayOfWeek),str(timeWeek), str(year)),"%w %W %Y")
 					content = element.find("div", attrs={"class" : "s2skemabrikcontent"}).findAll("span")[1]
 					div = element.find("div", attrs={"class" : "s2skemabrikcontent"})
@@ -178,7 +183,11 @@ def timetable( config, url, week, year, session = False ):
 		# Increment the day
 		index = index+1
 
-		dayOfWeek = index-1
+		# Test
+		dayOfWeek = index
+
+		if dayOfWeek == 7:
+			dayOfWeek = 0
 
 		# The time module uses "0" as the first week of the year
 		if int(week) == 1:
