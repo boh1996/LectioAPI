@@ -66,7 +66,11 @@ def sync ( table, query, document, unset=["_updated", "_id", "_created"] ):
 			documentItems = []
 
 			for row in document:
-				row = " ".join(flatten(document[row]))
+				row = ""
+				try:
+					row = " ".join(flatten(document[row]))
+				except Exception, e:
+					error.log(__file__, False, str(e))
 
 				documentItems.append(row)
 

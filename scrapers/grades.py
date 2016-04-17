@@ -54,47 +54,53 @@ def grades ( config, term, session = False ):
 			"error" : "Data not found"
 		}
 
-	if not soup.find("table", attrs={"id" : "s_m_Content_Content_karakterView_KarakterGV"}).find(attrs={"class" : "noRecord"}) is None:
-		return {
-			"status" : "no_rows",
-		}
-
 	comments = []
+	commentRows = []
 
-	commentRows = soup.find("table", attrs={"id" : "s_m_Content_Content_remarks_grid_remarks_grid"}).findAll("tr")
-	commentRows.pop(0)
+	subjectLevelProg = re.compile(r"(?P<abbrevation>[A-Z]*)(?P<level>[a-z]?)")
+
+	subjectAbbrevationMapping = functions.subjectAbbrevationMapping
+
+	if not soup.find("table", attrs={"id" : "s_m_Content_Content_remarks_grid_remarks_grid"}) is None:
+		commentRows = soup.find("table", attrs={"id" : "s_m_Content_Content_remarks_grid_remarks_grid"}).findAll("tr")
+		commentRows.pop(0)
 
 	dateTime = re.compile(r"(?P<day>.*)/(?P<month>.*)-(?P<year>.*) (?P<hour>.*):(?P<minute>.*)")
 	dateShort = re.compile(r"(?P<day>.*)/(?P<month>.*)-(?P<year>.*)")
 
-	## Missing Test Opporunity
-	for row in commentRows:
-		if row.find("div") is None:
-			elements = row.findAll("td")
-			date = ""
+	termValue = soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"]
 
-			if not dateTime.match(elements[0].text) is None:
-				dateTimeGroups = dateTime.match(elements[0].text)
-				year = dateTimeGroups.group("year")
+	if not soup.find(attrs={"id" : "s_m_Content_Content_remarks_grid_remarks_grid"}) is None:
+		if soup.find(attrs={"id" : "s_m_Content_Content_remarks_grid_remarks_grid"}).find(".noRecord") is None:
+			## Missing Test Opporunity
+			for row in commentRows:
+				if row.find("div") is None:
+					elements = row.findAll("td")
+					date = ""
 
-				if len(year) == 2:
-					year = "20" + str(year)
+					if not dateTime.match(elements[0].text) is None:
+						dateTimeGroups = dateTime.match(elements[0].text)
+						year = dateTimeGroups.group("year")
 
-				date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(dateTimeGroups.group("day")), functions.zeroPadding(dateTimeGroups.group("month")), year, dateTimeGroups.group("hour"), dateTimeGroups.group("minute")), "%d/%m-%Y %H:%M")
-			elif dateShort.match(elements[0].text):
-				year = dateTimeGroups.group("year")
+						if len(year) == 2:
+							year = "20" + str(year)
 
-				if len(year) == 2:
-					year = "20" + str(year)
+						date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(dateTimeGroups.group("day")), functions.zeroPadding(dateTimeGroups.group("month")), year, dateTimeGroups.group("hour"), dateTimeGroups.group("minute")), "%d/%m-%Y %H:%M")
+					elif dateShort.match(elements[0].text):
+						year = dateTimeGroups.group("year")
 
-				date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(dateTimeGroups.group("day")), functions.zeroPadding(dateTimeGroups.group("month")), year, "12", "00"), "%d/%m-%Y %H:%M")
+						if len(year) == 2:
+							year = "20" + str(year)
 
-			comments.append({
-				"date" : date,
-				"abbrevation" : unicode(cleanText(elements[1].text)),
-				"type" : "year_grade" if unicode(cleanText(elements[2].text)) == u"Årskarakter" else "exam_grade" if unicode(cleanText(elements[2].text)) == "Examenskarakter" else unicode(cleanText(elements[2].text)),
-				"student_note" : unicode(cleanText(elements[3].text))
-			})
+						date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(dateTimeGroups.group("day")), functions.zeroPadding(dateTimeGroups.group("month")), year, "12", "00"), "%d/%m-%Y %H:%M")
+
+					comments.append({
+						"date" : date,
+						"abbrevation" : unicode(cleanText(elements[1].text)),
+						"type" : "year_grade" if unicode(cleanText(elements[2].text)) == u"Årskarakter" else "exam_grade" if unicode(cleanText(elements[2].text)) == "Examenskarakter" else unicode(cleanText(elements[2].text)),
+						"student_note" : unicode(cleanText(elements[3].text)),
+						"term" : termValue
+					})
 
 	gradeNotes = []
 
@@ -106,33 +112,35 @@ def grades ( config, term, session = False ):
 	createdProg = re.compile(r"(?P<day>.*)/(?P<month>.*)-(?P<year>.*) (?P<hour>.*):(?P<minute>.*) - (?P<teacher>.*)")
 	teamElementIdProg = re.compile(r"\/lectio\/(?P<school_id>.*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&holdelementid=(?P<team_element_id>.*)")
 
-	for row in rows:
-		if row.find("span") is None:
-			elements = row.findAll("td")
+	if soup.find("table", attrs={"id" : "s_m_Content_Content_karakterView_KarakterNoterGrid"}).find(".noRecord") is None:
+		for row in rows:
+			if row.find("span") is None:
+				elements = row.findAll("td")
 
-			gradeTypeGroups = gradeTypeProg.match(elements[1].text)
-			evaluation_type = gradeTypeGroups.group("evaluation_type") if not gradeTypeGroups is None else ""
-			grade_type = gradeTypeGroups.group("type") if not gradeTypeGroups is None else ""
-			teamLementGroups = teamElementIdProg.match(elements[0].find("a")["href"])
-			classGroups = teamProg.match(elements[0].find("a").text)
-			createdGroups = createdProg.match(elements[3].text)
-			if not createdGroups is None:
-				date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(createdGroups.group("day")), functions.zeroPadding(createdGroups.group("month")), createdGroups.group("year"), createdGroups.group("hour"), createdGroups.group("minute")), "%d/%m-%Y %H:%M")
-			else:
-				date = datetime.now()
+				gradeTypeGroups = gradeTypeProg.match(elements[1].text)
+				evaluation_type = gradeTypeGroups.group("evaluation_type") if not gradeTypeGroups is None else ""
+				grade_type = gradeTypeGroups.group("type") if not gradeTypeGroups is None else ""
+				teamLementGroups = teamElementIdProg.match(elements[0].find("a")["href"])
+				classGroups = teamProg.match(elements[0].find("a").text)
+				createdGroups = createdProg.match(elements[3].text)
+				if not createdGroups is None:
+					date = datetime.strptime("%s/%s-%s %s:%s" % (functions.zeroPadding(createdGroups.group("day")), functions.zeroPadding(createdGroups.group("month")), createdGroups.group("year"), createdGroups.group("hour"), createdGroups.group("minute")), "%d/%m-%Y %H:%M")
+				else:
+					date = datetime.now()
 
-			gradeNotes.append({
-				"team_full_name" : unicode(cleanText(elements[0].find("a").text)),
-				"team_element_id" : teamLementGroups.group("team_element_id") if not teamLementGroups is None else "",
-				"class_name" : classGroups.group("class_name") if not classGroups is None else "",
-				"team_name" : classGroups.group("team_name") if not classGroups is None else "",
-				"type" : "written" if grade_type == "skriftlig" else "oral",
-				"evaluation_type" : "internal_test" if unicode(evaluation_type) == u"Intern prøve" else "exam_or_year_test" if unicode(evaluation_type) == u"Eksamens-/årsprøvekarakter" else "first_term" if evaluation_type == "1. standpunkt" else "second_term" if evaluation_type == "2. standpunkt" else "third_term" if evaluation_type == "3. standpunkt" else "firth_term" if evaluation_type == "4. standpunkt" else "fifth_term" if evaluation_type == "5. standpunkt" else "sixth_term",
-				"grade" : elements[2].text,
-				"note" : cleanText(unicode(elements[4].text)),
-				"date" : date,
-				"teacher_abbrevation" : unicode(createdGroups.group("teacher")) if not createdGroups is None else "",
-			})
+				gradeNotes.append({
+					"team_full_name" : unicode(cleanText(elements[0].find("a").text)),
+					"team_element_id" : teamLementGroups.group("team_element_id") if not teamLementGroups is None else "",
+					"class_name" : classGroups.group("class_name") if not classGroups is None else "",
+					"team_name" : classGroups.group("team_name") if not classGroups is None else "",
+					"type" : "written" if grade_type == "skriftlig" else "oral",
+					"evaluation_type" : "internal_test" if unicode(evaluation_type) == u"Intern prøve" else "exam_or_year_test" if unicode(evaluation_type) == u"Eksamens-/årsprøvekarakter" else "first_term" if evaluation_type == "1. standpunkt" else "second_term" if evaluation_type == "2. standpunkt" else "third_term" if evaluation_type == "3. standpunkt" else "firth_term" if evaluation_type == "4. standpunkt" else "fifth_term" if evaluation_type == "5. standpunkt" else "sixth_term",
+					"grade" : elements[2].text,
+					"note" : cleanText(unicode(elements[4].text)),
+					"date" : date,
+					"teacher_abbrevation" : unicode(createdGroups.group("teacher")) if not createdGroups is None else "",
+					"term" : termValue
+				})
 
 	protocolLines = []
 	termProg = re.compile(r"(?P<term>.*) (?P<year>.*)")
@@ -140,41 +148,42 @@ def grades ( config, term, session = False ):
 	protocolRows = soup.find("table", attrs={"id" : "s_m_Content_Content_ProtokolLinierGrid"}).findAll("tr")
 	protocolRows.pop(0)
 
-	for row in protocolRows:
-		spans = row.findAll("span")
-		if len(spans) > 1:
-			elements = row.findAll("td")
-			termGroups = termProg.match(cleanText(elements[0].text))
-			term = termGroups.group("term") if not termGroups is None else ""
-			xprsGroups = xprsProg.match(elements[3].find("span").text)
-			teamElement = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : elements[5].find("span")["lectiocontextcard"]}, session)["team"]
-			teamElement["team_element_context_card_id"] = "HE" + teamElement["team_element_id"]
+	if soup.find("table", attrs={"id" : "s_m_Content_Content_ProtokolLinierGrid"}).find(".noRecord") is None:
+		for row in protocolRows:
+			spans = row.findAll("span")
+			if len(spans) > 1:
+				elements = row.findAll("td")
+				termGroups = termProg.match(cleanText(elements[0].text))
+				term = termGroups.group("term") if not termGroups is None else ""
+				xprsGroups = xprsProg.match(elements[3].find("span").text)
+				teamElement = context_card.team({"school_id" : str(config["school_id"]), "context_card_id" : elements[5].find("span")["lectiocontextcard"]}, session)["team"]
+				teamElement["team_element_context_card_id"] = "HE" + teamElement["team_element_id"]
 
-			protocolLines.append({
-				"grading" : "7-step" if cleanText(elements[8].text) == "7-trinsskala" else "13-step",
-				"grade" : elements[7].text,
-				"weight" : cleanText(elements[6].text.replace("," , ".")),
-				"evaluation_type" : "oral" if cleanText(elements[4].text) == "Mundtlig" else "written" if cleanText(elements[4].text) == "Skriftlig" else "combined",
-				"counts" : True if cleanText(elements[2].text) == "Ja" else False,
-				"text" : "year_grade" if unicode(cleanText(elements[1].text)) == u"Årskarakter" else "exam_grade",
-				"team" : {
-					"name" : unicode(elements[5].find("span").text),
-					"context_card_id" : elements[5].find("span")["lectiocontextcard"],
-					"team_id" : elements[5].find("span")["lectiocontextcard"].replace("H", ""),
-					"team_element" : teamElement
-				},
-				"xprs" : {
-					"full_name" : unicode(elements[3].find("span").text),
-					"code" : xprsGroups.group("code") if not xprsGroups is None else "",
-					"subject" : xprsGroups.group("subject") if not xprsGroups is None else "",
-					"xprs_subject_id" : elements[3].find("span")["lectiocontextcard"].replace("XF", ""),
-					"context_card_id" : elements[3].find("span")["lectiocontextcard"]
-				},
-				"term" : {
-					"year" : termGroups.group("year") if not termGroups is None else "",
-					"term" : "summer" if term == "Sommer" else "spring" if unicode(term) == u"Forår" else "fall" if unicode(term) == u"Efterår" else "winter"
-				}
-			})
+				protocolLines.append({
+					"grading" : "7-step" if cleanText(elements[8].text) == "7-trinsskala" else "13-step",
+					"grade" : elements[7].text,
+					"weight" : cleanText(elements[6].text.replace("," , ".")),
+					"evaluation_type" : "oral" if cleanText(elements[4].text) == "Mundtlig" else "written" if cleanText(elements[4].text) == "Skriftlig" else "combined",
+					"counts" : True if cleanText(elements[2].text) == "Ja" else False,
+					"text" : "year_grade" if unicode(cleanText(elements[1].text)) == u"Årskarakter" else "exam_grade",
+					"team" : {
+						"name" : unicode(elements[5].find("span").text),
+						"context_card_id" : elements[5].find("span")["lectiocontextcard"],
+						"team_id" : elements[5].find("span")["lectiocontextcard"].replace("H", ""),
+						"team_element" : teamElement
+					},
+					"xprs" : {
+						"full_name" : unicode(elements[3].find("span").text),
+						"code" : xprsGroups.group("code") if not xprsGroups is None else "",
+						"subject" : xprsGroups.group("subject") if not xprsGroups is None else "",
+						"xprs_subject_id" : elements[3].find("span")["lectiocontextcard"].replace("XF", ""),
+						"context_card_id" : elements[3].find("span")["lectiocontextcard"]
+					},
+					"term" : {
+						"year" : termGroups.group("year") if not termGroups is None else "",
+						"term" : "summer" if term == "Sommer" else "spring" if unicode(term) == u"Forår" else "fall" if unicode(term) == u"Efterår" else "winter"
+					}
+				})
 
 	gradeList = []
 	termMapping = {
@@ -193,49 +202,100 @@ def grades ( config, term, session = False ):
 	headers.pop(0)
 	gradeListRows.pop(0)
 	teamNameProg = re.compile(r"(?P<class_name>.*) (?P<subject_name>.*), (?P<evaluation_type>.*)")
+	subjectAbbrevationProg = re.compile(r"(?P<team_type>.*) (?P<type>.*) (?P<subject>.*)")
 
-	for row in gradeListRows:
-		elements = row.findAll("td")
+	if soup.find("table", attrs={"id" : "s_m_Content_Content_karakterView_KarakterGV"}).find(".noRecord") is None:
+		for row in gradeListRows:
+			elements = row.findAll("td")
 
-		if elements[0].find("b") is None:
-			teamGroups = teamNameProg.match(cleanText(elements[0].text))
-			teamElementGroups = teamElementIdProg.match(elements[0].find("a")["href"])
-			elements.pop(0)
-			className = teamGroups.group("class_name") if not teamGroups is None else ""
-			subject = teamGroups.group("subject_name") if not teamGroups is None else ""
-			teamName = className + " " + subject
+			if elements[0].find("b") is None:
+				teamGroups = teamNameProg.match(cleanText(elements[0].text))
+				teamElementGroups = teamElementIdProg.match(elements[0].find("a")["href"])
+				elements.pop(0)
+				className = teamGroups.group("class_name") if not teamGroups is None else ""
+				subject = teamGroups.group("subject_name") if not teamGroups is None else ""
+				teamName = className + " " + subject
 
-			gradeElements = []
-			index = 0
+				gradeElements = []
+				index = 0
 
-			for element in elements:
-				if not cleanText(element.find("div").text) == "":
-					header = unicode(headers[index].text)
-					term = termMapping[header] if header in termMapping else "other"
-					gradeElements.append({
-						"term" : term,
-						"grade" : cleanText(element.find("div").text)
-					})
+				for element in elements:
+					if not cleanText(element.find("div").text) == "":
+						header = unicode(headers[index].text)
+						term = termMapping[header] if header in termMapping else "other"
+						gradeElements.append({
+							"term" : term,
+							"grade" : cleanText(element.find("div").text)
+						})
 
-				index = index + 1
+					index = index + 1
 
-			evaluation_type = cleanText(teamGroups.group("evaluation_type")) if not teamGroups is None else ""
+				evaluation_type = cleanText(teamGroups.group("evaluation_type")) if not teamGroups is None else ""
 
-			gradeList.append({
-				"evaluation_type" : "oral" if evaluation_type == "mundtlig" else "written" if evaluation_type == "skriftlig" else "combined",
-				"team" : {
-					"class_name" : className,
-					"name" : teamName,
-					"subject_abbrevation" : subject,
-					"team_element_id" : teamElementGroups.group("team_element_id") if not teamElementGroups is None else "",
-					"school_id" : teamElementGroups.group("school_id") if not teamElementGroups is None else ""
-				},
-				"grades" : gradeElements,
-				"term" : {
-					"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
-					"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+				subjectLevel = None
+
+				subjectLevelGroups = subjectLevelProg.match(subject)
+				
+				if not subjectLevelGroups is None:
+					subject = subjectLevelGroups.group("abbrevation")
+
+				subjectAbbrevationGroups = None
+
+				if len(subject) > 4:
+					subjectAbbrevationGroups = subjectAbbrevationProg.match(elements[0].text)
+
+					if not subjectAbbrevationGroups is None:
+						subject = subjectAbbrevationGroups.group("subject")
+
+				if not subjectLevelGroups is None:
+					subject = subjectLevelGroups.group("abbrevation")
+
+					if "level" in subjectLevelGroups.groupdict():
+						subjectLevel = subjectLevelGroups.group("level").upper()
+
+				if subject == "team":
+					subject = "TM"
+
+				subjectAltName = None
+				subjectAltAbbrevation = None
+
+				if subject in subjectAbbrevationMapping:
+					subjectAltAbbrevation = subject
+					subjectAltName = subjectAbbrevationMapping[subject]["name"]
+					subject = subjectAbbrevationMapping[subject]["abbrevation"]
+
+				data = {
+					"evaluation_type" : "oral" if evaluation_type == "mundtlig" else "written" if evaluation_type == "skriftlig" else "combined",
+					"team" : {
+						"class_name" : className,
+						"name" : teamName,
+						"subject_abbrevation" : subject,
+						"team_element_id" : teamElementGroups.group("team_element_id") if not teamElementGroups is None else "",
+						"school_id" : teamElementGroups.group("school_id") if not teamElementGroups is None else ""
+					},
+					"grades" : gradeElements,
+					"term" : {
+						"value" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0]["value"],
+						"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
+					}
 				}
-			})
+
+				if not subjectLevel == None and len(subjectLevel) > 0:
+					data["team"]["level"] = subjectLevel
+
+				if not subjectAltAbbrevation is None:
+					data["team"]["subject_alternative_abbrevation"] = subjectAltAbbrevation
+					data["team"]["subject_alternative_name"] = subjectAltName
+
+				if not subjectAbbrevationGroups is None:
+					if subjectAbbrevationGroups.group("team_type").isdigit():
+						data["team"]["year"] = subjectAbbrevationGroups.group("team_type")
+					else:
+						data["team"]["education_type"] = subjectAbbrevationGroups.group("team_type")
+
+					data["team"]["type"] = subjectAbbrevationGroups.group("type")
+
+				gradeList.append(data)
 
 
 	diplomaLines = []
@@ -246,35 +306,36 @@ def grades ( config, term, session = False ):
 	subjectProg = re.compile(r"(?P<subject_name>.*) (?P<subject_level>.*)")
 	subjectProgAlternative = re.compile(r"(?P<subject_name>.*) (?P<subject_level>.*) (?P<type>.*)\.")
 
-	for row in diplomaRows:
-		if row.find("span") is None:
-			elements = row.findAll("td")
-			if subjectProgAlternative.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip()):
-				subjectGroups = subjectProgAlternative.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
-			else:
-				subjectGroups = subjectProg.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
+	if soup.find("div", attrs={"id" : "printareaDiplomaLines"}).find(".noRecord") is None:
+		for row in diplomaRows:
+			if row.find("span") is None:
+				elements = row.findAll("td")
+				if subjectProgAlternative.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip()):
+					subjectGroups = subjectProgAlternative.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
+				else:
+					subjectGroups = subjectProg.match(elements[0].text.strip().replace("\t", "").replace("\n", "").replace("\r", "").strip())
 
-			year_weight = cleanText(elements[1].text).replace(",", ".")
-			year_grade = cleanText(elements[2].text)
-			year_ects = cleanText(elements[3].text)
-			exam_weight = cleanText(elements[4].text).replace(",", ".")
-			exam_grade = cleanText(elements[5].text)
-			exam_ects = cleanText(elements[6].text)
+				year_weight = cleanText(elements[1].text).replace(",", ".")
+				year_grade = cleanText(elements[2].text)
+				year_ects = cleanText(elements[3].text)
+				exam_weight = cleanText(elements[4].text).replace(",", ".")
+				exam_grade = cleanText(elements[5].text)
+				exam_ects = cleanText(elements[6].text)
 
-			evaluation_type = subjectGroups.group("type") if not subjectGroups is None and "type" in subjectGroups.groupdict() else None
+				evaluation_type = subjectGroups.group("type") if not subjectGroups is None and "type" in subjectGroups.groupdict() else None
 
-			diplomaLines.append({
-				"subject_full" : unicode(elements[0].text.replace("\t", "").replace("\n", "").replace("\r", "")),
-				"subject_name" : subjectGroups.group("subject_name").replace("\t", "").replace("\n", "").replace("\r", "") if not subjectGroups is None else "",
-				"subject_level" : subjectGroups.group("subject_level").replace("\t", "").replace("\n", "").replace("\r", "") if not subjectGroups is None else "",
-				"year_weight" : year_weight if not year_weight.strip() == "-" and not year_weight == "??" else "waiting_for_exam" if year_weight.strip() == "??" else "unkown",
-				"year_grade" : year_grade if not year_grade.strip() == "-" and not year_grade == "??" else "waiting_for_exam" if year_grade.strip() == "??" else "unkown",
-				"year_ects" : year_ects if not year_ects.strip() == "-" and not year_ects == "??" else "waiting_for_exam" if year_ects.strip() == "??" else "unkown",
-				"exam_weight" : exam_weight if not exam_weight.strip() == "-" and not exam_weight == "??" else "waiting_for_exam" if exam_weight.strip() == "??" else "unkown",
-				"exam_grade" : exam_grade if not exam_grade.strip() == "-" and not exam_grade == "??" else "waiting_for_exam" if exam_grade.strip() == "??" else "unkown",
-				"exam_ects" : exam_ects if not exam_ects.strip() == "-" and not exam_ects == "??" else "waiting_for_exam" if exam_ects.strip() == "??" else "unkown",
-				"evaluation_type" : "oral" if evaluation_type == "mdt" else "written" if evaluation_type == "skr" else "combined"
-			})
+				diplomaLines.append({
+					"subject_full" : unicode(elements[0].text.replace("\t", "").replace("\n", "").replace("\r", "")),
+					"subject_name" : subjectGroups.group("subject_name").replace("\t", "").replace("\n", "").replace("\r", "") if not subjectGroups is None else "",
+					"subject_level" : subjectGroups.group("subject_level").replace("\t", "").replace("\n", "").replace("\r", "") if not subjectGroups is None else "",
+					"year_weight" : year_weight if not year_weight.strip() == "-" and not year_weight == "??" else "waiting_for_exam" if year_weight.strip() == "??" else "unkown",
+					"year_grade" : year_grade if not year_grade.strip() == "-" and not year_grade == "??" else "waiting_for_exam" if year_grade.strip() == "??" else "unkown",
+					"year_ects" : year_ects if not year_ects.strip() == "-" and not year_ects == "??" else "waiting_for_exam" if year_ects.strip() == "??" else "unkown",
+					"exam_weight" : exam_weight if not exam_weight.strip() == "-" and not exam_weight == "??" else "waiting_for_exam" if exam_weight.strip() == "??" else "unkown",
+					"exam_grade" : exam_grade if not exam_grade.strip() == "-" and not exam_grade == "??" else "waiting_for_exam" if exam_grade.strip() == "??" else "unkown",
+					"exam_ects" : exam_ects if not exam_ects.strip() == "-" and not exam_ects == "??" else "waiting_for_exam" if exam_ects.strip() == "??" else "unkown",
+					"evaluation_type" : "oral" if evaluation_type == "mdt" else "written" if evaluation_type == "skr" else "combined"
+				})
 
 	avgElement = soup.find("span", attrs={"id" : "s_m_Content_Content_GradeAverageLabel"})
 	for element in avgElement.findAll("span"):
@@ -302,9 +363,3 @@ def grades ( config, term, session = False ):
 			"years_string" : soup.find("select", attrs={"id" : "s_m_ChooseTerm_term"}).select('option[selected="selected"]')[0].text
 		}
 	}
-
-print grades({"school_id" : 517,
-	"student_id" : 4789793691,
-	"username" : "boh1996",
-	"password" : "jwn53yut",
-	"branch_id" : "4733693427"}, "2012")

@@ -92,39 +92,43 @@ def students(config, term = False, letters = ["A", "B", "C", "D", "E", "F", "G",
                 r"(?P<name>.*) \((?P<class_number>.*) (?P<class>.*) (?P<class_student_id>[0-9]*)\)"
             ]
 
+            studentInformation = None
+
             # Check if the patterns matches
             for pattern in patterns:
                 prog = re.compile(pattern)
                 if prog.match(student.text):
                     studentInformation = prog.match(student.text)
 
-            # Get the matched regex groups
-            groups = studentInformation.groupdict()
-
-            if "class" in groups:
-                if "class_number" in groups:
-                    studentClass = "%s %s" % (studentInformation.group("class_number"), studentInformation.group("class"))
-                else:
-                    studentClass = studentInformation.group("class")
-            else:
-                studentClass = ""
-
             urlProg = re.compile(r"\/lectio\/(?P<school_id>[0-9].*)\/SkemaNy.aspx\?type=(?P<type_name>.*)&elevid=(?P<student_id>.*)")
             urlGroups = urlProg.match(student["href"])
 
-            # Append the student information
-            studentList.append({
-                "context_card_id" : student["lectiocontextcard"],
-                "student_id" : urlGroups.group("student_id") if not urlGroups is None and "student_id" in urlGroups.groupdict() else "",
-                "name" : studentInformation.group("name").encode("utf8") if not groups is None and "name" in groups else "",
-                "class_name" : studentClass,
-                "class_student_id" : studentInformation.group("class_student_id") if not groups is None and "class_student_id" in groups else "",
-                "class_description" : studentInformation.group("class_description") if not groups is None and "class_description"in groups else "",
-                "status" : studentInformation.group("status").encode("utf8") if not groups is None and "status" in groups else "active",
-                "school_id" : config["school_id"],
-                "branch_id" : config["branch_id"],
-                "type" : urlGroups.group("type_name").encode("utf8") if not urlGroups is None and "type_name" in groups else ""
-            })
+            if not studentInformation == None:
+                # Get the matched regex groups
+                groups = studentInformation.groupdict()
+
+                if "class" in groups:
+                    if "class_number" in groups:
+                        studentClass = "%s %s" % (studentInformation.group("class_number"), studentInformation.group("class"))
+                    else:
+                        studentClass = studentInformation.group("class")
+                else:
+                    studentClass = ""
+                # Append the student information
+                studentList.append({
+                    "context_card_id" : student["lectiocontextcard"],
+                    "student_id" : urlGroups.group("student_id") if not urlGroups is None and "student_id" in urlGroups.groupdict() else "",
+                    "name" : studentInformation.group("name").encode("utf8") if not groups is None and "name" in groups else "",
+                    "class_name" : studentClass,
+                    "class_student_id" : studentInformation.group("class_student_id") if not groups is None and "class_student_id" in groups else "",
+                    "class_description" : studentInformation.group("class_description") if not groups is None and "class_description"in groups else "",
+                    "status" : studentInformation.group("status").encode("utf8") if not groups is None and "status" in groups else "active",
+                    "school_id" : config["school_id"],
+                    "branch_id" : config["branch_id"],
+                    "type" : urlGroups.group("type_name").encode("utf8") if not urlGroups is None and "type_name" in groups else ""
+                })
+            else:
+                student.text
 
     print len(studentList)
 

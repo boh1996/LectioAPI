@@ -5,6 +5,41 @@ import re
 from datetime import datetime
 from pytz import timezone
 
+subjectAbbrevationMapping = {
+    "SO" : {
+        "abbrevation" : "ØH",
+        "name" : "Studieområdet"
+    },
+    "TFS" : {
+        "abbrevation" : "ØH",
+        "name" : "Tværfaglig Skrivning"
+    },
+    "SRP" : {
+        "abbrevation" : "ØH",
+        "name" : "Studieretningsprojekt"
+    },
+    "DHO" : {
+        "abbrevation" : "ØH",
+        "name" : "Dansk+Historie Opgave"
+    },
+    "SRO" : {
+        "abbrevation" : "ØH",
+        "name" : "Studieretnings Opgave"
+    },
+    "B&E" : {
+        "abbrevation" : "TK",
+        "name" : "Byggeri og Energi"
+    },
+    "D&P" : {
+        "abbrevation" : "TK",
+        "name" : "Design og Produktion"
+    },
+    "PLS" : {
+        "abbrevation" : "TK",
+        "name" : "Process, Levnedsmiddel og Sundhed"
+    }
+}
+
 def weeks ( numberOfWeeks = 4 ):
     # Get the datetime for the current moment, with Europe/Copenhagen as a timezone
     currentWeekDateTime = datetime.date(datetime.now(timezone('Europe/Copenhagen')))

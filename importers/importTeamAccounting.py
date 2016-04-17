@@ -65,4 +65,3 @@ def importTeamAccounting ( school_id, branch_id, team_element_id ):
 	except Exception, e:
 		error.log(__file__, False, str(e))
 		return False
-importTeamAccounting(517, 4733693427, 5936142236)

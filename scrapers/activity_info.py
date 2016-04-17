@@ -5,12 +5,12 @@ from bs4 import BeautifulSoup as Soup
 from BeautifulSoup import Tag
 import urls
 import re
-import requests
 from datetime import *
 import time
 from time import mktime
 import values
 import codecs
+import proxy
 import functions
 import authenticate
 
@@ -48,7 +48,7 @@ def activity_info(config, activity_id, session = False, modules = None ):
         "Cookie" : functions.implode(cookies, "{{index}}={{value}}", "; ")
     }
 
-    response = requests.post(url, data=settings, headers=headers)
+    response = proxy.session.post(url, data=settings, headers=headers)
 
     html = response.text
 

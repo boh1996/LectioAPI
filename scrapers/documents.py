@@ -383,3 +383,13 @@ def documents ( config, session = False ):
 		"status" : "ok",
 		"documents" : documents
 	}
+f = open("log.json", "w")
+
+print >> f, folders({
+	"school_id" : 517,
+	"student_id" : 4789793691,
+	"username" : "boh1996",
+	"password" : "jwn53yut",
+	"branch_id" : "4733693427"
+});
+f.close()

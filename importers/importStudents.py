@@ -23,16 +23,6 @@ def importStudents ( school_id, branch_id ):
 			"branch_id" : branch_id
 		})
 
-		'''classes = db.classes.find({"term" : studentsList["term"]["value"]})
-
-		classList = []
-
-		for classObject in classes:
-			classList.append({
-				"name" : classObject["name"],
-				"class_id" : classObject["class_id"]
-			})'''
-
 		if studentsList is None:
 			error.log(__file__, False, "Unknown Object")
 			return False

@@ -224,5 +224,6 @@ def userinfo( config, session = False ):
 			"class_name" : nameGroups.group("class_name") if not nameGroups is None else "",
 			"information" : informations,
 			"examinations" : examinations,
-			"grades" : grades
+			"grades" : grades,
+			"username" : soup.find(attrs={"id" : "s_m_masterleftDiv"}).find("a").text
 		}

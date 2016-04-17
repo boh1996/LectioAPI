@@ -94,5 +94,3 @@ def importTeachers ( school_id, branch_id ):
 	except Exception, e:
 		error.log(__file__, False, str(e))
 		return False
-
-importTeachers(43, 5822508886)
